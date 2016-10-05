@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;jTextField1&apos; in &apos;Janela2&apos; to &apos;tfDep1&apos;&#x0D;&#x0A;- Original project: &apos;2bim&apos;&#x0D;&#x0A;- Original element: &apos;Janela2.jTextField1&apos;&#x0D;&#x0A;- Renamed element: &apos;Janela2.tfDep1&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings&#x0D;&#x0A;- Rename getter method for field&#x0D;&#x0A;- Rename setter method for field" delegate="false" deprecate="true" description="Rename field &apos;jTextField1&apos;" flags="589826" getter="true" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;{Janela2.java[Janela2^jTextField1" name="tfDep1" references="true" setter="true" stamp="1308924474195" textual="true" version="1.0"/>
+</session>

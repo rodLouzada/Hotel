@@ -1,0 +1,102 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.sql.Date;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
+
+
+
+public class Janela5 {
+	private JDialog frame;
+	private JPanel panelTable;
+	private JPanel panel;
+	private JScrollPane scrollTable;
+	private JTable table;
+	private JButton btOk;
+	private DefaultTableModel modelo;
+
+	public static void main(String[] args) {
+		new Janela5();
+	}
+
+	public Janela5() {
+		String colunas[] = new String[] { "", "Cod da Loc", "Cod do Cli", "Nome do Cli", "Tipo do Pro", "Cod do Pro", "Nome do Pro", "Preço", "Data de Loc", "Data de Entrega" };
+		modelo = new DefaultTableModel(colunas,0);
+
+		table = new JTable(modelo);
+
+		table.getColumnModel().getColumn(0).setPreferredWidth(10);
+		table.getColumnModel().getColumn(0).setResizable(true);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setPreferredWidth(100);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setPreferredWidth(100);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(4).setPreferredWidth(100);
+		table.getColumnModel().getColumn(4).setResizable(false);
+		table.getColumnModel().getColumn(5).setPreferredWidth(100);
+		table.getColumnModel().getColumn(5).setResizable(false);
+		table.getColumnModel().getColumn(6).setPreferredWidth(100);
+		table.getColumnModel().getColumn(6).setResizable(false);
+		table.getColumnModel().getColumn(7).setPreferredWidth(100);
+		table.getColumnModel().getColumn(7).setResizable(false);
+		table.getColumnModel().getColumn(8).setPreferredWidth(100);
+		table.getColumnModel().getColumn(8).setResizable(false);
+		table.getColumnModel().getColumn(9).setPreferredWidth(100);
+		table.getColumnModel().getColumn(9).setResizable(false);
+		table.getTableHeader().setReorderingAllowed(true);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		scrollTable = new JScrollPane(table);
+		scrollTable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollTable.setViewportView(table);
+		scrollTable.setPreferredSize(new Dimension(250,200));
+		
+		
+		btOk = new JButton("Ok");
+		btOk.setBounds(5, 90, 100, 20);
+		btOk.addActionListener(new OkListener());
+		
+		panelTable = new JPanel();		
+		panelTable.add(scrollTable);
+
+
+		panel = new JPanel();
+		panel.add(btOk);
+
+		frame = new JDialog(frame, "Tabela");
+		frame.setModal(true);
+		frame.getContentPane().add(BorderLayout.NORTH, panel);
+		frame.getContentPane().add(BorderLayout.CENTER, panelTable);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		//frame.setVisible(true);
+
+	}
+	public void setTabelas(int c, int cc, String nc,String t, int cp, String np, double p, int dl, int de){
+		modelo.addRow(new Object[] {" " , c, cc, nc, t, cp, np, p, dl, de});
+		//nao tenho certeza
+		table = new JTable(modelo);
+	}
+	private class OkListener  implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			frame.dispose();
+		}
+	}
+	public void mostrar(){
+		frame.setVisible(true);
+	}
+}

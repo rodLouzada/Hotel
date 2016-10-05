@@ -1,0 +1,59 @@
+Creating elements for JanelaDeRelatorioDespesas.java
+
+
+>>>  about to create class java.awt.Dimension, constructor=public java.awt.Dimension(int,int)
+
+    >>>  about to create class java.awt.Dimension
+    <<< created class java.awt.Dimension
+<<< created class java.awt.Dimension
+
+>>>  about to create class java.awt.Font, constructor=public java.awt.Font(java.lang.String,int,int)
+
+    >>>  about to create class java.awt.Font
+    <<< error creating class java.awt.Font, java.lang.NoSuchMethodException: java.awt.Font.<init>()
+<<< created class java.awt.Font
+
+>>>  about to create class java.awt.Font, constructor=public java.awt.Font(java.lang.String,int,int)
+<<< created class java.awt.Font
+
+>>>  about to create class java.awt.Dimension, constructor=public java.awt.Dimension(int,int)
+<<< created class java.awt.Dimension
+
+>>>  about to create class javax.swing.JPanel, constructor=public javax.swing.JPanel()
+<<< created class javax.swing.JPanel
+
+>>>  about to create class javax.swing.JScrollPane, constructor=public javax.swing.JScrollPane()
+<<< created class javax.swing.JScrollPane
+
+>>>  about to create class javax.swing.ScrollPaneLayout
+<<< created class javax.swing.ScrollPaneLayout
+
+>>>  about to create class javax.swing.ScrollPaneLayout$UIResource
+<<< created class javax.swing.ScrollPaneLayout$UIResource
+
+>>>  about to create class javax.swing.JTable, constructor=public javax.swing.JTable()
+<<< created class javax.swing.JTable
+
+>>>  about to create class javax.swing.table.DefaultTableModel, constructor=public javax.swing.table.DefaultTableModel(java.lang.Object[],int)
+<<< created class javax.swing.table.DefaultTableModel
+
+>>>  about to create class javax.swing.JLabel, constructor=public javax.swing.JLabel()
+<<< created class javax.swing.JLabel
+
+>>>  about to create class javax.swing.JComboBox, constructor=public javax.swing.JComboBox()
+<<< created class javax.swing.JComboBox
+
+>>>  about to create class javax.swing.DefaultComboBoxModel, constructor=public javax.swing.DefaultComboBoxModel(java.lang.Object[])
+<<< created class javax.swing.DefaultComboBoxModel
+
+>>>  about to create class javax.swing.JLabel, constructor=public javax.swing.JLabel()
+<<< created class javax.swing.JLabel
+
+>>>  about to create class javax.swing.JFormattedTextField, constructor=public javax.swing.JFormattedTextField(javax.swing.JFormattedTextField$AbstractFormatter)
+
+    >>>  about to create class javax.swing.text.MaskFormatter, constructor=public javax.swing.text.MaskFormatter(java.lang.String) throws java.text.ParseException
+    <<< created class javax.swing.text.MaskFormatter
+
+    >>>  about to create class javax.swing.JFormattedTextField
+    <<< created class javax.swing.JFormattedTextField
+<<< created class javax.swing.JFormattedTextField

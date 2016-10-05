@@ -1,0 +1,34 @@
+1315089236656	Rename field 'jScrollPane1'
+1315094849703	Delete element
+1315159769718	Rename field 'locDVD'
+1315159780593	Rename field 'locDependente'
+1315159799390	Rename field 'cadDVD'
+1315159812296	Rename field 'cadDependente'
+1315159868265	Rename field 'excluirPro'
+1315159879453	Rename field 'excluirDep'
+1315160589062	Rename type 'DvdJogo'
+1315160602734	Rename type 'DvdJogoDAO'
+1315168434906	Rename type 'Dependente'
+1315168454125	Rename type 'DependenteDAO'
+1315168830109	Rename local variable 'dependente'
+1315169036250	Delete elements
+1315169063312	Rename local variable 'dj'
+1315169072796	Rename local variable 'quart'
+1315169084093	Rename local variable 'dep'
+1315169141265	Rename local variable 'j1'
+1315169250406	Rename local variable 'j2'
+1315169263390	Rename local variable 'janMP'
+1315170615203	Move compilation unit
+1315170619609	Delete element
+1315170700437	Rename local variable 'j11'
+1315171731343	Rename local variable 'daoDependente'
+1315171973187	Rename field 'menuLocacao'
+1315172439078	Rename local variable 'j3'
+1315173058578	Delete element
+1315173081171	Delete elements
+1315177902093	Delete element
+1315178125656	Delete element
+1315179163562	Delete element
+1315179186812	Rename type 'teste'
+1315179212203	Rename type 'JanelaDeCadastroDecaracteristica'
+1315179244890	Rename type 'JanelaDeCadastroDecaract'
