@@ -182,16 +182,16 @@ public class Programa {
 				if (op ==4){
 					JanelaDeExcluirCliente janExCli = new JanelaDeExcluirCliente();
 				}
-				if (op ==5){
+				else if (op ==5){ 
 					JanelaDeExcluirCaract janExCar = new JanelaDeExcluirCaract();
 				}
-				if (op ==7){
+				else if (op ==7){
 					JanelaDeExcluirQuarto janExQua = new JanelaDeExcluirQuarto();
 				}
-				if (op ==8){
+				else if (op ==8){
 					JanelaDeEditarCliente janEditCli = new JanelaDeEditarCliente();
 				}
-				if (op ==9){
+				else if (op ==9){ // coloquei else if para testar
 					JanelaDeEditarQuarto janEditQua = new JanelaDeEditarQuarto();
 				}
 				if (op ==10){
