@@ -99,6 +99,7 @@ public class Programa {
 						}
 						JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");					
 					}
+					//teste
 				}
 				if (op == 2){
 					JanelaDeCadastroDeCaract janCadCaract = new JanelaDeCadastroDeCaract();
