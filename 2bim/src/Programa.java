@@ -193,9 +193,14 @@ public class Programa {
 				}
 				else if (op ==9){ // coloquei else if para testar
 					JanelaDeEditarQuarto janEditQua = new JanelaDeEditarQuarto();
+					
 				}
 				if (op ==10){
+					try{
 					JanelaDeEditarCaract janEditCar = new JanelaDeEditarCaract();
+					}catch(Exception e){
+						
+					}
 				}
 				if (op ==11){
 					JanelaDeCadastroProduto janCadPro = new JanelaDeCadastroProduto();
@@ -213,27 +218,31 @@ public class Programa {
 					JanelaDeEditarProduto janEdiPro = new JanelaDeEditarProduto();
 				}
 				if (op ==16){
+					try{
 					JanelaDeEditarServico janEdiSer = new JanelaDeEditarServico();
+					} catch(Exception e){
+						
+					}
 				}
-				if (op ==17){
+				else if (op ==17){
 					JanelaDeCheckIn janCheckIn = new JanelaDeCheckIn();
 				}
-				if (op ==18){
+				else if (op ==18){
 					JanelaDeCheckOutQua janCheckout = new JanelaDeCheckOutQua();
 				}
-				if (op ==19){
+				else if (op ==19){
 					JanelaDeConsumo janCons = new JanelaDeConsumo();
 				}
-				if (op ==20){
+				else if (op ==20){
 					JanelaDeRelatorioDespesas janRelDesp = new JanelaDeRelatorioDespesas();
 				}
-				if (op ==21){
+				else if (op ==21){
 					JanelaDeRelatorioQuartos janRelQua = new JanelaDeRelatorioQuartos();
 				}
-				if (op ==22){
+				else if (op ==22){
 					JanelaDeRelatorioHospedagem janRelHosp = new JanelaDeRelatorioHospedagem();
 				}
-				if (op ==23){
+				else if (op ==23){
 					JanelaDeCadastroDeUsuario janCadUsu = new JanelaDeCadastroDeUsuario();
 					if (janCadUsu.getOp() == 1){
 						usuario.setNome(janCadUsu.getTfNome().getText());
@@ -257,9 +266,9 @@ public class Programa {
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 					}
 				}
-				if (op == 24){
-					JanelaDeEditarUsuario janEditUsu = new JanelaDeEditarUsuario();
-				}
+//				if (op == 24){
+//					JanelaDeEditarUsuario janEditUsu = new JanelaDeEditarUsuario();
+//				}
 				if (op == 25){
 					JanelaDeExcluirUsuario janExcUsu = new JanelaDeExcluirUsuario();
 				}
