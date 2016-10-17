@@ -7,8 +7,13 @@ public class Produto {
 	private String nome;
 	private double valor;
 	Produto(){
+		System.out.println("teste");
 		c++;
 		cod = c;
+		boolean teste = false;
+		if(teste){
+			System.out.println("Teste");
+		}
 	}
 	public int getCod() {
 		return cod;
