@@ -11,6 +11,7 @@ public class Produto {
 		c++;
 		cod = c;
 		boolean teste = false;
+		System.out.println(teste);
 		
 	}
 	public int getCod() {
