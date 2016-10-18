@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Component;
 
 
 
@@ -45,19 +48,24 @@ public class JanelaDeLogin {
 		labelNome.setBounds(5, 5, 100, 20);
 		tfNome = new JTextField(20);
 		tfNome.setBounds(5,30,200,20);
+		tfNome.addKeyListener(new OkKeyListener());
 		lbSenha = new JLabel("Senha:");
 		lbSenha.setBounds(5, 50, 200, 20);
 		tfSenha = new JPasswordField(20);
 		tfSenha.setBounds(5,70,200,20);
+		tfSenha.addKeyListener(new OkKeyListener());
 		btOk = new JButton("Ok");
 		btOk.setBounds(15, 126, 90, 20);
 		btOk.addActionListener(new OkListener());
+		btOk.addKeyListener(new OkKeyListener());
 		JButton btSair = new JButton("Cancelar");
 		btSair.setBounds(116, 126, 89, 20);
 		btSair.addActionListener(new SairListener());
+		btSair.addKeyListener(new KeySairListener());
 		
 		panel = new JPanel();
 		panel.setLayout(null);
+		panel.addKeyListener(new OkKeyListener());
 		panel.add(labelNome);
 		panel.add(tfNome);
 		panel.add(lbSenha);
@@ -89,45 +97,94 @@ public class JanelaDeLogin {
 		
 	}
 	public static void main(String[] args) {
-		new JanelaDeLogin();
+				new JanelaDeLogin();
 		
 	}
-	private class OkListener  implements ActionListener {
-		@Override		
-		public void actionPerformed(ActionEvent arg0) {
-			ArrayList<Usuario> vetorUsu = new ArrayList<Usuario>();
+	
+	public void ValidaLogin(){
+		ArrayList<Usuario> vetorUsu = new ArrayList<Usuario>();
 
-			Connection conexao = null;
-			UsuarioDAO daoUsuario = null;
+		Connection conexao = null;
+		UsuarioDAO daoUsuario = null;
 
-			
-			try {
-				conexao = ConnectionFactory.getConnection();
-				daoUsuario = new UsuarioDAO(conexao);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		
+		try {
+			conexao = ConnectionFactory.getConnection();
+			daoUsuario = new UsuarioDAO(conexao);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			vetorUsu = daoUsuario.listaTodos();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		boolean acesso = false;
+		
+		for (int i = 0; i < vetorUsu.size(); i++) {
+			if(tfNome.getText().equals(vetorUsu.get(i).getLogin()) && tfSenha.getText().equals(vetorUsu.get(i).getSenha())){
+				acesso = true;
 			}
-			try {
-				vetorUsu = daoUsuario.listaTodos();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			boolean acesso = false;
-			
-			for (int i = 0; i < vetorUsu.size(); i++) {
-				if(tfNome.getText().equals(vetorUsu.get(i).getLogin()) && tfSenha.getText().equals(vetorUsu.get(i).getSenha())){
-					acesso = true;
-				}
-			}
-			if (acesso) 
-				frame.dispose();
-			else
-				JOptionPane.showMessageDialog(frame, "Erro! Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
+		}
+		if (acesso) 
+			frame.dispose();
+		else{
+			JOptionPane.showMessageDialog(frame, "Erro! Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
+			tfNome.setText("");
+			tfSenha.setText("");
+			tfNome.requestFocus();
 		}
 	}
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			    if (e.getKeyCode()==KeyEvent.VK_ENTER){
+		        	ValidaLogin();
+		        }
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	private class OkListener implements ActionListener {
+		@Override		
+		public void actionPerformed(ActionEvent arg0) {
+			ValidaLogin();
+		}
+	}
+	private class KeySairListener  implements KeyListener {
+		@Override
+		public void keyPressed(KeyEvent e) {
+			tfSenha.setText("1111");
+			frame.dispose();			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
 	private class SairListener  implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
