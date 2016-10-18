@@ -99,7 +99,6 @@ public class Programa {
 						}
 						JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");					
 					}
-					//teste
 				}
 				if (op == 2){
 					JanelaDeCadastroDeCaract janCadCaract = new JanelaDeCadastroDeCaract();
@@ -182,16 +181,16 @@ public class Programa {
 				if (op ==4){
 					JanelaDeExcluirCliente janExCli = new JanelaDeExcluirCliente();
 				}
-				else if (op ==5){ 
+			 if (op ==5){ 
 					JanelaDeExcluirCaract janExCar = new JanelaDeExcluirCaract();
 				}
-				else if (op ==7){
+				 if (op ==7){
 					JanelaDeExcluirQuarto janExQua = new JanelaDeExcluirQuarto();
 				}
-				else if (op ==8){
+				 if (op ==8){
 					JanelaDeEditarCliente janEditCli = new JanelaDeEditarCliente();
 				}
-				else if (op ==9){ // coloquei else if para testar
+				 if (op ==9){ // coloquei else if para testar
 					JanelaDeEditarQuarto janEditQua = new JanelaDeEditarQuarto();
 					
 				}
@@ -224,25 +223,25 @@ public class Programa {
 						
 					}
 				}
-				else if (op ==17){
+				 if (op ==17){
 					JanelaDeCheckIn janCheckIn = new JanelaDeCheckIn();
 				}
-				else if (op ==18){
+				 if (op ==18){
 					JanelaDeCheckOutQua janCheckout = new JanelaDeCheckOutQua();
 				}
-				else if (op ==19){
+				 if (op ==19){
 					JanelaDeConsumo janCons = new JanelaDeConsumo();
 				}
-				else if (op ==20){
+				 if (op ==20){
 					JanelaDeRelatorioDespesas janRelDesp = new JanelaDeRelatorioDespesas();
 				}
-				else if (op ==21){
+				 if (op ==21){
 					JanelaDeRelatorioQuartos janRelQua = new JanelaDeRelatorioQuartos();
 				}
-				else if (op ==22){
+				 if (op ==22){
 					JanelaDeRelatorioHospedagem janRelHosp = new JanelaDeRelatorioHospedagem();
 				}
-				else if (op ==23){
+				 if (op ==23){
 					JanelaDeCadastroDeUsuario janCadUsu = new JanelaDeCadastroDeUsuario();
 					if (janCadUsu.getOp() == 1){
 						usuario.setNome(janCadUsu.getTfNome().getText());
@@ -266,9 +265,9 @@ public class Programa {
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 					}
 				}
-//				if (op == 24){
-//					JanelaDeEditarUsuario janEditUsu = new JanelaDeEditarUsuario();
-//				}
+				if (op == 24){
+					JanelaDeEditarUsuario janEditUsu = new JanelaDeEditarUsuario();
+				}
 				if (op == 25){
 					JanelaDeExcluirUsuario janExcUsu = new JanelaDeExcluirUsuario();
 				}
