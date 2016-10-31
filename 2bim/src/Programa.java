@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -10,9 +11,21 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import org.apache.commons.logging.impl.ServletContextCleaner;
+
 
 
 public class Programa {
+	//Todas as telas
+	public static JanelaDeCadastroCliente janCadCli = null;
+	public static JanelaDeCadastroDeCaract janCadCaract = null;
+	public static JanelaDeCadastroQuarto janCadQua = null;
+	public static JanelaDeExcluirCliente janExCli = null;
+	public static JanelaDeExcluirCaract janExCar = null;
+	public static JanelaDeExcluirQuarto janExQua = null;
+	public static JanelaDeEditarCliente janEditCli  = null;
+	public static JanelaDeEditarQuarto janEditQua = null;
+    
 	public static void main(String[] args) {
 		String senha;
 		String usu;
@@ -23,7 +36,6 @@ public class Programa {
 		Quarto quarto = new Quarto();
 		Caract caract = new Caract();
 		Usuario usuario = new Usuario();
-		
 		
 		ArrayList<Usuario> vetorUsu = new ArrayList<Usuario>();
 
@@ -54,15 +66,25 @@ public class Programa {
 		}
 		
 		
-		
+		int opOld = 0;
+		int op = 0;
 		if (acesso){
-			int op;
+			JanelaMenuPrincipal janMenPrin = new JanelaMenuPrincipal();
+			
 			do{
-				JanelaMenuPrincipal janMenPrin = new JanelaMenuPrincipal();
 				op = janMenPrin.getOp();
-				if (op == 1){
-					JanelaDeCadastroCliente janCadCli = new JanelaDeCadastroCliente();
-					
+				if(opOld!=op){
+					opOld = op;
+					System.out.println("Op: " + op);
+				}
+				
+				if (op == 1){					
+					if(janCadCli == null){
+					 setAllToNull();
+					 janMenPrin.frameConteudo.getContentPane().removeAll();
+					 janCadCli = new JanelaDeCadastroCliente(janMenPrin);
+					}
+					System.out.println("OP: " + janCadCli.getOp());
 					if (janCadCli.getOp() == 1){
 						cli.setNome(janCadCli.getTfNome().getText());
 						cli.setRua(janCadCli.getTfEndereco().getText());
@@ -97,11 +119,22 @@ public class Programa {
 						} catch (SQLException e) {
 							e.printStackTrace();
 						}
+						janCadCli = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
 						JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");					
 					}
+					else if (janCadCli.getOp() == 2){
+						janCadCli = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
-				if (op == 2){
-					JanelaDeCadastroDeCaract janCadCaract = new JanelaDeCadastroDeCaract();
+				else if (op == 2){
+					if(janCadCaract == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+					   janCadCaract = new JanelaDeCadastroDeCaract(janMenPrin);
+					}
+					
 					if (janCadCaract.getOp() == 1){
 						caract.setNome(janCadCaract.getTfNome().getText());
 						if (janCadCaract.getTfDescCaract().getText() != null){
@@ -118,12 +151,22 @@ public class Programa {
 							conexao.close();
 						} catch (SQLException e) {
 							e.printStackTrace();
-						}					
+						}		
+						janCadCaract = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
 						JOptionPane.showMessageDialog(null, "Característica cadastrada com sucesso!");
 					}
+					else if (janCadCaract.getOp() == 2){
+						janCadCaract = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
-				if (op ==3){
-					JanelaDeCadastroQuarto janCadQua = new JanelaDeCadastroQuarto();
+				else if (op ==3){
+					if(janCadQua == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janCadQua = new JanelaDeCadastroQuarto(janMenPrin);
+					}
 					
 					if (janCadQua.getOp() == 1){
 						quarto.setNumero(Integer.parseInt(janCadQua.getTfNum().getText()));
@@ -168,80 +211,127 @@ public class Programa {
 							daoQuarto_Caract = new Quarto_CaractDAO(conexao);
 							for (int i=0; i<cont; i++){
 								daoQuarto_Caract.adiciona(cont2, vetCod[i], vetQtd[i]);
-							}
-							
+							}						
 						
 							conexao.close();
 						} catch (SQLException e) {
 							e.printStackTrace();
 						}
+						janCadQua = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+						janMenPrin.op = 3;
 						JOptionPane.showMessageDialog(null, "Quarto cadastrado com sucesso!");
 					}
+					else if (janCadQua.getOp() == 2){
+						janCadQua = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
-				if (op ==4){
-					JanelaDeExcluirCliente janExCli = new JanelaDeExcluirCliente();
+				else 	if (op ==4){
+					if(janExCli == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janExCli = new JanelaDeExcluirCliente(janMenPrin);
+					}
+					if(janExCli.fechar){
+						janExCli = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
-			 if (op ==5){ 
-					JanelaDeExcluirCaract janExCar = new JanelaDeExcluirCaract();
-				}
-				 if (op ==7){
-					JanelaDeExcluirQuarto janExQua = new JanelaDeExcluirQuarto();
-				}
-				 if (op ==8){
-					JanelaDeEditarCliente janEditCli = new JanelaDeEditarCliente();
-				}
-				 if (op ==9){ // coloquei else if para testar
-					JanelaDeEditarQuarto janEditQua = new JanelaDeEditarQuarto();
+				else  if (op ==5){ 
+					if(janExCar == null){
+						setAllToNull();	
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janExCar = new JanelaDeExcluirCaract(janMenPrin);
+					}
+					if(janExCar.fechar){
+						janExCar = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 					
 				}
-				if (op ==10){
+				else  if (op ==7){
+					if(janExQua == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janExQua = new JanelaDeExcluirQuarto(janMenPrin);
+					}
+					if(janExQua.fechar){
+						janExQua = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
+				}
+				else  if (op ==8){
+					if(janEditCli == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janEditCli = new JanelaDeEditarCliente(janMenPrin);
+					}
+					if(janEditCli.fechar){
+						janEditCli = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
+				}
+				else  if (op ==9){ 
+					if(janEditQua == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janEditQua = new JanelaDeEditarQuarto(janMenPrin);
+					}
+					if(janEditQua.fechar){
+						janEditQua = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
+					
+				}
+				else if (op ==10){
 					try{
 					JanelaDeEditarCaract janEditCar = new JanelaDeEditarCaract();
 					}catch(Exception e){
 						
 					}
 				}
-				if (op ==11){
+				else 	if (op ==11){
 					JanelaDeCadastroProduto janCadPro = new JanelaDeCadastroProduto();
 				}
-				if (op ==12){
+				else if (op ==12){
 					JanelaDeCadastroServico janCadSer = new JanelaDeCadastroServico();
 				}
-				if (op ==13){
+				else if (op ==13){
 					JanelaDeExcluirProduto janCadSer = new JanelaDeExcluirProduto();
 				}
-				if (op ==14){
+				else if (op ==14){
 					JanelaDeExcluirServico janCadSer = new JanelaDeExcluirServico();
 				}
-				if (op ==15){
+				else if (op ==15){
 					JanelaDeEditarProduto janEdiPro = new JanelaDeEditarProduto();
 				}
-				if (op ==16){
+				else if (op ==16){
 					try{
 					JanelaDeEditarServico janEdiSer = new JanelaDeEditarServico();
 					} catch(Exception e){
 						
 					}
 				}
-				 if (op ==17){
+				else  if (op ==17){
 					JanelaDeCheckIn janCheckIn = new JanelaDeCheckIn();
 				}
-				 if (op ==18){
+				else  if (op ==18){
 					JanelaDeCheckOutQua janCheckout = new JanelaDeCheckOutQua();
 				}
-				 if (op ==19){
+				else  if (op ==19){
 					JanelaDeConsumo janCons = new JanelaDeConsumo();
 				}
-				 if (op ==20){
+				else  if (op ==20){
 					JanelaDeRelatorioDespesas janRelDesp = new JanelaDeRelatorioDespesas();
 				}
-				 if (op ==21){
+				else  if (op ==21){
 					JanelaDeRelatorioQuartos janRelQua = new JanelaDeRelatorioQuartos();
 				}
-				 if (op ==22){
+				else  if (op ==22){
 					JanelaDeRelatorioHospedagem janRelHosp = new JanelaDeRelatorioHospedagem();
 				}
-				 if (op ==23){
+				else  if (op ==23){
 					JanelaDeCadastroDeUsuario janCadUsu = new JanelaDeCadastroDeUsuario();
 					if (janCadUsu.getOp() == 1){
 						usuario.setNome(janCadUsu.getTfNome().getText());
@@ -265,15 +355,52 @@ public class Programa {
 						JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 					}
 				}
-				if (op == 24){
+				else if (op == 24){
 					JanelaDeEditarUsuario janEditUsu = new JanelaDeEditarUsuario();
 				}
-				if (op == 25){
+				else if (op == 25){
 					JanelaDeExcluirUsuario janExcUsu = new JanelaDeExcluirUsuario();
 				}
-				
 			}while(op != 6);
+			janMenPrin.frame.removeAll();
+			janMenPrin.frameConteudo.removeAll();
+			janMenPrin.frameConteudo.dispose();
+			janMenPrin.frame.dispose();
 		}
+		
 		JOptionPane.showMessageDialog(null, "Fechando o sistema!");
+	}
+	
+	private static void setAllToNull() {
+		janCadCli = null;
+		janCadCaract = null;	
+		janCadQua = null;
+		janExCli = null;
+		janExCar = null;
+		janExQua = null;
+		janEditCli  = null;
+		janEditQua = null;
+		
+	}
+
+	public static JanelaMenuPrincipal restauraJanelaPrincipal(JanelaMenuPrincipal janMenPrin){
+		int x1 = janMenPrin.frame.getX();
+		int y1 = janMenPrin.frame.getY();
+		
+		int x2 = janMenPrin.frameConteudo.getX();
+		int y2 = janMenPrin.frameConteudo.getY();
+		
+		int x3 = janMenPrin.barraMenus.getX();
+		int y3 = janMenPrin.barraMenus.getY();
+		
+		
+		 janMenPrin.frameConteudo.dispose();
+		 janMenPrin.frame.dispose();
+	     janMenPrin = new JanelaMenuPrincipal();
+	     janMenPrin.frame.setLocation(x1, y1);
+	     janMenPrin.frameConteudo.setLocation(x2, y2);
+	     janMenPrin.barraMenus.setLocation(x3, y3);
+	     
+	     return janMenPrin;
 	}
 }
