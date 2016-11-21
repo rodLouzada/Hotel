@@ -92,7 +92,7 @@ public class JanelaDeCadastroDeCaract {
 		return op;
 	}
 
-	public JanelaDeCadastroDeCaract() {
+	public JanelaDeCadastroDeCaract(JanelaMenuPrincipal janMenPrin) {
 		ArrayList<Caract> vetor = new ArrayList<Caract>();
 
 		Connection conexao = null;
@@ -196,19 +196,19 @@ public class JanelaDeCadastroDeCaract {
 			lbOpcional.setBounds(71, 63, 55, 18);
 		}
 
-		frame = new JDialog();
-		frame.setTitle("Cadastro de Característica - Hotel");
-		frame.setModal(true);
+		//frame = new JDialog();
+		janMenPrin.frameConteudo.setTitle("Cadastro de Característica - Hotel");
+//		frame.setModal(true);
 		//frame.add(panel);
-		frame.getContentPane().add(BorderLayout.CENTER, panel);
+		janMenPrin.frameConteudo.getContentPane().add(panel);
 		//frame.add(panelBotoes);
 		//frame.getContentPane().add(BorderLayout.SOUTH, panelBotoes);
 		//frame.setSize(300, 300);
-		frame.pack(); // ajusta o tamanho da janela (frame)
-		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
-		frame.setResizable(false);								// programa
-		frame.setVisible(true); // torna a janela visÃ­vel
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		//janMenPrin.frameConteudo.setLocationRelativeTo(null); // coloca no meio
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		//JanelaMenuPrincipal.frameConteudo.setResizable(false);														// programa
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss
 	}
 
 	private class MostrarListener implements ActionListener {
@@ -222,7 +222,7 @@ public class JanelaDeCadastroDeCaract {
 			
 			if(!erro){
 				op = 1;
-				frame.dispose();
+				//janMenPrin.dispose();
 			}
 			else{
 				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -240,7 +240,7 @@ public class JanelaDeCadastroDeCaract {
 
 
 	public static void main(String[] args) {
-		new JanelaDeCadastroDeCaract();
+		//new JanelaDeCadastroDeCaract();
 		//j.getPessoa();
 	}
 
