@@ -66,6 +66,7 @@ public class JanelaDeConsumo {
 	private int op;
 	int cont;
 
+	public boolean fechar = false;
 
 
 	public int getOp() {
@@ -75,10 +76,9 @@ public class JanelaDeConsumo {
 		return table2;
 	}
 	public static void main(String[] args) {
-		new JanelaDeConsumo();
 	}
 
-	public JanelaDeConsumo() {
+	public JanelaDeConsumo(JanelaMenuPrincipal janMenPrin) {
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.HORIZONTAL; // não redimensionar objeto inserido;
 		cons.insets = new Insets(3,3, 3, 3); // distancia entre os objetos
@@ -287,18 +287,17 @@ public class JanelaDeConsumo {
 			tfDataEntrada.setText(d);
 		}
 		
-		frame = new JDialog();
-		frame.setTitle("Registro de Consumo - Hotel");
-		frame.setModal(true);
-		frame.getContentPane().add(BorderLayout.CENTER, panel);
-		frame.pack(); // ajusta o tamanho da janela (frame)
-		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
-		frame.setResizable(false);								// programa
+		janMenPrin.frameConteudo.setTitle("Registro de consumo - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.CENTER, panel);
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visível.ss	
+		
+		// programa
 		if (cont == 0){
-			JOptionPane.showMessageDialog(frame, "Nenhum Cliente Hospedado", "Hotel Vazio", JOptionPane.ERROR_MESSAGE);
+			//JOptionPane.showMessageDialog(frame, "Nenhum Cliente Hospedado", "Hotel Vazio", JOptionPane.ERROR_MESSAGE);
 		}else{
-			frame.setVisible(true);
+			//frame.setVisible(true);
 		}
 		
 		
@@ -402,7 +401,7 @@ public class JanelaDeConsumo {
 				e.printStackTrace();
 			}
 			daoConta.addValor(valorTotal, vetHosp.get(0).getCod());
-			frame.dispose();
+			fechar = true;
 		}
 	}
 	private class AdicionaListener implements ActionListener {
@@ -441,7 +440,7 @@ public class JanelaDeConsumo {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
-			frame.dispose();
+			fechar = true;
 		}
 	}
 	

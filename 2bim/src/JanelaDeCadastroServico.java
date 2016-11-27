@@ -66,6 +66,8 @@ public class JanelaDeCadastroServico {
 	private JTextField tfNome;
 	private JDialog frame;
 	
+	public boolean fechar = false;
+	
 	private int op;
 	public JTextField getTfValor() {
 		return tfValor;
@@ -95,7 +97,7 @@ public class JanelaDeCadastroServico {
 		return op;
 	}
 
-	public JanelaDeCadastroServico() {
+	public JanelaDeCadastroServico(JanelaMenuPrincipal janMenPrin) {
 		ArrayList<Servico> vetor = new ArrayList<Servico>();
 
 		Connection conexao = null;
@@ -205,19 +207,13 @@ public class JanelaDeCadastroServico {
 			btCancelar.addActionListener(new SairListener());
 		}
 
-		frame = new JDialog();
-		frame.setTitle("Cadastro de Serviço - Hotel");
-		frame.setModal(true);
-		//frame.add(panel);
-		frame.getContentPane().add(BorderLayout.CENTER, panel);
-		//frame.add(panelBotoes);
-		//frame.getContentPane().add(BorderLayout.SOUTH, panelBotoes);
-		//frame.setSize(300, 300);
-		frame.pack(); // ajusta o tamanho da janela (frame)
-		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
-		frame.setResizable(false);								// programa
-		frame.setVisible(true); // torna a janela visÃ­vel
+		janMenPrin.frameConteudo.setTitle("Cadastro de Serviço - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(panel);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss		
+	
 	}
 
 	private class MostrarListener implements ActionListener {
@@ -254,7 +250,7 @@ public class JanelaDeCadastroServico {
 					e.printStackTrace();
 				}
 				JOptionPane.showMessageDialog(null, "Serviço cadastrado com sucesso!");
-				frame.dispose();
+				fechar = true;
 			}else{
 				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
@@ -265,13 +261,12 @@ public class JanelaDeCadastroServico {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
-			frame.dispose();
+			fechar = true;
 		}
 	}
 
 
 	public static void main(String[] args) {
-		new JanelaDeCadastroServico();
 		//j.getPessoa();
 	}
 

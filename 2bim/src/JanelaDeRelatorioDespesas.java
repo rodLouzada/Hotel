@@ -70,11 +70,14 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 	private JButton btImp;
 	private JComboBox cbCli;
 
+	public boolean fechar = false;
 	public static void main(String[] args) {
-		new JanelaDeRelatorioDespesas();
 	}
 
-	public JanelaDeRelatorioDespesas() {
+	/**
+	 * @wbp.parser.entryPoint
+	 */
+	public JanelaDeRelatorioDespesas(JanelaMenuPrincipal janMenPrin) {
 
 		String colunas[] = new String[] {"Nome", "Tipo", "Data Consumo", "Qtd", "Valor Unitário", "Valor"};
 		modelo = new DefaultTableModel(colunas,0);
@@ -137,7 +140,7 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new java.awt.Dimension(604, 329));
+		panelTable.setPreferredSize(new Dimension(650, 329));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -169,7 +172,7 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 			lbTT = new JLabel();
 			panelTable.add(lbTT);
 			lbTT.setText("Total:    R$");
-			lbTT.setBounds(454, 37, 77, 16);
+			lbTT.setBounds(350, 36, 77, 16);
 			lbTT.setFont(new java.awt.Font("Tahoma",1,12));
 		}
 		{
@@ -181,7 +184,7 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 			}
 			tfTotal.setEditable(false);
 			panelTable.add(tfTotal);
-			tfTotal.setBounds(531, 34, 73, 23);
+			tfTotal.setBounds(428, 34, 73, 23);
 		}
 
 		//buttonOk.addActionListener(this);
@@ -190,7 +193,7 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 		panelButton = new JPanel();
 		panelButton.setPreferredSize(new java.awt.Dimension(201, 33));
 		panelButton.setLayout(null);
-		panelButton.setSize(592, 33);
+		panelButton.setSize(600, 33);
 		{
 			buttonOk = new JButton("OK");
 			panelButton.add(buttonOk);
@@ -204,30 +207,26 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 			btImp.setBounds(314, 4, 118, 23);
 		}
 
-		frame = new JDialog();
-		frame.setTitle("Relatório de Consumo - Hotel");
-		frame.setModal(true);
-		// frame.getContentPane().add(BorderLayout.EAST, endereco);
-		frame.getContentPane().add(BorderLayout.NORTH, panelTable);
-		frame.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		janMenPrin.frameConteudo.setTitle("Relatório de Consumo - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 		}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		frame.dispose();
+		fechar = true;
 
 	}
 
 	private class OkListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
+		fechar = true;
 
 		}
 	}

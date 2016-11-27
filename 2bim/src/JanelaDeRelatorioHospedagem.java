@@ -61,11 +61,11 @@ public class JanelaDeRelatorioHospedagem implements ActionListener {
 	private JButton btImp;
 	private JComboBox cbCli;
 
+	public boolean fechar = false;
 	public static void main(String[] args) {
-		new JanelaDeRelatorioHospedagem();
 	}
 
-	public JanelaDeRelatorioHospedagem() {
+	public JanelaDeRelatorioHospedagem(JanelaMenuPrincipal janMenPrin) {
 
 		String colunas[] = new String[] { "Cliente", "Data Entrada",
 				"Data Saída", "Check Out" };
@@ -136,31 +136,26 @@ public class JanelaDeRelatorioHospedagem implements ActionListener {
 			btImp.setBounds(259, 4, 118, 23);
 		}
 
-		frame = new JDialog();
-		frame.setTitle("Relatório de Hospedagem - Hotel");
-		frame.setModal(true);
-		// frame.getContentPane().add(BorderLayout.EAST, endereco);
-		frame.getContentPane().add(BorderLayout.NORTH, panelTable);
-		frame.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		janMenPrin.frameConteudo.setTitle("Relatório de Hospedagem - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		frame.dispose();
+		fechar = true;
 
 	}
 
 	private class OkListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
-
+			fechar = true;
 		}
 	}
 

@@ -254,7 +254,7 @@ public class JanelaDeEditarUsuario2 {
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
 			frame.dispose();
-			JanelaDeEditarUsuario j = new JanelaDeEditarUsuario();
+			//JanelaDeEditarUsuario j = new JanelaDeEditarUsuario();
 		}
 	}
 	public JTextField getTfSenha(){

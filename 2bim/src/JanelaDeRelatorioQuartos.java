@@ -70,11 +70,11 @@ public class JanelaDeRelatorioQuartos implements ActionListener {
 	private JComboBox cbOpcoes;
 	private JButton btImp;
 
+	public boolean fechar = false;
 	public static void main(String[] args) {
-		new JanelaDeRelatorioQuartos();
 	}
 
-	public JanelaDeRelatorioQuartos() {
+	public JanelaDeRelatorioQuartos(JanelaMenuPrincipal janMenPrin) {
 
 		String colunas[] = new String[] {"Número", "Disponibilidade", "Valor Diaria"};
 		modelo = new DefaultTableModel(colunas,0);
@@ -195,30 +195,25 @@ public class JanelaDeRelatorioQuartos implements ActionListener {
 			btImp.setBounds(314, 4, 118, 23);
 		}
 
-		frame = new JDialog();
-		frame.setTitle("Relatório de Quartos - Hotel");
-		frame.setModal(true);
-		// frame.getContentPane().add(BorderLayout.EAST, endereco);
-		frame.getContentPane().add(BorderLayout.NORTH, panelTable);
-		frame.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		janMenPrin.frameConteudo.setTitle("Relatório de Quartos - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 		}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		frame.dispose();
+		fechar = true;
 		
 	}
 
 	private class OkListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
-
+			fechar = true;
 		}
 	}
 	public class comboListener implements ActionListener {

@@ -84,10 +84,10 @@ public class JanelaDeCadastroQuarto {
 		return table2;
 	}
 	public static void main(String[] args) {
-		new JanelaDeCadastroQuarto();
+		//new JanelaDeCadastroQuarto();
 	}
 
-	public JanelaDeCadastroQuarto() {
+	public JanelaDeCadastroQuarto(JanelaMenuPrincipal janMenPrin) {
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.HORIZONTAL; // não redimensionar objeto inserido;
 		cons.insets = new Insets(3,3, 3, 3); // distancia entre os objetos
@@ -248,15 +248,17 @@ public class JanelaDeCadastroQuarto {
 			panel.add(tfValorDiaria);
 			tfValorDiaria.setBounds(83, 31, 90, 21);
 		}
-		frame = new JDialog();
-		frame.setTitle("Cadastro de Quartos - Hotel");
-		frame.setModal(true);
-		frame.getContentPane().add(BorderLayout.CENTER, panel);
-		frame.pack(); // ajusta o tamanho da janela (frame)
-		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
-		frame.setResizable(false);								// programa
-		frame.setVisible(true);
+		janMenPrin.frameConteudo.setTitle("Cadastro de Quartos - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(panel);
+		//frame.add(panelBotoes);
+		//frame.getContentPane().add(BorderLayout.SOUTH, panelBotoes);
+		//frame.setSize(300, 300);
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		//janMenPrin.frameConteudo.setLocationRelativeTo(null); // coloca no meio
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		//JanelaMenuPrincipal.frameConteudo.setResizable(false);														// programa
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visível.ss
+		
 	}
 	private class MouseListener implements java.awt.event.MouseListener {
 		public void mouseClicked(MouseEvent e) {
@@ -302,7 +304,7 @@ public class JanelaDeCadastroQuarto {
 			
 			if(!erro){
 				op = 1;
-				frame.dispose();
+				//frame.dispose();
 			}else{
 				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigat�rios", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
@@ -342,7 +344,7 @@ public class JanelaDeCadastroQuarto {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	

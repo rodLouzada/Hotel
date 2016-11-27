@@ -61,12 +61,12 @@ public class JanelaDeEditarProduto implements ActionListener {
 	private JButton buttonOk;
 
 	
+	public boolean fechar = false;
 
 	public static void main(String[] args) {
-		new JanelaDeEditarProduto();
 	}
 
-	public JanelaDeEditarProduto() {
+	public JanelaDeEditarProduto(JanelaMenuPrincipal janMenPrin) {
 
 		String colunas[] = new String[] {"ID", "Nome", "Valor" };
 		modelo = new DefaultTableModel(colunas,0);
@@ -153,30 +153,26 @@ public class JanelaDeEditarProduto implements ActionListener {
 		buttonOk.addActionListener(new OkListener());
 		
 
-		frame = new JDialog();
-		frame.setTitle("Editar Produtos - Hotel");
-		frame.setModal(true);
-		// frame.getContentPane().add(BorderLayout.EAST, endereco);
-		frame.getContentPane().add(BorderLayout.NORTH, panelTable);
-		frame.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		janMenPrin.frameConteudo.setTitle("Editar Produtos - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visível.ss	
 		}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		frame.dispose();
+		fechar = true;
 
 	}
 
 	private class OkListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
+		fechar = true;
 
 		}
 	}
@@ -186,7 +182,7 @@ public class JanelaDeEditarProduto implements ActionListener {
 			if(!tfCodCaract.getText().isEmpty() && tfCodCaract != null){
 				int cod = Integer.parseInt(tfCodCaract.getText());
 				JanelaDeEditarProduto2 janEdiProduto = new JanelaDeEditarProduto2(cod);
-				frame.dispose();
+				fechar = true;
 			}else{
 				JOptionPane.showMessageDialog(frame, "Selecione um produto para editar", "Erro", JOptionPane.ERROR_MESSAGE);
 			}

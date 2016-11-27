@@ -58,16 +58,20 @@ public class JanelaDeExcluirQuarto implements ActionListener {
 	private JTable table;
 	private DefaultTableModel modelo;
 	private JButton buttonOk;
+	
+	public boolean fechar = false;
+	
+	private JanelaMenuPrincipal jM;
 
 
 	
 
 	public static void main(String[] args) {
-		new JanelaDeExcluirQuarto();
+		//new JanelaDeExcluirQuarto();
 	}
 
-	public JanelaDeExcluirQuarto() {
-
+	public JanelaDeExcluirQuarto(JanelaMenuPrincipal janMenPrin) {
+		jM = janMenPrin;
 		String colunas[] = new String[] {"ID", "Número", "Valor Diaria"};
 		modelo = new DefaultTableModel(colunas,0);
 
@@ -155,30 +159,26 @@ public class JanelaDeExcluirQuarto implements ActionListener {
 		buttonOk.addActionListener(new OkListener());
 		
 
-		frame = new JDialog();
-		frame.setTitle("Excluir Quartos - Hotel");
-		frame.setModal(true);
-		// frame.getContentPane().add(BorderLayout.EAST, endereco);
-		frame.getContentPane().add(BorderLayout.NORTH, panelTable);
-		frame.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		janMenPrin.frameConteudo.setTitle("Excluir Quartos - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss
 		}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		frame.dispose();
+		fechar = true;
 
 	}
 
 	private class OkListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
+			fechar = true;
 
 		}
 	}
@@ -201,8 +201,8 @@ public class JanelaDeExcluirQuarto implements ActionListener {
 				
 				
 				JOptionPane.showMessageDialog(null, "Quarto excluído com sucesso!");
-				frame.dispose();
-				JanelaDeExcluirQuarto j10 = new JanelaDeExcluirQuarto();
+				fechar = true;
+				JanelaDeExcluirQuarto j10 = new JanelaDeExcluirQuarto(jM);
 			}else{
 				JOptionPane.showMessageDialog(frame, "Selecione um quarto para excluir", "Erro", JOptionPane.ERROR_MESSAGE);
 			}

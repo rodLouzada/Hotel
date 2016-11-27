@@ -64,9 +64,9 @@ public class JanelaDeCheckIn {
 	private JLabel lbDataEntrada;
 	private JComboBox cbCliente;
 	private JLabel lbCliente;
-	private JDialog frame;
 	private int op;
 
+	public boolean fechar =false;
 
 
 	public int getOp() {
@@ -76,10 +76,9 @@ public class JanelaDeCheckIn {
 		return table2;
 	}
 	public static void main(String[] args) {
-		new JanelaDeCheckIn();
 	}
 
-	public JanelaDeCheckIn() {
+	public JanelaDeCheckIn(JanelaMenuPrincipal janMenPrin) {
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.HORIZONTAL; // nÃ£o redimensionar objeto inserido;
 		cons.insets = new Insets(3,3, 3, 3); // distancia entre os objetos
@@ -292,20 +291,19 @@ public class JanelaDeCheckIn {
 			tfDataPreSaida.setBounds(286, 34, 103, 23);
 			tfDataPreSaida.setSize(115, 23);
 		}
-		frame = new JDialog();
-		frame.setTitle("Check In - Hotel");
-		frame.setModal(true);
-		frame.getContentPane().add(BorderLayout.CENTER, panel);
-		frame.pack(); // ajusta o tamanho da janela (frame)
-		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
-		frame.setResizable(false);								// programa
+		
+		janMenPrin.frameConteudo.setTitle("Check In - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.CENTER, panel);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 		
 		if(contador == 0){
-			JOptionPane.showMessageDialog(frame, "Nenhum quarto disponível!", "Hotel Lotado", JOptionPane.ERROR_MESSAGE);
-			frame.dispose();
+		//	JOptionPane.showMessageDialog(frame, "Nenhum quarto disponível!", "Hotel Lotado", JOptionPane.ERROR_MESSAGE);
+			fechar = true;
 		}else{
-			frame.setVisible(true);
+			//frame.setVisible(true);
 		}
 		
 	}
@@ -430,7 +428,7 @@ public class JanelaDeCheckIn {
 				e.printStackTrace();
 			}
 			JOptionPane.showMessageDialog(null, "Check In realizado com sucesso!");
-			frame.dispose();
+			fechar = true;
 		}
 	}
 	private class AdicionaListener implements ActionListener {
@@ -467,7 +465,7 @@ public class JanelaDeCheckIn {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
-			frame.dispose();
+			fechar = true;
 		}
 	}
 	

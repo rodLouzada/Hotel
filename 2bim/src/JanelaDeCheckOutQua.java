@@ -58,13 +58,16 @@ public class JanelaDeCheckOutQua {
 	private int op;
 	private Connection conexao;
 	
+	public boolean fechar = false;
+	private JanelaMenuPrincipal JM;
 	
 	public int getOp() {
 		return op;
 	}
 	int contador=0;
-	public JanelaDeCheckOutQua(){
+	public JanelaDeCheckOutQua(JanelaMenuPrincipal janMenPrin){
 		ArrayList<Quarto> vetor = new ArrayList<Quarto>();
+		JM = janMenPrin;
 
 		Connection conexao = null;
 		QuartoDAO quarto = null;
@@ -171,12 +174,12 @@ public class JanelaDeCheckOutQua {
 				
 				int j=0;
 				list = new String[vetQH.size()];
-				for (int i = 0; i < vetQua.size(); i++){
-					if (vetQua.get(i).getOcupado().equals("true")){
-						list[j] = ""+vetQua.get(i).getNumero();
-						j++;
-					}
-				}
+//				for (int i = 0; i < vetQua.size(); i++){
+//					if (vetQua.get(i).getOcupado().equals("true")){
+//						list[j] = ""+vetQua.get(i).getNumero();
+//						j++;
+//					}
+//				}
 				ComboBoxModel cbClienteModel = 
 					new DefaultComboBoxModel(list);
 				lbCliente = new JLabel();
@@ -194,7 +197,7 @@ public class JanelaDeCheckOutQua {
 				cbCliente.setBounds(12, 34, 271, 23);
 				cbCliente.addActionListener(new comboListener());
 			}
-			String numQua = cbCliente.getSelectedItem().toString();
+			String numQua = "-";
 						
 			int codQua=0;
 			try{
@@ -291,22 +294,17 @@ public class JanelaDeCheckOutQua {
 			}
 			panel.setLayout(null);
 			panel.setPreferredSize(new java.awt.Dimension(295, 169));
-			frame = new JDialog();
-			frame.setTitle("Check Out - Hotel");
-			frame.setModal(true);
-			frame.setSize(295, 200);
-			frame.setLocationRelativeTo(null);
-			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			frame.setResizable(false);
-			frame.getContentPane().add(panel, BorderLayout.NORTH);
-			frame.setPreferredSize(new java.awt.Dimension(295, 200));
-			frame.setVisible(true);
-			}
+			
+			janMenPrin.frameConteudo.setTitle("Check Out - Hotel");
+			janMenPrin.frameConteudo.getContentPane().add(BorderLayout.CENTER, panel);
+			janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+			janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+			janMenPrin.frameConteudo.setVisible(true); // torna a janela visível.ss	
+		}
 		}
 		
 	}
 	public static void main(String[] args) {
-		new JanelaDeCheckOutQua();
 		
 	}
 	
@@ -332,15 +330,15 @@ public class JanelaDeCheckOutQua {
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
-			frame.dispose();
-			JanelaDeCheckOutQua2 jan = new JanelaDeCheckOutQua2(Integer.parseInt(tfIDHosp.getText()));
+			fechar = true;
+			JanelaDeCheckOutQua2 jan = new JanelaDeCheckOutQua2(Integer.parseInt(tfIDHosp.getText()), JM);
 		}
 	}
 	private class SairListener  implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
-			frame.dispose();
+			fechar = true;
 		}
 	}
 	public class comboListener implements ActionListener {

@@ -59,13 +59,15 @@ public class JanelaDeExcluirProduto implements ActionListener {
 	private DefaultTableModel modelo;
 	private JButton buttonOk;
 
-	
+	public boolean fechar = false;
+	private JanelaMenuPrincipal jM = null;
 
 	public static void main(String[] args) {
-		new JanelaDeExcluirProduto();
 	}
 
-	public JanelaDeExcluirProduto() {
+	public JanelaDeExcluirProduto(JanelaMenuPrincipal janMenPrin) {
+		
+		jM = janMenPrin;
 
 		String colunas[] = new String[] {"ID", "Nome", "Valor" };
 		modelo = new DefaultTableModel(colunas,0);
@@ -152,32 +154,27 @@ public class JanelaDeExcluirProduto implements ActionListener {
 		buttonOk.addActionListener(new OkListener());
 		
 
-		frame = new JDialog();
-		frame.setTitle("Excluir Produtos - Hotel");
-		frame.setModal(true);
-		// frame.getContentPane().add(BorderLayout.EAST, endereco);
-		frame.getContentPane().add(BorderLayout.NORTH, panelTable);
-		frame.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		janMenPrin.frameConteudo.setTitle("Excluir Produtos - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 		}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		frame.dispose();
+		fechar = true;
 
 	}
 
 	private class OkListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
-
-		}
+		fechar = true;
+				}
 	}
 	private class ExcluirListener implements ActionListener {
 		@Override
@@ -194,8 +191,8 @@ public class JanelaDeExcluirProduto implements ActionListener {
 				}
 				
 				JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
-				frame.dispose();
-				JanelaDeExcluirProduto j10 = new JanelaDeExcluirProduto();
+				fechar = true;
+				JanelaDeExcluirProduto j10 = new JanelaDeExcluirProduto(jM);
 			}else{
 				JOptionPane.showMessageDialog(frame, "Selecione um produto para excluir", "Erro", JOptionPane.ERROR_MESSAGE);
 			}

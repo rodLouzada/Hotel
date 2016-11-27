@@ -25,6 +25,22 @@ public class Programa {
 	public static JanelaDeExcluirQuarto janExQua = null;
 	public static JanelaDeEditarCliente janEditCli  = null;
 	public static JanelaDeEditarQuarto janEditQua = null;
+	public static JanelaDeEditarCaract janEditCar = null;
+	public static JanelaDeCadastroProduto janCadPro = null;
+	public static JanelaDeCadastroServico janCadSer = null;
+	public static JanelaDeExcluirProduto janExcProd = null;
+	public static JanelaDeExcluirServico janExcSer = null;
+	public static JanelaDeEditarProduto janEdiPro = null;
+	public static JanelaDeEditarServico janEdiSer = null;
+	public static JanelaDeCheckIn janCheckIn = null;
+	public static JanelaDeCheckOutQua janCheckout = null;
+	public static JanelaDeConsumo janCons = null;
+	public static JanelaDeRelatorioDespesas janRelDesp = null;
+	public static JanelaDeRelatorioQuartos janRelQua = null;
+	public static JanelaDeRelatorioHospedagem janRelHosp = null;
+	public static JanelaDeCadastroDeUsuario janCadUsu = null;
+	public static JanelaDeEditarUsuario janEditUsu = null;
+	public static JanelaDeExcluirUsuario janExcUsu = null;
     
 	public static void main(String[] args) {
 		String senha;
@@ -284,56 +300,172 @@ public class Programa {
 					}
 					
 				}
+				//Falta alterar o conteúdo da classe para todos as telas abaixo
 				else if (op ==10){
 					try{
-					JanelaDeEditarCaract janEditCar = new JanelaDeEditarCaract();
+						if(janEditCar == null){
+							setAllToNull();
+							janMenPrin.frameConteudo.getContentPane().removeAll();
+							janEditCar = new JanelaDeEditarCaract(janMenPrin);
+						}						
+						if(janEditCar.fechar){
+							janEditCar = null;
+							janMenPrin = restauraJanelaPrincipal(janMenPrin);
+						}
+						
 					}catch(Exception e){
 						
 					}
 				}
 				else 	if (op ==11){
-					JanelaDeCadastroProduto janCadPro = new JanelaDeCadastroProduto();
+					if(janCadPro == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janCadPro = new JanelaDeCadastroProduto(janMenPrin);
+					}
+					if(janCadPro.fechar){
+						janCadPro = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else if (op ==12){
-					JanelaDeCadastroServico janCadSer = new JanelaDeCadastroServico();
+					if(janCadSer == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janCadSer = new JanelaDeCadastroServico(janMenPrin);
+					}
+					if(janCadSer.fechar){
+						janCadSer = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else if (op ==13){
-					JanelaDeExcluirProduto janCadSer = new JanelaDeExcluirProduto();
+					if(janExcProd == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janExcProd = new JanelaDeExcluirProduto(janMenPrin);
+					}
+					if(janExcProd.fechar){
+						janExcProd = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else if (op ==14){
-					JanelaDeExcluirServico janCadSer = new JanelaDeExcluirServico();
+					if(janExcSer == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janExcSer = new JanelaDeExcluirServico(janMenPrin);
+					}
+					if(janExcSer.fechar){
+						janExcSer = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
+				
 				else if (op ==15){
-					JanelaDeEditarProduto janEdiPro = new JanelaDeEditarProduto();
+					if(janEdiPro == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janEdiPro = new JanelaDeEditarProduto(janMenPrin);
+					}
+					if(janEdiPro.fechar){
+						janEdiPro = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else if (op ==16){
 					try{
-					JanelaDeEditarServico janEdiSer = new JanelaDeEditarServico();
+						if(janEdiSer == null){
+							setAllToNull();
+							janMenPrin.frameConteudo.getContentPane().removeAll();
+							janEdiSer = new JanelaDeEditarServico(janMenPrin);
+						}
+						if(janEdiSer.fechar){
+							janEdiSer = null;
+							janMenPrin = restauraJanelaPrincipal(janMenPrin);
+						}
 					} catch(Exception e){
 						
 					}
 				}
 				else  if (op ==17){
-					JanelaDeCheckIn janCheckIn = new JanelaDeCheckIn();
+					if(janCheckIn == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janCheckIn = new JanelaDeCheckIn(janMenPrin);
+					}
+					if(janCheckIn.fechar){
+						janCheckIn = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else  if (op ==18){
-					JanelaDeCheckOutQua janCheckout = new JanelaDeCheckOutQua();
+					if(janCheckout == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janCheckout = new JanelaDeCheckOutQua(janMenPrin);
+					}
+					if(janCheckout.fechar){
+						janCheckout = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else  if (op ==19){
-					JanelaDeConsumo janCons = new JanelaDeConsumo();
+					if(janCons == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janCons = new JanelaDeConsumo(janMenPrin);
+					}
+					if(janCons.fechar){
+						janCons = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else  if (op ==20){
-					JanelaDeRelatorioDespesas janRelDesp = new JanelaDeRelatorioDespesas();
+					if(janRelDesp == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janRelDesp = new JanelaDeRelatorioDespesas(janMenPrin);
+					}
+					if(janRelDesp.fechar){
+						janRelDesp = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else  if (op ==21){
-					JanelaDeRelatorioQuartos janRelQua = new JanelaDeRelatorioQuartos();
+					if(janRelQua == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janRelQua = new JanelaDeRelatorioQuartos(janMenPrin);
+					}
+					if(janRelQua.fechar){
+						janRelQua = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else  if (op ==22){
-					JanelaDeRelatorioHospedagem janRelHosp = new JanelaDeRelatorioHospedagem();
+					if(janRelHosp == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janRelHosp = new JanelaDeRelatorioHospedagem(janMenPrin);
+					}
+					if(janRelHosp.fechar){
+						janRelHosp = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
+				// Opção 23 não foi finalizada
 				else  if (op ==23){
-					JanelaDeCadastroDeUsuario janCadUsu = new JanelaDeCadastroDeUsuario();
-					if (janCadUsu.getOp() == 1){
+					if(janCadUsu == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janCadUsu = new JanelaDeCadastroDeUsuario(janMenPrin);
+					}
+					if(janCadUsu.fechar){
+						janCadUsu = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
+					else if (janCadUsu.getOp() == 1){
 						usuario.setNome(janCadUsu.getTfNome().getText());
 						usuario.setLogin(janCadUsu.getTfLogin().getText());
 						usuario.setSenha(janCadUsu.getTfSenha().getText());
@@ -356,10 +488,26 @@ public class Programa {
 					}
 				}
 				else if (op == 24){
-					JanelaDeEditarUsuario janEditUsu = new JanelaDeEditarUsuario();
+					if(janEditUsu == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janEditUsu = new JanelaDeEditarUsuario(janMenPrin);
+					}
+					if(janEditUsu.fechar){
+						janEditUsu = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 				else if (op == 25){
-					JanelaDeExcluirUsuario janExcUsu = new JanelaDeExcluirUsuario();
+					if(janExcUsu == null){
+						setAllToNull();
+						janMenPrin.frameConteudo.getContentPane().removeAll();
+						janExcUsu = new JanelaDeExcluirUsuario(janMenPrin);
+					}
+					if(janExcUsu.fechar){
+						janExcUsu = null;
+						janMenPrin = restauraJanelaPrincipal(janMenPrin);
+					}
 				}
 			}while(op != 6);
 			janMenPrin.frame.removeAll();
@@ -373,13 +521,29 @@ public class Programa {
 	
 	private static void setAllToNull() {
 		janCadCli = null;
-		janCadCaract = null;	
+		janCadCaract = null;
 		janCadQua = null;
 		janExCli = null;
 		janExCar = null;
 		janExQua = null;
 		janEditCli  = null;
 		janEditQua = null;
+		janEditCar = null;
+		janCadPro = null;
+		janCadSer = null;
+		janExcProd = null;
+		janExcSer = null;
+		janEdiPro = null;
+		janEdiSer = null;
+		janCheckIn = null;
+		janCheckout = null;
+		janCons = null;
+		janRelDesp = null;
+		janRelQua = null;
+		janRelHosp = null;
+		janCadUsu = null;
+		janEditUsu = null;
+		janExcUsu = null;
 		
 	}
 

@@ -90,13 +90,14 @@ public class JanelaDeEditarCliente2 {
 	private JDialog frame;
 	
 	private int op;
+	private int co_;
 
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 	public JanelaDeEditarCliente2(int co) {
 		ArrayList<Cliente> vetor = new ArrayList<Cliente>();
-
+		co_ = co;
 		Connection conexao = null;
 		ClienteDAO daoCliente = null;
 
@@ -620,7 +621,7 @@ public class JanelaDeEditarCliente2 {
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
 			frame.dispose();
-			JanelaDeEditarCliente j = new JanelaDeEditarCliente();
+			//JanelaDeEditarCliente j = new JanelaDeEditarCliente(co_);
 		}
 	}
 

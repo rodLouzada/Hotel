@@ -44,7 +44,9 @@ public class JanelaDeCadastroDeUsuario {
 	private JTextField tfPergunta;
 	private JTextField tfResposta;
 	
-	public JanelaDeCadastroDeUsuario(){
+	public boolean fechar = false;
+	
+	public JanelaDeCadastroDeUsuario(JanelaMenuPrincipal janMenPrin){
 		labelNome = new JLabel("Nome *");
 		labelNome.setBounds(5, 5, 100, 20);
 		tfNome = new JTextField(20);
@@ -146,16 +148,23 @@ public class JanelaDeCadastroDeUsuario {
 		tfResposta.setBounds(5, 245, 250, 20);
 		panel.add(tfResposta);
 		tfResposta.setColumns(10);
-		frame.setSize(267, 334);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setResizable(false);
-		frame.setVisible(true);
+		
+		janMenPrin.frameConteudo.setTitle("Cadastro de Usu·rios - Hotel");
+//		frame.setModal(true);
+		//frame.add(panel);
+		janMenPrin.frameConteudo.getContentPane().add(panel);
+		//frame.add(panelBotoes);
+		//frame.getContentPane().add(BorderLayout.SOUTH, panelBotoes);
+		//frame.setSize(300, 300);
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		//janMenPrin.frameConteudo.setLocationRelativeTo(null); // coloca no meio
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		//JanelaMenuPrincipal.frameConteudo.setResizable(false);														// programa
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela vis√≠vel.ss
+
 		
 	}
 	public static void main(String[] args) {
-		new JanelaDeCadastroDeUsuario();
-		
 	}
 	private class OkListener  implements ActionListener {
 		@Override
@@ -187,8 +196,8 @@ public class JanelaDeCadastroDeUsuario {
 			}
 			if(!erro){
 				if (tfSenha.getText().equals(tfConfirma.getText())){
-					op = 1;
-					frame.dispose();
+					op = 1111;
+					fechar = true;
 				}else if(!tfSenha.getText().equals(tfConfirma.getText()))
 					JOptionPane.showMessageDialog(frame, "As senhas informadas n„o coincidem", "Erro", JOptionPane.ERROR_MESSAGE);
 			}else{
@@ -200,7 +209,7 @@ public class JanelaDeCadastroDeUsuario {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			tfSenha.setText("1111");
-			frame.dispose();
+			fechar = true;
 		}
 	}
 	public JTextField getTfSenha(){

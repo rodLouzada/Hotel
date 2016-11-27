@@ -66,13 +66,17 @@ public class JanelaDeEditarCliente implements ActionListener {
 	ArrayList<Cliente> vetor;
 	ClienteDAO daoCliente;
 	
+	public boolean fechar = false;
 
+	private JanelaMenuPrincipal jM;
+	
 	public static void main(String[] args) {
-		new JanelaDeEditarCliente();
+		//new JanelaDeEditarCliente();
 	}
 
-	public JanelaDeEditarCliente() {
+	public JanelaDeEditarCliente(JanelaMenuPrincipal janMenPrin) {
 
+		jM = janMenPrin;
 		String colunas[] = new String[] {"ID", "Nome", "CPF"};
 		modelo = new DefaultTableModel(colunas,0);
 
@@ -171,30 +175,26 @@ public class JanelaDeEditarCliente implements ActionListener {
 		buttonOk.addActionListener(new OkListener());
 		
 
-		frame = new JDialog();
-		frame.setTitle("Editar Clientes - Hotel");
-		frame.setModal(true);
-		// frame.getContentPane().add(BorderLayout.EAST, endereco);
-		frame.getContentPane().add(BorderLayout.NORTH, panelTable);
-		frame.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		janMenPrin.frameConteudo.setTitle("Editar Clientes - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visível.ss
 		}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		frame.dispose();
+		fechar = true;
 
 	}
 
 	private class OkListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
+			fechar = true;
 
 		}
 	}
@@ -204,7 +204,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 			if(!tfCodCli.getText().isEmpty() && tfCodCli != null){
 				int codigo = Integer.parseInt(tfCodCli.getText());
 				JanelaDeEditarCliente2 JanEditar = new JanelaDeEditarCliente2(codigo);
-				frame.dispose();
+				fechar = true;
 			}else{
 				JOptionPane.showMessageDialog(frame, "Selecione um cliente para editar", "Erro", JOptionPane.ERROR_MESSAGE);
 			}

@@ -15,6 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
+import java.awt.BorderLayout;
+import java.awt.Panel;
+import java.awt.Label;
+import javax.swing.JScrollPane;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -29,9 +34,9 @@ import javax.swing.ImageIcon;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class JanelaMenuPrincipal {
-	private JDialog frame;
+	public JFrame frame;
 
-	private JMenuBar barraMenus;
+	public JMenuBar barraMenus;
 	
 	private JMenu menuCadastro;
 	private JMenuItem editarCaracteristica;
@@ -66,6 +71,7 @@ public class JanelaMenuPrincipal {
 	private JMenu menuRelatorio;
 
 	private JMenuItem sair;
+	private String titulo;
 
 	public static void main(String[] args) {
 		new JanelaMenuPrincipal();
@@ -73,6 +79,7 @@ public class JanelaMenuPrincipal {
 
 	public JanelaMenuPrincipal() {
 
+		titulo = "Titulo teste";
 		cadCli = new JMenuItem("Cliente");
 		cadCli.setMnemonic('C');
 		cadCli.addActionListener(new Lis1());
@@ -88,7 +95,7 @@ public class JanelaMenuPrincipal {
 		{
 			cadCaract = new JMenuItem();
 			menuCadastro.add(cadCaract);
-			cadCaract.setText("Característica");
+			cadCaract.setText("Caracterï¿½stica");
 			cadCaract.addActionListener(new Lis2());
 		}
 		{
@@ -100,15 +107,16 @@ public class JanelaMenuPrincipal {
 		{
 			cadServico = new JMenuItem();
 			menuCadastro.add(cadServico);
-			cadServico.setText("Serviço");
+			cadServico.setText("Serviï¿½o");
 			cadServico.addActionListener(new Lis12());
-		}{
+		}
+		{
 			cadUsu = new JMenuItem();
 			menuCadastro.add(cadUsu);
-			cadUsu.setText("Usuário");
+			cadUsu.setText("Usuï¿½rio");
 			cadUsu.addActionListener(new Lis23());
 		}
-		//-------------------
+		// -------------------
 
 		menuControle = new JMenu("Controle");
 		{
@@ -129,10 +137,10 @@ public class JanelaMenuPrincipal {
 			jMenuItem1.setText("Registrar Consumo");
 			jMenuItem1.addActionListener(new Lis19());
 		}
-		//---------------------------
+		// ---------------------------
 
 		menuRelatorio = new JMenu("Relatorio");
-		//----------------------------
+		// ----------------------------
 		sair = new JMenuItem("Sair");
 		sair.setMnemonic('S');
 		sair.addActionListener(new Lis6());
@@ -143,7 +151,7 @@ public class JanelaMenuPrincipal {
 		barraMenus.add(menuControle);
 		menuControle.setText("Controle  ");
 		barraMenus.add(menuRelatorio);
-		menuRelatorio.setText("Relatório  ");
+		menuRelatorio.setText("Relatï¿½rio  ");
 		{
 			mnDespesas = new JMenuItem();
 			menuRelatorio.add(mnDespesas);
@@ -181,7 +189,7 @@ public class JanelaMenuPrincipal {
 			{
 				editarCaracteristica = new JMenuItem();
 				menuEditar.add(editarCaracteristica);
-				editarCaracteristica.setText("Característica");
+				editarCaracteristica.setText("Caracterï¿½stica");
 				editarCaracteristica.addActionListener(new Lis10());
 			}
 			{
@@ -193,13 +201,13 @@ public class JanelaMenuPrincipal {
 			{
 				editarServico = new JMenuItem();
 				menuEditar.add(editarServico);
-				editarServico.setText("Serviço");
+				editarServico.setText("Serviï¿½o");
 				editarServico.addActionListener(new Lis16());
 			}
 			{
 				editarUsuario = new JMenuItem();
 				menuEditar.add(editarUsuario);
-				editarUsuario.setText("Usuário");
+				editarUsuario.setText("Usuï¿½rio");
 				editarUsuario.addActionListener(new Lis24());
 			}
 		}
@@ -222,8 +230,9 @@ public class JanelaMenuPrincipal {
 			{
 				excluirCaract = new JMenuItem();
 				menuExcluir.add(excluirCaract);
-				excluirCaract.setText("Característica");
-				excluirCaract.addActionListener(new Lis5());			}
+				excluirCaract.setText("Caracterï¿½stica");
+				excluirCaract.addActionListener(new Lis5());
+			}
 			{
 				excluirProduto = new JMenuItem();
 				menuExcluir.add(excluirProduto);
@@ -233,58 +242,67 @@ public class JanelaMenuPrincipal {
 			{
 				excluirServico = new JMenuItem();
 				menuExcluir.add(excluirServico);
-				excluirServico.setText("Serviço");
+				excluirServico.setText("Serviï¿½o");
 				excluirServico.addActionListener(new Lis14());
 			}
 			{
 				excluirUsuario = new JMenuItem();
 				menuExcluir.add(excluirUsuario);
-				excluirUsuario.setText("Usuário");
+				excluirUsuario.setText("Usuï¿½rio");
 				excluirUsuario.addActionListener(new Lis25());
 			}
 		}
 		barraMenus.add(sair);
 
-		frame = new JDialog();
+		frame = new JFrame();
 		frame.setTitle("Hotel Casta - Sistema de Hotel");
-		frame.setModal(true);
+		// frame.setModal(true);
 		frame.setJMenuBar(barraMenus);
 		// frame.pack();
-		frame.setSize(544, 359);
+		frame.setSize(680, 489);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
-		frame.setPreferredSize(new java.awt.Dimension(352, 293));
-		
+		frame.setPreferredSize(new java.awt.Dimension(500, 293));
+		frame.setResizable(false);
 		JButton btnNovoCliente = new JButton("");
-		btnNovoCliente.setIcon(new ImageIcon("C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\novocliente.png"));
-		
+		btnNovoCliente.setIcon(new ImageIcon(
+				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\novocliente.png"));
+
 		btnNovoCliente.addActionListener(new Lis1());
-		
+
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\consumo.png"));
-		
+		button.setIcon(new ImageIcon(
+				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\consumo.png"));
+
 		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon("C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\checkin.png"));
-		
+		button_1.setIcon(new ImageIcon(
+				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\checkin.png"));
+
 		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon("C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\checkout.png"));
-		
+		button_2.setIcon(new ImageIcon(
+				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\checkout.png"));
+
 		JLabel label = new JLabel("");
-		
+
 		JLabel lblNewLabel = new JLabel("");
-		
+
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\logo.gif"));
+		label_1.setIcon(new ImageIcon(
+				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\logo.gif"));
+		frameConteudo = new JInternalFrame("New JInternalFrame");
+		frameConteudo.setBorder(null);
+		frameConteudo.setVisible(true);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
+					.addComponent(frameConteudo, GroupLayout.PREFERRED_SIZE, 676, GroupLayout.PREFERRED_SIZE)
+					.addGap(529)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnNovoCliente)
-							.addGap(18)
+							.addGap(290)
 							.addComponent(button, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
@@ -297,208 +315,217 @@ public class JanelaMenuPrincipal {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(frameConteudo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(label)
-									.addGap(100))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(27)
-							.addComponent(label_1)))
-					.addGap(32)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(button_1, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-						.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(button, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)))
-					.addGap(54))
+									.addGap(67)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblNewLabel)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(label)
+											.addGap(117))))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(27)
+									.addComponent(label_1)))
+							.addGap(159)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(button_1, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+								.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(button, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)))))
+					.addContainerGap())
 		);
 		frame.getContentPane().setLayout(groupLayout);
+		frameConteudo.setVisible(false);
 	}
-	private int op;
+	public int op;
+	public JInternalFrame frameConteudo;
 	public int getOp(){
+
+		if(op!=5478)
+		System.out.println("ret: " + op);
 		return op;
 	}
 	
 	private class Lis1 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			System.out.println("Click :" + arg0);
 			op = 1;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis2 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis3 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 3;
-			frame.dispose();
+		//	frame.dispose();
 		}
 	}
 	private class Lis4 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 4;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis5 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 5;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis6 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 6;
-			frame.dispose();
+		//	frame.dispose();
 		}
 	}
 	private class Lis7 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			op = 7;
-			frame.dispose();
+		op = 7;
+			//frame.dispose();
 		}
 	}
 	private class Lis8 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 8;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis9 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 9;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis10 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 10;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis11 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 11;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis12 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 12;
-			frame.dispose();
+		//	frame.dispose();
 		}
 	}
 	private class Lis13 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 13;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis14 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 14;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis15 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 15;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis16 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 16;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis17 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 17;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis18 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 18;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis19 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 19;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis20 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 20;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis21 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 21;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis22 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 22;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis23 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 23;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis24 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 24;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 	private class Lis25 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 25;
-			frame.dispose();
+			//frame.dispose();
 		}
 	}
 }

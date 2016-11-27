@@ -44,13 +44,15 @@ public class JanelaDeCheckOutQua2 {
 	private JLabel lbIdHosp;
 	private JDialog frame;
 	private Connection conexao;
+	private static JanelaMenuPrincipal JM;
 	
 	double cons;
 	double diaria;
 	int codH;
-	public JanelaDeCheckOutQua2(int cod){
+	public JanelaDeCheckOutQua2(int cod, JanelaMenuPrincipal janMenPrin){
 		codH = cod;
 		frame = new JDialog();
+		JM = janMenPrin;
 		
 		{
 			panel = new JPanel();
@@ -210,7 +212,7 @@ public class JanelaDeCheckOutQua2 {
 		
 	}
 	public static void main(String[] args) {
-		new JanelaDeCheckOutQua2(3);
+		new JanelaDeCheckOutQua2(3, JM);
 		
 	}
 	private class OkListener  implements ActionListener {
@@ -289,7 +291,7 @@ public class JanelaDeCheckOutQua2 {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			frame.dispose();
-			JanelaDeCheckOutQua j = new JanelaDeCheckOutQua();
+			JanelaDeCheckOutQua j = new JanelaDeCheckOutQua(JM);
 		}
 	}
 	

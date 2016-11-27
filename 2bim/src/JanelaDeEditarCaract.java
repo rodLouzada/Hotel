@@ -59,14 +59,16 @@ public class JanelaDeEditarCaract implements ActionListener {
 	private JTable table;
 	private DefaultTableModel modelo;
 	private JButton buttonOk;
+	
+	public boolean fechar = false;
 
 	
 
 	public static void main(String[] args) {
-		new JanelaDeEditarCaract();
+		
 	}
 
-	public JanelaDeEditarCaract() {
+	public JanelaDeEditarCaract(JanelaMenuPrincipal janMenPrin) {
 
 		String colunas[] = new String[] {"ID", "Nome", "Descrição" };
 		modelo = new DefaultTableModel(colunas,0);
@@ -153,30 +155,26 @@ public class JanelaDeEditarCaract implements ActionListener {
 		buttonOk.addActionListener(new OkListener());
 		
 
-		frame = new JDialog();
-		frame.setTitle("Editar Características - Hotel");
-		frame.setModal(true);
-		// frame.getContentPane().add(BorderLayout.EAST, endereco);
-		frame.getContentPane().add(BorderLayout.NORTH, panelTable);
-		frame.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
-		}
+		janMenPrin.frameConteudo.setTitle("Editar Características - Hotel");
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
+		
+		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		frame.dispose();
+		fechar = true;
 
 	}
 
 	private class OkListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
+			fechar = true;
 
 		}
 	}
@@ -186,7 +184,7 @@ public class JanelaDeEditarCaract implements ActionListener {
 			if(!tfCodCaract.getText().isEmpty() && tfCodCaract != null){
 				int cod = Integer.parseInt(tfCodCaract.getText());
 				JanelaDeEditarCaract2 janEdiCaract = new JanelaDeEditarCaract2(cod);
-				frame.dispose();
+				fechar = true;
 			}
 			else{
 				JOptionPane.showMessageDialog(frame, "Selecione uma característica para editar", "Erro", JOptionPane.ERROR_MESSAGE);
