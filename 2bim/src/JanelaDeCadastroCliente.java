@@ -35,7 +35,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
-import javax.swing.JFormattedTextField$AbstractFormatter;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JTabbedPane;
 
 /**
@@ -379,9 +379,9 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		lblN.setBounds(508, 142, 26, 14);
 		panel.add(lblN);
 		
-		JTextFieldSomenteNumeros textFieldSomenteNumeros_2 = new JTextFieldSomenteNumeros();
-		textFieldSomenteNumeros_2.setBounds(525, 138, 88, 23);
-		panel.add(textFieldSomenteNumeros_2);
+		JTextFieldSomenteNumeros tfTel = new JTextFieldSomenteNumeros();
+		tfTel.setBounds(525, 138, 88, 23);
+		panel.add(tfTel);
 		
 		JLabel lblCelularCell = new JLabel("Celular - Cell Phone *");
 		lblCelularCell.setBounds(629, 114, 107, 16);
@@ -723,20 +723,20 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 				erro = true;
 			}
 			
-			if(tfIden.getText().equals("  -  .   .   ")){
+/*			if(tfIden.getText().equals("  -  .   .   ")){
 				tfIden.setBackground(Color.pink);
 				erro = true;
-			}
+			} */
 				
 			if(tfCPF.getText().equals("   .   .   -  ")){
 				tfCPF.setBackground(Color.pink);
 				erro = true;
 			}
 			
-			if(tfTel.getText().equals("(  )    -    ")){
+/*			if(tfTel.getText().equals("(  )    -    ")){
 				tfTel.setBackground(Color.pink);
 				erro = true;
-			}
+			} */
 			
 			if(tfData.getText().equals("  /  /    ")){
 				tfData.setBackground(Color.pink);
@@ -748,7 +748,7 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 				erro = true;
 			}
 			
-			if(tfNum.getText() == null || tfNum.getText().isEmpty()){
+/*			if(tfNum.getText() == null || tfNum.getText().isEmpty()){
 				tfNum.setBackground(Color.pink);
 				erro = true;
 			}
@@ -756,7 +756,7 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 			if(tfCidade.getText() == null || tfCidade.getText().isEmpty()){
 				tfCidade.setBackground(Color.pink);
 				erro = true;
-			}
+			} */
 			
 			if(tfCEP.getText().equals("     -   ")){
 				tfCEP.setBackground(Color.pink);
@@ -801,9 +801,9 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		//j.getPessoa();
 	}
 
-	public JTextField getTfNum() {
+/*	public JTextField getTfNum() {
 		return tfNum;
-	}
+	} */
 
 	public JTextField getTfNome() {
 		return tfNome;
@@ -817,17 +817,17 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		return tfData;
 	}
 
-	public JTextField getTfIden() {
+/*	public JTextField getTfIden() {
 		return tfIden;
-	}
+	} */
 
 	public JTextField getTfCPF() {
 		return tfCPF;
 	}
 
-	public JTextField getTfTel() {
+/*	public JTextField getTfTel() {
 		return tfTel;
-	}
+	} */
 
 	public JTextField getTfLogradouro() {
 		return tfLogradouro;
@@ -845,13 +845,13 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		return tfCEP;
 	}
 
-	public JTextField getTfCidade() {
+/*	public JTextField getTfCidade() {
 		return tfCidade;
-	}
+	} */
 
-	public JComboBox getTfUF() {
+/*	public JComboBox getTfUF() {
 		return cbUF;
-	}
+	} */
 
 	
 	public int getOp(){

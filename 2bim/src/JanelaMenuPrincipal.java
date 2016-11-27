@@ -44,8 +44,6 @@ public class JanelaMenuPrincipal {
 	private JMenuItem menuQua;
 	private JMenuItem mnDespesas;
 	private JMenuItem jMenuItem1;
-	private JMenuItem excluirServico;
-	private JMenuItem excluirProduto;
 	private JMenuItem editarServico;
 	private JMenuItem editarUsuario;
 	private JMenuItem editarProduto;
@@ -55,12 +53,7 @@ public class JanelaMenuPrincipal {
 	private JMenuItem editarCliente;
 	private JMenu menuEditar;
 	private JMenuItem checkOut;
-	private JMenuItem excluirCaract;
 	private JMenuItem cadCaract;
-	private JMenuItem excluirQuarto;
-	private JMenuItem excluirUsuario;
-	private JMenuItem excluirCli;
-	private JMenu menuExcluir;
 	private JMenuItem cadCli;
 	private JMenuItem cadQuarto;
 	private JMenuItem cadUsu;
@@ -211,47 +204,6 @@ public class JanelaMenuPrincipal {
 				editarUsuario.addActionListener(new Lis24());
 			}
 		}
-		{
-			menuExcluir = new JMenu();
-			barraMenus.add(menuExcluir);
-			menuExcluir.setText("Excluir  ");
-			{
-				excluirCli = new JMenuItem();
-				menuExcluir.add(excluirCli);
-				excluirCli.setText("Cliente");
-				excluirCli.addActionListener(new Lis4());
-			}
-			{
-				excluirQuarto = new JMenuItem();
-				menuExcluir.add(excluirQuarto);
-				excluirQuarto.setText("Quarto");
-				excluirQuarto.addActionListener(new Lis7());
-			}
-			{
-				excluirCaract = new JMenuItem();
-				menuExcluir.add(excluirCaract);
-				excluirCaract.setText("Caracter�stica");
-				excluirCaract.addActionListener(new Lis5());
-			}
-			{
-				excluirProduto = new JMenuItem();
-				menuExcluir.add(excluirProduto);
-				excluirProduto.setText("Produto");
-				excluirProduto.addActionListener(new Lis13());
-			}
-			{
-				excluirServico = new JMenuItem();
-				menuExcluir.add(excluirServico);
-				excluirServico.setText("Servi�o");
-				excluirServico.addActionListener(new Lis14());
-			}
-			{
-				excluirUsuario = new JMenuItem();
-				menuExcluir.add(excluirUsuario);
-				excluirUsuario.setText("Usu�rio");
-				excluirUsuario.addActionListener(new Lis25());
-			}
-		}
 		barraMenus.add(sair);
 
 		frame = new JFrame();
@@ -374,32 +326,11 @@ public class JanelaMenuPrincipal {
 		//	frame.dispose();
 		}
 	}
-	private class Lis4 implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			op = 4;
-			//frame.dispose();
-		}
-	}
-	private class Lis5 implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			op = 5;
-			//frame.dispose();
-		}
-	}
 	private class Lis6 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 6;
 		//	frame.dispose();
-		}
-	}
-	private class Lis7 implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-		op = 7;
-			//frame.dispose();
 		}
 	}
 	private class Lis8 implements ActionListener {
@@ -435,20 +366,6 @@ public class JanelaMenuPrincipal {
 		public void actionPerformed(ActionEvent arg0) {
 			op = 12;
 		//	frame.dispose();
-		}
-	}
-	private class Lis13 implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			op = 13;
-			//frame.dispose();
-		}
-	}
-	private class Lis14 implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			op = 14;
-			//frame.dispose();
 		}
 	}
 	private class Lis15 implements ActionListener {
@@ -518,13 +435,6 @@ public class JanelaMenuPrincipal {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 24;
-			//frame.dispose();
-		}
-	}
-	private class Lis25 implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			op = 25;
 			//frame.dispose();
 		}
 	}

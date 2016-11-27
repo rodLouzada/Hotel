@@ -98,19 +98,20 @@ public class Programa {
 					if(janCadCli == null){
 					 setAllToNull();
 					 janMenPrin.frameConteudo.getContentPane().removeAll();
-					 janCadCli = new JanelaDeCadastroCliente(janMenPrin);
+					 //janCadCli = new JanelaDeCadastroCliente(janMenPrin);
+					 janCadCli = new JanelaDeCadastroCliente();
 					}
 					System.out.println("OP: " + janCadCli.getOp());
 					if (janCadCli.getOp() == 1){
 						cli.setNome(janCadCli.getTfNome().getText());
 						cli.setRua(janCadCli.getTfEndereco().getText());
-						cli.setNumero(Integer.parseInt(janCadCli.getTfNum().getText()));
-						cli.setCidade(janCadCli.getTfCidade().getText());
-						cli.setUf((String) janCadCli.getTfUF().getSelectedItem());
+//						cli.setNumero(Integer.parseInt(janCadCli.getTfNum().getText()));
+//						cli.setCidade(janCadCli.getTfCidade().getText());
+//						cli.setUf((String) janCadCli.getTfUF().getSelectedItem());
 						cli.setCep(janCadCli.getTfCEP().getText());
 						cli.setCpf(janCadCli.getTfCPF().getText());
-						cli.setIdentidade(janCadCli.getTfIden().getText());
-						cli.setTelefone(janCadCli.getTfTel().getText());
+//						cli.setIdentidade(janCadCli.getTfIden().getText());
+//						cli.setTelefone(janCadCli.getTfTel().getText());
 						cli.setEmail(janCadCli.getTfEmail().getText());
 						
 						//DATA--
