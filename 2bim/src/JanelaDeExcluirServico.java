@@ -22,14 +22,10 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-
-
 //import net.sf.jasperreports.engine.JRException;
 //import net.sf.jasperreports.engine.JRResultSetDataSource;
 //import net.sf.jasperreports.engine.JasperFillManager;
 //import net.sf.jasperreports.view.JasperViewer;
-
-
 
 public class JanelaDeExcluirServico implements ActionListener {
 
@@ -41,7 +37,6 @@ public class JanelaDeExcluirServico implements ActionListener {
 	private JTextField tfCod;
 	private JLabel lbCod;
 
-
 	private JScrollPane scrollTable;
 
 	private JTable table;
@@ -49,7 +44,7 @@ public class JanelaDeExcluirServico implements ActionListener {
 	private JButton buttonOk;
 
 	public boolean fechar = false;
-	
+
 	private JanelaMenuPrincipal jM = null;
 
 	public static void main(String[] args) {
@@ -58,15 +53,14 @@ public class JanelaDeExcluirServico implements ActionListener {
 	public JanelaDeExcluirServico(JanelaMenuPrincipal janMenPrin) {
 
 		jM = janMenPrin;
-		String colunas[] = new String[] {"ID", "Nome", "Valor" };
-		modelo = new DefaultTableModel(colunas,0);
+		String colunas[] = new String[] { "ID", "Nome", "Valor" };
+		modelo = new DefaultTableModel(colunas, 0);
 
 		ArrayList<Servico> vetor = new ArrayList<Servico>();
 
 		Connection conexao = null;
 		ServicoDAO daoServico = null;
 
-		
 		try {
 			conexao = ConnectionFactory.getConnection();
 			daoServico = new ServicoDAO(conexao);
@@ -80,9 +74,9 @@ public class JanelaDeExcluirServico implements ActionListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		for (int i = 0; i < vetor.size(); i++) {
-			modelo.addRow(new Object[] {vetor.get(i).getCod(),vetor.get(i).getNome(), vetor.get(i).getValor()});
+			modelo.addRow(new Object[] { vetor.get(i).getCod(), vetor.get(i).getNome(), vetor.get(i).getValor() });
 		}
 
 		table = new JTable(modelo);
@@ -105,12 +99,10 @@ public class JanelaDeExcluirServico implements ActionListener {
 		{
 			scrollTable = new JScrollPane(table);
 			panelTable.add(scrollTable);
-			scrollTable
-			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollTable
-			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			scrollTable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			scrollTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 			scrollTable.setBounds(4, 43, 349, 250);
-			
+
 		}
 		{
 			lbCod = new JLabel();
@@ -132,25 +124,22 @@ public class JanelaDeExcluirServico implements ActionListener {
 			btExcluir.addActionListener(new ExcluirListener());
 		}
 
-
-
 		buttonOk = new JButton("Cancelar");
 		buttonOk.addActionListener(this);
-		
 
 		panelButton = new JPanel();
 		panelButton.add(buttonOk);
 		buttonOk.addActionListener(new OkListener());
-		
 
 		janMenPrin.frameConteudo.setTitle("Excluir Serviços - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
-		
+
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
-		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
-		}
+		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair
+																					// do
+		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -166,42 +155,54 @@ public class JanelaDeExcluirServico implements ActionListener {
 
 		}
 	}
+
 	private class ExcluirListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(!tfCod.getText().isEmpty() && tfCod != null){
-				Connection conexao;
-				int codigo = Integer.parseInt(tfCod.getText());
-				try {
-					conexao = ConnectionFactory.getConnection();
-					ServicoDAO dao = new ServicoDAO(conexao);
-					dao.excluir(codigo);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+			String message = "Deseja realmente excluir o servico?";
+			String title = "Confirmação";
+			int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+			if (reply == JOptionPane.YES_OPTION) {
+				if (!tfCod.getText().isEmpty() && tfCod != null) {
+					Connection conexao;
+					int codigo = Integer.parseInt(tfCod.getText());
+					try {
+						conexao = ConnectionFactory.getConnection();
+						ServicoDAO dao = new ServicoDAO(conexao);
+						dao.excluir(codigo);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+
+					JOptionPane.showMessageDialog(null, "Serviço excluído com sucesso!");
+					fechar = true;
+					JanelaDeExcluirServico j10 = new JanelaDeExcluirServico(jM);
+				} else {
+					JOptionPane.showMessageDialog(frame, "Selecione um serviço para excluir", "Erro",
+							JOptionPane.ERROR_MESSAGE);
 				}
-				
-				JOptionPane.showMessageDialog(null, "Serviço excluído com sucesso!");
-				fechar = true;
-				JanelaDeExcluirServico j10 = new JanelaDeExcluirServico(jM);
-			}else{
-				JOptionPane.showMessageDialog(frame, "Selecione um serviço para excluir", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
+
 	private class MouseListener implements java.awt.event.MouseListener {
 		public void mouseClicked(MouseEvent e) {
 			int r = table.getSelectedRow();
-			String c = ""+table.getValueAt(r, 0);
+			String c = "" + table.getValueAt(r, 0);
 			tfCod.setText(c);
 		}
+
 		public void mouseEntered(MouseEvent e) {
 		}
+
 		public void mouseExited(MouseEvent e) {
 		}
+
 		public void mousePressed(MouseEvent e) {
 		}
+
 		public void mouseReleased(MouseEvent e) {
 		}
-		
+
 	}
 }
