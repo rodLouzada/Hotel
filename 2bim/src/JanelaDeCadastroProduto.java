@@ -93,6 +93,9 @@ public class JanelaDeCadastroProduto {
 		return op;
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeCadastroProduto(JanelaMenuPrincipal janMenPrin) {
 		ArrayList<Produto> vetor = new ArrayList<Produto>();
 
@@ -242,7 +245,13 @@ public class JanelaDeCadastroProduto {
 				JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
 				fechar = true;
 			} else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				if(tfNome.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Nome", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+				JOptionPane.showMessageDialog(frame, "Erro para cadastrar", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 	}

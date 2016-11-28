@@ -60,6 +60,9 @@ public class JanelaDeExcluirCliente implements ActionListener {
 		// new JanelaDeExcluirCliente();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeExcluirCliente(JanelaMenuPrincipal janMenPrin) {
 
 		jMenuP = janMenPrin;

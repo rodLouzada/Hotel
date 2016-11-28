@@ -21,6 +21,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 
 //import net.sf.jasperreports.engine.JRException;
@@ -62,11 +64,18 @@ public class JanelaDeEditarQuarto implements ActionListener {
 
 	public boolean fechar = false;
 	private JanelaMenuPrincipal jM;
+	private JButton btnExcluir;
+	private JLabel lblPesquisar;
+	private JTextField tfBuscar;
+	private JButton btnBuscar;
 
 	public static void main(String[] args) {
 		//new JanelaDeEditarQuarto();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeEditarQuarto(JanelaMenuPrincipal janMenPrin) {
 		jM = janMenPrin;
 		
@@ -114,7 +123,7 @@ public class JanelaDeEditarQuarto implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new java.awt.Dimension(243, 243));
+		panelTable.setPreferredSize(new Dimension(411, 325));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -123,26 +132,26 @@ public class JanelaDeEditarQuarto implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(4, 43, 239, 200);
+			scrollTable.setBounds(2, 73, 407, 249);
 			
 		}
 		{
 			lbCodQua = new JLabel();
 			panelTable.add(lbCodQua);
 			lbCodQua.setText("ID do Quarto:");
-			lbCodQua.setBounds(5, 12, 81, 16);
+			lbCodQua.setBounds(10, 42, 81, 16);
 		}
 		{
 			tfCodQua = new JTextField();
 			tfCodQua.setEditable(false);
 			panelTable.add(tfCodQua);
-			tfCodQua.setBounds(86, 9, 57, 23);
+			tfCodQua.setBounds(84, 39, 57, 23);
 		}
 		{
 			btExcluir = new JButton();
 			panelTable.add(btExcluir);
 			btExcluir.setText("Editar");
-			btExcluir.setBounds(155, 9, 86, 23);
+			btExcluir.setBounds(216, 39, 86, 23);
 			btExcluir.addActionListener(new ExcluirListener());
 		}
 
@@ -159,6 +168,58 @@ public class JanelaDeEditarQuarto implements ActionListener {
 
 		janMenPrin.frameConteudo.setTitle("Editar Quartos - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		{
+			btnExcluir = new JButton("Excluir");
+			btnExcluir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String message = "Deseja realmente excluir o quarto?";
+					String title = "Confirmação";
+					int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+					if (reply == JOptionPane.YES_OPTION) {
+						if (!tfCodQua.getText().isEmpty() && tfCodQua != null) {
+							Connection conexao;
+							int codigo = Integer.parseInt(tfCodQua.getText());
+							try {
+								conexao = ConnectionFactory.getConnection();
+								QuartoDAO dao = new QuartoDAO(conexao);
+								Quarto_CaractDAO dao2 = new Quarto_CaractDAO(conexao);
+								dao.excluir(codigo);
+								dao2.excluir(codigo);
+
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+
+							JOptionPane.showMessageDialog(null, "Quarto excluído com sucesso!");
+							fechar = true;
+							//JanelaDeExcluirQuarto j10 = new JanelaDeExcluirQuarto(jM);
+						} else {
+							JOptionPane.showMessageDialog(frame, "Selecione um quarto para excluir", "Erro",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			});
+			btnExcluir.setBounds(312, 39, 89, 23);
+			panelTable.add(btnExcluir);
+		}
+		{
+			lblPesquisar = new JLabel("Pesquisar:");
+			lblPesquisar.setBounds(10, 13, 65, 14);
+			panelTable.add(lblPesquisar);
+		}
+		{
+			tfBuscar = new JTextField();
+			tfBuscar.setBounds(70, 10, 228, 20);
+			panelTable.add(tfBuscar);
+			tfBuscar.setColumns(10);
+		}
+		{
+			btnBuscar = new JButton("Buscar");
+			btnBuscar.setBounds(312, 9, 89, 23);
+			panelTable.add(btnBuscar);
+		}
+		panelTable.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tfBuscar, btnBuscar, btExcluir, btnExcluir, scrollTable, table, lbCodQua, tfCodQua, lblPesquisar}));
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)

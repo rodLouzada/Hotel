@@ -22,6 +22,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 
 
@@ -61,11 +63,18 @@ public class JanelaDeEditarServico implements ActionListener {
 	private JButton buttonOk;
 
 	public boolean fechar = false;
+	private JButton btnExcluir;
+	private JLabel lblPesquisar;
+	private JTextField textField;
+	private JButton btnBuscar;
 	
 	
 	public static void main(String[] args) {
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeEditarServico(JanelaMenuPrincipal janMenPrin) {
 
 		String colunas[] = new String[] {"ID", "Nome", "Valor" };
@@ -110,7 +119,7 @@ public class JanelaDeEditarServico implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new java.awt.Dimension(353, 299));
+		panelTable.setPreferredSize(new Dimension(411, 325));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -119,26 +128,26 @@ public class JanelaDeEditarServico implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(4, 43, 349, 250);
+			scrollTable.setBounds(3, 70, 407, 250);
 			
 		}
 		{
 			lbCodCaract = new JLabel();
 			panelTable.add(lbCodCaract);
 			lbCodCaract.setText("ID do Serviço:");
-			lbCodCaract.setBounds(31, 12, 93, 16);
+			lbCodCaract.setBounds(11, 42, 93, 16);
 		}
 		{
 			tfCodCaract = new JTextField();
 			tfCodCaract.setEditable(false);
 			panelTable.add(tfCodCaract);
-			tfCodCaract.setBounds(150, 9, 57, 23);
+			tfCodCaract.setBounds(86, 38, 57, 23);
 		}
 		{
 			btEditar = new JButton();
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(235, 9, 86, 23);
+			btEditar.setBounds(215, 36, 86, 23);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -155,6 +164,55 @@ public class JanelaDeEditarServico implements ActionListener {
 
 		janMenPrin.frameConteudo.setTitle("Editar Serviçose - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		{
+			btnExcluir = new JButton("Excluir");
+			btnExcluir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String message = "Deseja realmente excluir o servico?";
+					String title = "Confirmação";
+					int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+					if (reply == JOptionPane.YES_OPTION) {
+						if (!tfCodCaract.getText().isEmpty() && tfCodCaract != null) {
+							Connection conexao;
+							int codigo = Integer.parseInt(tfCodCaract.getText());
+							try {
+								conexao = ConnectionFactory.getConnection();
+								ServicoDAO dao = new ServicoDAO(conexao);
+								dao.excluir(codigo);
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+
+							JOptionPane.showMessageDialog(null, "Serviço excluído com sucesso!");
+							fechar = true;
+							//JanelaDeExcluirServico j10 = new JanelaDeExcluirServico(jM);
+						} else {
+							JOptionPane.showMessageDialog(frame, "Selecione um serviço para excluir", "Erro",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			});
+			btnExcluir.setBounds(312, 36, 89, 23);
+			panelTable.add(btnExcluir);
+		}
+		{
+			lblPesquisar = new JLabel("Pesquisar:");
+			lblPesquisar.setBounds(10, 11, 73, 14);
+			panelTable.add(lblPesquisar);
+		}
+		{
+			textField = new JTextField();
+			textField.setBounds(73, 8, 228, 20);
+			panelTable.add(textField);
+			textField.setColumns(10);
+		}
+		{
+			btnBuscar = new JButton("Buscar");
+			btnBuscar.setBounds(312, 5, 89, 23);
+			panelTable.add(btnBuscar);
+		}
+		panelTable.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblPesquisar, textField, btnBuscar, btEditar, btnExcluir, scrollTable, table, lbCodCaract, tfCodCaract}));
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)

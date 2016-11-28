@@ -50,6 +50,9 @@ public class JanelaDeExcluirServico implements ActionListener {
 	public static void main(String[] args) {
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeExcluirServico(JanelaMenuPrincipal janMenPrin) {
 
 		jM = janMenPrin;

@@ -59,6 +59,9 @@ public class JanelaDeExcluirProduto implements ActionListener {
 	public static void main(String[] args) {
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeExcluirProduto(JanelaMenuPrincipal janMenPrin) {
 
 		jM = janMenPrin;

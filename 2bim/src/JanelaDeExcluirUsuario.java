@@ -60,6 +60,9 @@ public class JanelaDeExcluirUsuario implements ActionListener {
 	public static void main(String[] args) {
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeExcluirUsuario(JanelaMenuPrincipal janMenPrin) {
 
 		jM = janMenPrin;

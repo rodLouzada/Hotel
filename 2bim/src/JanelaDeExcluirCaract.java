@@ -60,6 +60,9 @@ public class JanelaDeExcluirCaract implements ActionListener {
 		// new JanelaDeExcluirCaract();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeExcluirCaract(JanelaMenuPrincipal janMenPrin) {
 
 		jM = janMenPrin;

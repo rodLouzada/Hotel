@@ -22,6 +22,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 
 
@@ -62,10 +64,15 @@ public class JanelaDeEditarProduto implements ActionListener {
 
 	
 	public boolean fechar = false;
+	private JTextField tfBusca;
+	private JButton btnBuscar;
 
 	public static void main(String[] args) {
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeEditarProduto(JanelaMenuPrincipal janMenPrin) {
 
 		String colunas[] = new String[] {"ID", "Nome", "Valor" };
@@ -110,7 +117,7 @@ public class JanelaDeEditarProduto implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new java.awt.Dimension(353, 299));
+		panelTable.setPreferredSize(new Dimension(411, 325));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -119,26 +126,26 @@ public class JanelaDeEditarProduto implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(4, 43, 349, 250);
+			scrollTable.setBounds(10, 71, 397, 250);
 			
 		}
 		{
 			lbCodCaract = new JLabel();
 			panelTable.add(lbCodCaract);
 			lbCodCaract.setText("ID do Produto:");
-			lbCodCaract.setBounds(34, 12, 101, 16);
+			lbCodCaract.setBounds(10, 40, 101, 16);
 		}
 		{
 			tfCodCaract = new JTextField();
 			tfCodCaract.setEditable(false);
 			panelTable.add(tfCodCaract);
-			tfCodCaract.setBounds(147, 9, 57, 23);
+			tfCodCaract.setBounds(90, 40, 57, 23);
 		}
 		{
 			btEditar = new JButton();
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(228, 9, 86, 23);
+			btEditar.setBounds(222, 40, 86, 23);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -155,6 +162,54 @@ public class JanelaDeEditarProduto implements ActionListener {
 
 		janMenPrin.frameConteudo.setTitle("Editar Produtos - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String message = "Deseja realmente excluir o produto?";
+				String title = "Confirmação";
+				int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+				if (reply == JOptionPane.YES_OPTION) {
+					if (!tfCodCaract.getText().isEmpty() && tfCodCaract != null) {
+						Connection conexao;
+						int codigo = Integer.parseInt(tfCodCaract.getText());
+						try {
+							conexao = ConnectionFactory.getConnection();
+							ProdutoDAO dao = new ProdutoDAO(conexao);
+							dao.excluir(codigo);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+
+						JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+						fechar = true;
+						//JanelaDeExcluirProduto j10 = new JanelaDeExcluirProduto(jM);
+					} else {
+						JOptionPane.showMessageDialog(frame, "Selecione um produto para excluir", "Erro",
+								JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+		btnExcluir.setBounds(318, 40, 89, 23);
+		panelTable.add(btnExcluir);
+		
+		JLabel lblBuscar = new JLabel("Pesquisar:");
+		lblBuscar.setBounds(10, 15, 57, 14);
+		panelTable.add(lblBuscar);
+		{
+			tfBusca = new JTextField();
+			tfBusca.setBounds(77, 12, 231, 20);
+			panelTable.add(tfBusca);
+			tfBusca.setColumns(10);
+		}
+		{
+			btnBuscar = new JButton("Buscar");
+			btnBuscar.setBounds(318, 11, 89, 23);
+			panelTable.add(btnBuscar);
+		}
+		panelTable.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tfBusca, btnBuscar, btEditar, btnExcluir, scrollTable, table, lbCodCaract, tfCodCaract, lblBuscar}));
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)

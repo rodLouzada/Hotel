@@ -46,6 +46,9 @@ public class JanelaDeCadastroDeUsuario {
 	
 	public boolean fechar = false;
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeCadastroDeUsuario(JanelaMenuPrincipal janMenPrin){
 		labelNome = new JLabel("Nome *");
 		labelNome.setBounds(5, 5, 100, 20);
@@ -201,7 +204,14 @@ public class JanelaDeCadastroDeUsuario {
 				}else if(!tfSenha.getText().equals(tfConfirma.getText()))
 					JOptionPane.showMessageDialog(frame, "As senhas informadas não coincidem", "Erro", JOptionPane.ERROR_MESSAGE);
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				String msg="Preencha todos os campos obrigatórios\n";
+				if(tfNome.getText().isEmpty()){ msg = msg + "- Preencha Nome \n";}
+				if(tfSenha.getText().isEmpty()){ msg = msg + "- Preencha Senha \n";}
+				if(tfConfirma.getText().isEmpty()){ msg = msg + "- Preencha Confirmação da senha \n";}
+				if(tfLogin.getText().isEmpty()){ msg = msg + "- Preencha Login \n";}
+				if(tfPergunta.getText().isEmpty()){ msg = msg + "- Preencha Pergunta \n";}
+				if(tfResposta.getText().isEmpty()){ msg = msg + "- Preencha Resposta \n";}
+				JOptionPane.showMessageDialog(frame, msg, "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

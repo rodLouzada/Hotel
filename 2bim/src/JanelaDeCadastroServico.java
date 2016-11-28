@@ -97,6 +97,9 @@ public class JanelaDeCadastroServico {
 		return op;
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeCadastroServico(JanelaMenuPrincipal janMenPrin) {
 		ArrayList<Servico> vetor = new ArrayList<Servico>();
 
@@ -252,7 +255,13 @@ public class JanelaDeCadastroServico {
 				JOptionPane.showMessageDialog(null, "Serviço cadastrado com sucesso!");
 				fechar = true;
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				if(tfNome.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Nome", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+				JOptionPane.showMessageDialog(frame, "Erro para cadastrar", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 	}

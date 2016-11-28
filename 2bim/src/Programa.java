@@ -34,6 +34,7 @@ public class Programa {
 	public static JanelaDeEditarServico janEdiSer = null;
 	public static JanelaDeCheckIn janCheckIn = null;
 	public static JanelaDeCheckOutQua janCheckout = null;
+	public static JanelaDeCheckOutQua2 janCheckout2 = null;
 	public static JanelaDeConsumo janCons = null;
 	public static JanelaDeRelatorioDespesas janRelDesp = null;
 	public static JanelaDeRelatorioQuartos janRelQua = null;
@@ -42,6 +43,9 @@ public class Programa {
 	public static JanelaDeEditarUsuario janEditUsu = null;
 	public static JanelaDeExcluirUsuario janExcUsu = null;
     
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void main(String[] args) {
 		String senha;
 		String usu;
@@ -407,7 +411,7 @@ public class Programa {
 						janCheckout = new JanelaDeCheckOutQua(janMenPrin);
 					}
 					if(janCheckout.fechar){
-						janCheckout = null;
+						janCheckout2 = null;
 						janMenPrin = restauraJanelaPrincipal(janMenPrin);
 					}
 				}
@@ -548,6 +552,9 @@ public class Programa {
 		
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static JanelaMenuPrincipal restauraJanelaPrincipal(JanelaMenuPrincipal janMenPrin){
 		int x1 = janMenPrin.frame.getX();
 		int y1 = janMenPrin.frame.getY();

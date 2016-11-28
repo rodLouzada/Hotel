@@ -61,6 +61,9 @@ public class JanelaDeExcluirQuarto implements ActionListener {
 		// new JanelaDeExcluirQuarto();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeExcluirQuarto(JanelaMenuPrincipal janMenPrin) {
 		jM = janMenPrin;
 		String colunas[] = new String[] { "ID", "Número", "Valor Diaria" };

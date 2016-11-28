@@ -78,6 +78,9 @@ public class JanelaDeConsumo {
 	public static void main(String[] args) {
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeConsumo(JanelaMenuPrincipal janMenPrin) {
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.HORIZONTAL; // não redimensionar objeto inserido;
@@ -295,7 +298,7 @@ public class JanelaDeConsumo {
 		
 		// programa
 		if (cont == 0){
-			//JOptionPane.showMessageDialog(frame, "Nenhum Cliente Hospedado", "Hotel Vazio", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frame, "Nenhum Cliente Hospedado", "Hotel Vazio", JOptionPane.ERROR_MESSAGE);
 		}else{
 			//frame.setVisible(true);
 		}

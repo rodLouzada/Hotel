@@ -78,6 +78,9 @@ public class JanelaDeCheckIn {
 	public static void main(String[] args) {
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeCheckIn(JanelaMenuPrincipal janMenPrin) {
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.HORIZONTAL; // não redimensionar objeto inserido;
@@ -337,6 +340,7 @@ public class JanelaDeCheckIn {
 	
 	private class MostrarListener implements ActionListener {
 		@Override
+		
 		public void actionPerformed(ActionEvent arg0) {
 			Connection conexao = null;
 			ArrayList<Cliente> vetCli = new ArrayList<Cliente>();
@@ -427,8 +431,10 @@ public class JanelaDeCheckIn {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			//if(tfDataPreSaida.getText().isEmpty() ){ JOptionPane.showMessageDialog(null, "wergthygjngfd!");}
+			//else{
 			JOptionPane.showMessageDialog(null, "Check In realizado com sucesso!");
-			fechar = true;
+			fechar = true;//}
 		}
 	}
 	private class AdicionaListener implements ActionListener {

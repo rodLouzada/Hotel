@@ -61,6 +61,10 @@ public class JanelaDeEditarCaract implements ActionListener {
 	private JButton buttonOk;
 	
 	public boolean fechar = false;
+	private JButton btnExcluir;
+	private JLabel lblPesquisar;
+	private JTextField tfBuscar;
+	private JButton btnBuscar;
 
 	
 
@@ -68,6 +72,9 @@ public class JanelaDeEditarCaract implements ActionListener {
 		
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeEditarCaract(JanelaMenuPrincipal janMenPrin) {
 
 		String colunas[] = new String[] {"ID", "Nome", "Descrição" };
@@ -112,7 +119,7 @@ public class JanelaDeEditarCaract implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new java.awt.Dimension(410, 299));
+		panelTable.setPreferredSize(new Dimension(411, 325));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -121,26 +128,26 @@ public class JanelaDeEditarCaract implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(4, 43, 400, 250);
+			scrollTable.setBounds(4, 71, 407, 250);
 			
 		}
 		{
 			lbCodCaract = new JLabel();
 			panelTable.add(lbCodCaract);
 			lbCodCaract.setText("ID da Característica:");
-			lbCodCaract.setBounds(22, 12, 134, 16);
+			lbCodCaract.setBounds(10, 40, 134, 16);
 		}
 		{
 			tfCodCaract = new JTextField();
 			tfCodCaract.setEditable(false);
 			panelTable.add(tfCodCaract);
-			tfCodCaract.setBounds(174, 9, 57, 23);
+			tfCodCaract.setBounds(123, 37, 57, 23);
 		}
 		{
 			btEditar = new JButton();
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(278, 9, 86, 23);
+			btEditar.setBounds(214, 37, 86, 23);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -157,6 +164,54 @@ public class JanelaDeEditarCaract implements ActionListener {
 
 		janMenPrin.frameConteudo.setTitle("Editar Características - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		{
+			btnExcluir = new JButton("Excluir");
+			btnExcluir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String message = "Deseja realmente excluir a caracteristica?";
+					String title = "Confirmação";
+					int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+					if (reply == JOptionPane.YES_OPTION) {
+						if (!tfCodCaract.getText().isEmpty() && tfCodCaract != null) {
+							Connection conexao;
+							int codigo = Integer.parseInt(tfCodCaract.getText());
+							try {
+								conexao = ConnectionFactory.getConnection();
+								CaractDAO dao = new CaractDAO(conexao);
+								dao.excluir(codigo);
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+
+							JOptionPane.showMessageDialog(null, "Característica excluída com sucesso!");
+							fechar = true;
+							// JanelaDeExcluirCaract j10 = new JanelaDeExcluirCaract();
+						} else {
+							JOptionPane.showMessageDialog(frame, "Selecione uma característica para excluir", "Erro",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			});
+			btnExcluir.setBounds(312, 37, 89, 23);
+			panelTable.add(btnExcluir);
+		}
+		{
+			lblPesquisar = new JLabel("Pesquisar:");
+			lblPesquisar.setBounds(4, 11, 70, 14);
+			panelTable.add(lblPesquisar);
+		}
+		{
+			tfBuscar = new JTextField();
+			tfBuscar.setBounds(66, 8, 234, 20);
+			panelTable.add(tfBuscar);
+			tfBuscar.setColumns(10);
+		}
+		{
+			btnBuscar = new JButton("Buscar");
+			btnBuscar.setBounds(312, 7, 89, 23);
+			panelTable.add(btnBuscar);
+		}
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)

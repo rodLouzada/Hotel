@@ -87,6 +87,9 @@ public class JanelaDeCadastroQuarto {
 		//new JanelaDeCadastroQuarto();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeCadastroQuarto(JanelaMenuPrincipal janMenPrin) {
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.HORIZONTAL; // nÃ£o redimensionar objeto inserido;
@@ -306,7 +309,18 @@ public class JanelaDeCadastroQuarto {
 				op = 1;
 				//frame.dispose();
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				if(tfNum.getText().isEmpty() && tfValorDiaria.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Numero\n -Valor da Diaria", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(tfNum.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Numero", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(tfValorDiaria.getText().isEmpty() )
+				{
+					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Valor da Diaria", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 	}
