@@ -92,7 +92,7 @@ public class JanelaDeCheckOutQua2 {
 			frame.getContentPane().add(panel, BorderLayout.NORTH);
 			{
 				btOk = new JButton("Novo");
-				btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\new.png"));
+				btOk.setIcon(new ImageIcon("..\\2bim\\icons\\new.png"));
 				btOk.setForeground(new Color(0, 128, 0));
 				btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
 				panel.add(btOk);
@@ -102,7 +102,7 @@ public class JanelaDeCheckOutQua2 {
 			{
 			    btSair = new JButton("Cancelar");
 			    btSair.setForeground(new Color(255, 0, 0));
-			    btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			    btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 			    btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 				panel.add(btSair);
 				btSair.setBounds(68, 205, 124, 34);

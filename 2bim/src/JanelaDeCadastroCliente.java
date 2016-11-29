@@ -318,7 +318,7 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 			btMostrar = new JButton("Salvar");
 			btMostrar.setForeground(new Color(100, 149, 237));
 			btMostrar.setFont(new Font("Tahoma", Font.BOLD, 15));
-			btMostrar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btMostrar.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 			panel.add(btMostrar);
 			btMostrar.setBounds(759, 1044, 125, 37);
 			btMostrar.addActionListener(new MostrarListener());
@@ -327,7 +327,7 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 			btSair = new JButton("Cancelar");
 			btSair.setForeground(new Color(255, 0, 0));
 			btSair.setFont(new Font("Tahoma", Font.BOLD, 15));
-			btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 			panel.add(btSair);
 			btSair.setBounds(616, 1048, 131, 29);
 			btSair.addActionListener(new SairListener());
@@ -511,14 +511,14 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		
 		JButton btnLocalizar = new JButton("Localizar");
 		btnLocalizar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnLocalizar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\search.png"));
+		btnLocalizar.setIcon(new ImageIcon("..\\2bim\\icons\\search.png"));
 		btnLocalizar.setBounds(18, 1051, 134, 36);
 		panel.add(btnLocalizar);
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.setForeground(new Color(0, 128, 0));
 		btnNovo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnNovo.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\new.png"));
+		btnNovo.setIcon(new ImageIcon("..\\2bim\\icons\\new.png"));
 		btnNovo.setBounds(177, 1050, 122, 37);
 		panel.add(btnNovo);
 		

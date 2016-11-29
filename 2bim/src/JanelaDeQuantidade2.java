@@ -44,13 +44,13 @@ public class JanelaDeQuantidade2 {
 		tfQtd.setBounds(5,38,200,20);
 		btOk = new JButton("Salvar");
 		btOk.setForeground(new Color(30, 144, 255));
-		btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+		btOk.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btOk.setBounds(149, 71, 107, 39);
 		btOk.addActionListener(new OkListener());
 		JButton btSair = new JButton("Cancelar");
 		btSair.setForeground(new Color(255, 0, 0));
-		btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+		btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btSair.setBounds(5, 76, 124, 34);
 		btSair.addActionListener(new SairListener());

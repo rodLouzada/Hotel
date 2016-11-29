@@ -170,7 +170,7 @@ public class JanelaDeEditarQuarto implements ActionListener {
 			btExcluir = new JButton();
 			btExcluir.setForeground(new Color(30, 144, 255));
 			btExcluir.setFont(new Font("Tahoma", Font.BOLD, 13));
-			btExcluir.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\edit.png"));
+			btExcluir.setIcon(new ImageIcon("..\\2bim\\icons\\edit.png"));
 			panelTable.add(btExcluir);
 			btExcluir.setText("Editar");
 			btExcluir.setBounds(185, 19, 107, 39);

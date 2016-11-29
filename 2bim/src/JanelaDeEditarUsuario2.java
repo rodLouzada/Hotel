@@ -98,14 +98,14 @@ public class JanelaDeEditarUsuario2 {
 		});
 		tfSenha.setBounds(25,137,117,20);
 		btOk = new JButton("Salvar");
-		btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+		btOk.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 		btOk.setForeground(new Color(30, 144, 255));
 		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btOk.setBounds(168, 283, 107, 39);
 		btOk.addActionListener(new OkListener());
 		JButton btSair = new JButton("Cancelar");
 		btSair.setForeground(new Color(255, 0, 0));
-		btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+		btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btSair.setBounds(25, 285, 124, 34);
 		btSair.addActionListener(new SairListener());

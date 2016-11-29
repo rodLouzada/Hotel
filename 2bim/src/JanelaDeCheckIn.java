@@ -126,7 +126,7 @@ public class JanelaDeCheckIn {
 		{
 			btSalvar = new JButton();
 			btSalvar.setForeground(new Color(30, 144, 255));
-			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
@@ -136,7 +136,7 @@ public class JanelaDeCheckIn {
 		{
 			butCancelar = new JButton();
 			butCancelar.setForeground(new Color(255, 0, 0));
-			butCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			butCancelar.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 			butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
@@ -218,7 +218,7 @@ public class JanelaDeCheckIn {
 		}
 		{
 			btAdd = new JButton();
-			btAdd.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\next.png"));
+			btAdd.setIcon(new ImageIcon("..\\2bim\\icons\\next.png"));
 			btAdd.setForeground(new Color(0, 128, 0));
 			btAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btAdd);
@@ -244,7 +244,7 @@ public class JanelaDeCheckIn {
 		{
 			btRemove = new JButton();
 			btRemove.setForeground(new Color(255, 0, 0));
-			btRemove.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\preview.png"));
+			btRemove.setIcon(new ImageIcon("..\\2bim\\icons\\preview.png"));
 			btRemove.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btRemove);
 			btRemove.setText("Remover");

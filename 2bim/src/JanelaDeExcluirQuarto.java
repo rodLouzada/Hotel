@@ -160,7 +160,7 @@ public class JanelaDeExcluirQuarto implements ActionListener {
 			btExcluir = new JButton();
 			btExcluir.setForeground(new Color(255, 0, 0));
 			btExcluir.setFont(new Font("Tahoma", Font.BOLD, 13));
-			btExcluir.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\delete.png"));
+			btExcluir.setIcon(new ImageIcon("..\\2bim\\icons\\delete.png"));
 			panelTable.add(btExcluir);
 			btExcluir.setText("Excluir");
 			btExcluir.setBounds(183, 13, 107, 39);

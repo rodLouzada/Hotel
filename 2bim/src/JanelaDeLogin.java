@@ -63,13 +63,13 @@ public class JanelaDeLogin {
 		tfSenha.addKeyListener(new OkKeyListener());
 		btOk = new JButton("Logar");
 		btOk.setForeground(new Color(0, 128, 0));
-		btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\check.png"));
+		btOk.setIcon(new ImageIcon("..\\2bim\\icons\\check.png"));
 		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btOk.setBounds(224, 215, 107, 39);
 		btOk.addActionListener(new OkListener());
 		btOk.addKeyListener(new OkKeyListener());
 		JButton btSair = new JButton("Cancelar");
-		btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+		btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 		btSair.setForeground(new Color(255, 0, 0));
 		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btSair.setBounds(58, 220, 124, 34);
@@ -93,7 +93,7 @@ public class JanelaDeLogin {
 		panel.setPreferredSize(new java.awt.Dimension(234, 145));
 		
 		JLabel lblRecuperarSenha = new JLabel("Recuperar senha");
-		lblRecuperarSenha.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\password.png"));
+		lblRecuperarSenha.setIcon(new ImageIcon("..\\2bim\\icons\\password.png"));
 		lblRecuperarSenha.setForeground(Color.BLUE);
 		lblRecuperarSenha.setBounds(201, 182, 130, 20);
 		lblRecuperarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -111,7 +111,7 @@ public class JanelaDeLogin {
 		panel.add(panel_1);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\Netfontes_aardvark_cafe_Logo.gif"));
+		lblNewLabel.setIcon(new ImageIcon("..\\2bim\\icons\\Netfontes_aardvark_cafe_Logo.gif"));
 		panel_1.add(lblNewLabel);
 		frame.setSize(369, 321);
 		frame.setLocationRelativeTo(null);

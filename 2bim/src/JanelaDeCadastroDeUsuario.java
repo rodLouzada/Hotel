@@ -101,12 +101,12 @@ public class JanelaDeCadastroDeUsuario {
 		tfSenha.setBounds(67,217,117,20);
 		btOk = new JButton("Novo");
 		btOk.setForeground(new Color(0, 128, 0));
-		btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\new.png"));
+		btOk.setIcon(new ImageIcon("..\\2bim\\icons\\new.png"));
 		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btOk.setBounds(258, 351, 107, 39);
 		btOk.addActionListener(new OkListener());
 		JButton btSair = new JButton("Cancelar");
-		btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+		btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 		btSair.setForeground(new Color(255, 0, 0));
 		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btSair.setBounds(108, 353, 124, 34);
@@ -198,7 +198,7 @@ public class JanelaDeCadastroDeUsuario {
 		panel.add(panel_1);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\Netfontes_aardvark_cafe_Logo.gif"));
+		lblNewLabel.setIcon(new ImageIcon("..\\2bim\\icons\\Netfontes_aardvark_cafe_Logo.gif"));
 		panel_1.add(lblNewLabel);
 		//frame.add(panelBotoes);
 		//frame.getContentPane().add(BorderLayout.SOUTH, panelBotoes);

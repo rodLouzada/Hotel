@@ -91,7 +91,7 @@ public class JanelaMenuPrincipal {
 
 		menuCadastro = new JMenu("Cadastro");
 		menuCadastro.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		menuCadastro.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\insert.png"));
+		menuCadastro.setIcon(new ImageIcon("..\\2bim\\icons\\insert.png"));
 		menuCadastro.add(cadCli);
 		{
 			cadQuarto = new JMenuItem();
@@ -127,7 +127,7 @@ public class JanelaMenuPrincipal {
 
 		menuControle = new JMenu("Controle");
 		menuControle.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		menuControle.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\control.png"));
+		menuControle.setIcon(new ImageIcon("..\\2bim\\icons\\control.png"));
 		{
 			checkIn = new JMenuItem();
 			menuControle.add(checkIn);
@@ -150,11 +150,11 @@ public class JanelaMenuPrincipal {
 
 		menuRelatorio = new JMenu("Relatorio");
 		menuRelatorio.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		menuRelatorio.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\rel.png"));
+		menuRelatorio.setIcon(new ImageIcon("..\\2bim\\icons\\rel.png"));
 		// ----------------------------
 		sair = new JMenuItem("Sair");
 		sair.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		sair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\checkout.png"));
+		sair.setIcon(new ImageIcon("..\\2bim\\icons\\checkout.png"));
 		sair.setMnemonic('S');
 		sair.addActionListener(new Lis6());
 
@@ -164,7 +164,7 @@ public class JanelaMenuPrincipal {
 		{
 			menuEditar = new JMenu();
 			menuEditar.setFont(new Font("Segoe UI", Font.BOLD, 15));
-			menuEditar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\editMenu.png"));
+			menuEditar.setIcon(new ImageIcon("..\\2bim\\icons\\editMenu.png"));
 			barraMenus.add(menuEditar);
 			menuEditar.setText("Editar  ");
 			{
@@ -229,7 +229,7 @@ public class JanelaMenuPrincipal {
 		barraMenus.add(sair);
 
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Marcus\\git\\Hotel_Atualizado\\2bim\\icons\\Hotel.png"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("..\\2bim\\icons\\Hotel.png"));
 		frame.setTitle("Hotel Casta - Sistema de Hotel");
 		// frame.setModal(true);
 		frame.setJMenuBar(barraMenus);
@@ -242,21 +242,21 @@ public class JanelaMenuPrincipal {
 		frame.setResizable(false);
 		JButton btnNovoCliente = new JButton("");
 		btnNovoCliente.setIcon(new ImageIcon(
-				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\novocliente.png"));
+				"..\\2bim\\icons\\novocliente.png"));
 
 		btnNovoCliente.addActionListener(new Lis1());
 
 		JButton button = new JButton("");
 		button.setIcon(new ImageIcon(
-				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\consumo.png"));
+				"..\\2bim\\icons\\consumo.png"));
 
 		JButton button_1 = new JButton("");
 		button_1.setIcon(new ImageIcon(
-				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\checkin.png"));
+				"..\\2bim\\icons\\checkin.png"));
 
 		JButton button_2 = new JButton("");
 		button_2.setIcon(new ImageIcon(
-				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\checkout.png"));
+				"..\\2bim\\icons\\checkout.png"));
 
 		JLabel label = new JLabel("");
 
@@ -264,7 +264,7 @@ public class JanelaMenuPrincipal {
 
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(
-				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\logo.gif"));
+				"..\\2bim\\icons\\logo.gif"));
 		frameConteudo = new JInternalFrame("");
 		frameConteudo.setForeground(Color.DARK_GRAY);
 		frameConteudo.setFrameIcon(null);

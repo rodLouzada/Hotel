@@ -164,7 +164,7 @@ public class JanelaDeEditarServico implements ActionListener {
 			btEditar = new JButton();
 			btEditar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			btEditar.setForeground(new Color(30, 144, 255));
-			btEditar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\edit.png"));
+			btEditar.setIcon(new ImageIcon("..\\2bim\\icons\\edit.png"));
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
 			btEditar.setBounds(254, 14, 107, 39);

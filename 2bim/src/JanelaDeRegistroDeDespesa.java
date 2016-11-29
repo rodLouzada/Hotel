@@ -109,7 +109,7 @@ public class JanelaDeRegistroDeDespesa extends javax.swing.JDialog {
 				{
 					butSalvar = new JButton();
 					butSalvar.setForeground(new Color(30, 144, 255));
-					butSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+					butSalvar.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 					butSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 					getContentPane().add(butSalvar);
 					butSalvar.setText("Salvar");
@@ -118,7 +118,7 @@ public class JanelaDeRegistroDeDespesa extends javax.swing.JDialog {
 				{
 					butCancelar = new JButton();
 					butCancelar.setForeground(new Color(255, 0, 0));
-					butCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+					butCancelar.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 					butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 					getContentPane().add(butCancelar);
 					butCancelar.setText("Cancelar");

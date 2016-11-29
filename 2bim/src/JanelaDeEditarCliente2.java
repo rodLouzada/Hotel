@@ -414,7 +414,7 @@ public class JanelaDeEditarCliente2 {
 		{
 			btMostrar = new JButton("Salvar");
 			btMostrar.setForeground(new Color(30, 144, 255));
-			btMostrar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btMostrar.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 			btMostrar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btMostrar);
 			btMostrar.setBounds(365, 300, 107, 39);
@@ -423,7 +423,7 @@ public class JanelaDeEditarCliente2 {
 		{
 			btSair = new JButton("Cancelar");
 			btSair.setForeground(new Color(255, 0, 0));
-			btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 			btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSair);
 			btSair.setBounds(213, 302, 124, 34);

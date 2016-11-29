@@ -124,7 +124,7 @@ public class JanelaDeConsumo {
 		{
 			btSalvar = new JButton();
 			btSalvar.setForeground(new Color(30, 144, 255));
-			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
@@ -133,7 +133,7 @@ public class JanelaDeConsumo {
 		}
 		{
 			butCancelar = new JButton();
-			butCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			butCancelar.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 			butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
@@ -228,7 +228,7 @@ public class JanelaDeConsumo {
 		{
 			btAdd = new JButton();
 			btAdd.setForeground(new Color(0, 128, 0));
-			btAdd.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\next.png"));
+			btAdd.setIcon(new ImageIcon("..\\2bim\\icons\\next.png"));
 			btAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btAdd);
 			btAdd.setText("Adicionar");
@@ -253,7 +253,7 @@ public class JanelaDeConsumo {
 		{
 			btRemove = new JButton();
 			btRemove.setForeground(new Color(255, 0, 0));
-			btRemove.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\preview.png"));
+			btRemove.setIcon(new ImageIcon("..\\2bim\\icons\\preview.png"));
 			btRemove.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btRemove);
 			btRemove.setText("Remover");

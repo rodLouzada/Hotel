@@ -162,7 +162,7 @@ public class JanelaDeEditarCaract2 {
 		}
 		{
 			btSalvar = new JButton();
-			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 			btSalvar.setForeground(new Color(30, 144, 255));
 			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
@@ -173,7 +173,7 @@ public class JanelaDeEditarCaract2 {
 		{
 			btCancelar = new JButton();
 			btCancelar.setForeground(new Color(255, 0, 0));
-			btCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			btCancelar.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btCancelar);
 			btCancelar.setText("Cancelar");

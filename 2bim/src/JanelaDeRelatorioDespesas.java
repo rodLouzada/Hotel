@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -212,20 +213,27 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 		
 
 		panelButton = new JPanel();
-		panelButton.setPreferredSize(new java.awt.Dimension(201, 33));
+		panelButton.setPreferredSize(new java.awt.Dimension(201, 45));
 		panelButton.setLayout(null);
-		panelButton.setSize(600, 33);
+		panelButton.setSize(600, 45);
 		{
+		
 			buttonOk = new JButton("OK");
+			buttonOk.setForeground(new Color(0, 128, 0));
+			buttonOk.setIcon(new ImageIcon("..\\2bim\\icons\\check.png"));
+			buttonOk.setFont(new java.awt.Font("Tahoma",1,13));
+			
 			panelButton.add(buttonOk);
-			buttonOk.setBounds(162, 4, 118, 23);
+			buttonOk.setBounds(162, 4, 107, 34);
 			buttonOk.addActionListener(new OkListener());
 		}
 		{
 			btImp = new JButton();
 			panelButton.add(btImp);
 			btImp.setText("Gerar PDF");
-			btImp.setBounds(314, 4, 118, 23);
+			btImp.setIcon(new ImageIcon("..\\2bim\\icons\\pdf.png"));
+			btImp.setFont(new java.awt.Font("Tahoma",1,13));
+			btImp.setBounds(314, 4, 118, 34);
 		}
 		
 		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
