@@ -1,42 +1,25 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
-import javax.swing.text.NumberFormatter;
-
+import javax.swing.WindowConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.Dimension;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -72,6 +55,31 @@ public class JanelaDeCadastroServico {
 	public JTextField getTfValor() {
 		return tfValor;
 	}
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btSalvar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  btCancelar.doClick();
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
 
 	public void setTfValor(JTextField tfValor) {
 		this.tfValor = tfValor;
@@ -134,7 +142,7 @@ public class JanelaDeCadastroServico {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new java.awt.Dimension(316, 152));
+		panel.setPreferredSize(new Dimension(323, 162));
 		{
 			tfNome = new JTextField();
 			tfNome.addKeyListener(new KeyAdapter() {
@@ -197,24 +205,31 @@ public class JanelaDeCadastroServico {
 		}
 		{
 			btSalvar = new JButton();
+			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setForeground(new Color(30, 144, 255));
+			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
-			btSalvar.setBounds(66, 119, 85, 21);
+			btSalvar.setBounds(197, 119, 107, 39);
 			btSalvar.addActionListener(new MostrarListener());
 		}
 		{
 			btCancelar = new JButton();
+			btCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			btCancelar.setForeground(new Color(255, 0, 0));
+			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btCancelar);
 			btCancelar.setText("Cancelar");
-			btCancelar.setBounds(162, 119, 85, 21);
+			btCancelar.setBounds(59, 121, 124, 34);
 			btCancelar.addActionListener(new SairListener());
 		}
 
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Cadastro de Serviço - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(panel);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss		
 	
 	}
@@ -255,13 +270,7 @@ public class JanelaDeCadastroServico {
 				JOptionPane.showMessageDialog(null, "Serviço cadastrado com sucesso!");
 				fechar = true;
 			}else{
-				if(tfNome.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Nome", "Erro", JOptionPane.ERROR_MESSAGE);
-				}
-				else{
-				JOptionPane.showMessageDialog(frame, "Erro para cadastrar", "Erro", JOptionPane.ERROR_MESSAGE);
-				}
+				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

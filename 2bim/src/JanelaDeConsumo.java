@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,16 +24,19 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Dimension;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -66,6 +71,30 @@ public class JanelaDeConsumo {
 	private int op;
 	int cont;
 
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btSalvar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  butCancelar.doClick();
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	public boolean fechar = false;
 
 
@@ -89,22 +118,27 @@ public class JanelaDeConsumo {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new java.awt.Dimension(659, 407));
+		panel.setPreferredSize(new Dimension(718, 422));
 		
 		
 		{
 			btSalvar = new JButton();
+			btSalvar.setForeground(new Color(30, 144, 255));
+			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
-			btSalvar.setText("OK");
+			btSalvar.setText("Salvar");
 			btSalvar.addActionListener(new MostrarListener());
-			btSalvar.setBounds(176, 372, 104, 23);
+			btSalvar.setBounds(359, 372, 107, 39);
 		}
 		{
 			butCancelar = new JButton();
+			butCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
 			butCancelar.addActionListener(new SairListener());
-			butCancelar.setBounds(291, 372, 104, 23);
+			butCancelar.setBounds(226, 377, 124, 34);
 		}
 		{
 			String colunas[] = new String[] {"ID","Nome", "Valor", "Caract"};
@@ -189,14 +223,17 @@ public class JanelaDeConsumo {
 			panel.add(TabCaract);
 			TabCaract.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			TabCaract.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabCaract.setBounds(394, 96, 253, 257);
+			TabCaract.setBounds(440, 96, 253, 257);
 		}
 		{
 			btAdd = new JButton();
+			btAdd.setForeground(new Color(0, 128, 0));
+			btAdd.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\next.png"));
+			btAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btAdd);
-			btAdd.setText("Adiciona >>");
+			btAdd.setText("Adicionar");
 			btAdd.addActionListener(new AdicionaListener());
-			btAdd.setBounds(280, 143, 109, 21);
+			btAdd.setBounds(280, 143, 143, 40);
 			btAdd.setEnabled(false);
 		}
 		{
@@ -210,15 +247,18 @@ public class JanelaDeConsumo {
 			lcCar = new JLabel();
 			panel.add(lcCar);
 			lcCar.setText("Serviços e Produtos Consumidos");
-			lcCar.setBounds(389, 70, 214, 14);
+			lcCar.setBounds(435, 70, 214, 14);
 			lcCar.setFont(new java.awt.Font("Tahoma",1,12));
 		}
 		{
 			btRemove = new JButton();
+			btRemove.setForeground(new Color(255, 0, 0));
+			btRemove.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\preview.png"));
+			btRemove.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btRemove);
-			btRemove.setText("Remove <<");
+			btRemove.setText("Remover");
 			btRemove.addActionListener(new RemoveListener());
-			btRemove.setBounds(280, 192, 109, 21);
+			btRemove.setBounds(290, 192, 124, 34);
 			btRemove.setEnabled(false);
 		}
 		{
@@ -290,15 +330,16 @@ public class JanelaDeConsumo {
 			tfDataEntrada.setText(d);
 		}
 		
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Registro de consumo - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.CENTER, panel);
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 		
 		// programa
 		if (cont == 0){
-			JOptionPane.showMessageDialog(frame, "Nenhum Cliente Hospedado", "Hotel Vazio", JOptionPane.ERROR_MESSAGE);
+			//JOptionPane.showMessageDialog(frame, "Nenhum Cliente Hospedado", "Hotel Vazio", JOptionPane.ERROR_MESSAGE);
 		}else{
 			//frame.setVisible(true);
 		}
@@ -306,29 +347,39 @@ public class JanelaDeConsumo {
 		
 	}
 	private class MouseListener implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			btAdd.setEnabled(true);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 		
 	}
 	private class MouseListener2 implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			btRemove.setEnabled(true);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 	}

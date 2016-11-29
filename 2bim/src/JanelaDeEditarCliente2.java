@@ -1,10 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,26 +13,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
+import javax.swing.WindowConstants;
 import javax.swing.text.MaskFormatter;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -92,6 +86,30 @@ public class JanelaDeEditarCliente2 {
 	private int op;
 	private int co_;
 
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btMostrar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  btSair.doClick();
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -395,14 +413,20 @@ public class JanelaDeEditarCliente2 {
 		tfData.setBounds(355, 138, 122, 23);
 		{
 			btMostrar = new JButton("Salvar");
+			btMostrar.setForeground(new Color(30, 144, 255));
+			btMostrar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btMostrar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btMostrar);
-			btMostrar.setBounds(277, 308, 88, 22);
+			btMostrar.setBounds(365, 300, 107, 39);
 			btMostrar.addActionListener(new MostrarListener());
 		}
 		{
 			btSair = new JButton("Cancelar");
+			btSair.setForeground(new Color(255, 0, 0));
+			btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSair);
-			btSair.setBounds(376, 308, 89, 22);
+			btSair.setBounds(213, 302, 124, 34);
 			btSair.addActionListener(new SairListener());
 		}
 		{
@@ -446,7 +470,7 @@ public class JanelaDeEditarCliente2 {
 		//frame.setSize(300, 300);
 		frame.pack(); // ajusta o tamanho da janela (frame)
 		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		frame.setResizable(false);														// programa
 		frame.setVisible(true); // torna a janela visível
 

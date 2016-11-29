@@ -1,42 +1,34 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
+
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFormattedTextField.AbstractFormatter;
-import javax.swing.JTabbedPane;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -70,8 +62,6 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 	private JLabel lbDataCad;
 	private JTextField tfDataCad;
 	
-	
-	
 	private JButton btMostrar;
 	private JButton btSair;
 	private JPanel panel;
@@ -91,6 +81,31 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 	private JTextField textField_5;
 	private JTextField textField_6;
 
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+				  btMostrar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  btSair.doClick();
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
 	public JanelaDeCadastroCliente() {
 		
 		lbNome = new JLabel("Nome Completo - Full Name*");
@@ -301,15 +316,20 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		tfData.setBounds(475, 201, 122, 23);
 		{
 			btMostrar = new JButton("Salvar");
-			btMostrar.setIcon(new ImageIcon("C:\\Users\\Bruna\\gitH\\Louzada\\icons\\ic_action_save.png"));
+			btMostrar.setForeground(new Color(100, 149, 237));
+			btMostrar.setFont(new Font("Tahoma", Font.BOLD, 15));
+			btMostrar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
 			panel.add(btMostrar);
-			btMostrar.setBounds(649, 1066, 107, 23);
+			btMostrar.setBounds(759, 1044, 125, 37);
 			btMostrar.addActionListener(new MostrarListener());
 		}
 		{
 			btSair = new JButton("Cancelar");
+			btSair.setForeground(new Color(255, 0, 0));
+			btSair.setFont(new Font("Tahoma", Font.BOLD, 15));
+			btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
 			panel.add(btSair);
-			btSair.setBounds(782, 1067, 89, 22);
+			btSair.setBounds(616, 1048, 131, 29);
 			btSair.addActionListener(new SairListener());
 		}
 		{
@@ -350,6 +370,8 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		frame.setModal(true);
 		//frame.add(panel);
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
+		frame.setDefaultCloseOperation(0);
+
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 0, 900, 42);
@@ -488,12 +510,16 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		panel.add(lblCidadeCity);
 		
 		JButton btnLocalizar = new JButton("Localizar");
-		btnLocalizar.setIcon(new ImageIcon("C:\\Users\\Bruna\\gitH\\Louzada\\icons\\ic_action_search.png"));
-		btnLocalizar.setBounds(20, 1067, 114, 22);
+		btnLocalizar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnLocalizar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\search.png"));
+		btnLocalizar.setBounds(18, 1051, 134, 36);
 		panel.add(btnLocalizar);
 		
 		JButton btnNovo = new JButton("Novo");
-		btnNovo.setBounds(152, 1067, 88, 22);
+		btnNovo.setForeground(new Color(0, 128, 0));
+		btnNovo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNovo.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\new.png"));
+		btnNovo.setBounds(177, 1050, 122, 37);
 		panel.add(btnNovo);
 		
 		textField = new JTextField(15);
@@ -637,7 +663,7 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		panel.add(lblObservaes);
 		
 		JLabel lblNmeroDeHospedes = new JLabel("N\u00FAmero de Hospedes / Number of Guests*");
-		lblNmeroDeHospedes.setBounds(616, 866, 239, 16);
+		lblNmeroDeHospedes.setBounds(616, 866, 255, 16);
 		panel.add(lblNmeroDeHospedes);
 		
 		JLabel lblUh = new JLabel("UH N *");
@@ -660,48 +686,50 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		JLabel lblPrevisoDeEntrada = new JLabel();
 		lblPrevisoDeEntrada.setText("Previs\u00E3o de Entrada");
 		lblPrevisoDeEntrada.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblPrevisoDeEntrada.setBounds(18, 995, 130, 16);
+		lblPrevisoDeEntrada.setBounds(18, 975, 130, 16);
 		panel.add(lblPrevisoDeEntrada);
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField((AbstractFormatter) null);
 		formattedTextField.setText("  /  /    ");
 		formattedTextField.setColumns(8);
-		formattedTextField.setBounds(18, 1022, 122, 23);
+		formattedTextField.setBounds(18, 1002, 122, 23);
 		panel.add(formattedTextField);
 		
 		JLabel lblData = new JLabel();
 		lblData.setText("Previs\u00E3o Sa\u00EDda");
 		lblData.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblData.setBounds(177, 995, 130, 16);
+		lblData.setBounds(177, 975, 130, 16);
 		panel.add(lblData);
 		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField((Object) null);
 		formattedTextField_1.setText("  /  /    ");
 		formattedTextField_1.setColumns(8);
-		formattedTextField_1.setBounds(177, 1022, 122, 23);
+		formattedTextField_1.setBounds(177, 1002, 122, 23);
 		panel.add(formattedTextField_1);
 		
 		JLabel lblDataCkeckin = new JLabel();
-		lblDataCkeckin.setText("Data Ckeckin");
+		lblDataCkeckin.setText("Data Checkin");
 		lblDataCkeckin.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblDataCkeckin.setBounds(332, 995, 130, 16);
+		lblDataCkeckin.setBounds(332, 975, 130, 16);
 		panel.add(lblDataCkeckin);
 		
 		JFormattedTextField formattedTextField_2 = new JFormattedTextField((Object) null);
 		formattedTextField_2.setText("  /  /    ");
 		formattedTextField_2.setColumns(8);
-		formattedTextField_2.setBounds(332, 1022, 122, 23);
+		formattedTextField_2.setBounds(332, 1002, 122, 23);
 		panel.add(formattedTextField_2);
+		frame.addKeyListener(new OkKeyListener());
+		panel.addKeyListener(new OkKeyListener());
+		
 		//frame.add(panelBotoes);
 		//frame.getContentPane().add(BorderLayout.SOUTH, panelBotoes);
 		//frame.setSize(300, 300);
 		frame.pack(); // ajusta o tamanho da janela (frame)
 		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		frame.setResizable(false);														// programa
 		frame.setVisible(true); // torna a janela visível.ss
-		
-		
+	
 
 	}
 

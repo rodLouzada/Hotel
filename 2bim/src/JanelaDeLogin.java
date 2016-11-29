@@ -2,21 +2,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
 import java.awt.Color;
-import java.awt.Component;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 
 
@@ -41,25 +42,37 @@ public class JanelaDeLogin {
 	private JButton btOk;
 	private JPanel panel;
 	private JDialog frame;
+	private JPanel panel_1;
+	private JLabel lblNewLabel;
 	
 	
 	public JanelaDeLogin(){
 		labelNome = new JLabel("Nome de usuário:");
-		labelNome.setBounds(5, 5, 100, 20);
+		labelNome.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labelNome.setBounds(78, 77, 146, 20);
 		tfNome = new JTextField(20);
-		tfNome.setBounds(5,30,200,20);
+		tfNome.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tfNome.setBounds(78,102,200,20);
 		tfNome.addKeyListener(new OkKeyListener());
 		lbSenha = new JLabel("Senha:");
-		lbSenha.setBounds(5, 50, 200, 20);
+		lbSenha.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lbSenha.setBounds(78, 122, 200, 20);
 		tfSenha = new JPasswordField(20);
-		tfSenha.setBounds(5,70,200,20);
+		tfSenha.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tfSenha.setBounds(78,142,200,20);
 		tfSenha.addKeyListener(new OkKeyListener());
-		btOk = new JButton("Ok");
-		btOk.setBounds(15, 126, 90, 20);
+		btOk = new JButton("Logar");
+		btOk.setForeground(new Color(0, 128, 0));
+		btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\check.png"));
+		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btOk.setBounds(224, 215, 107, 39);
 		btOk.addActionListener(new OkListener());
 		btOk.addKeyListener(new OkKeyListener());
 		JButton btSair = new JButton("Cancelar");
-		btSair.setBounds(116, 126, 89, 20);
+		btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+		btSair.setForeground(new Color(255, 0, 0));
+		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btSair.setBounds(58, 220, 124, 34);
 		btSair.addActionListener(new SairListener());
 		btSair.addKeyListener(new KeySairListener());
 		
@@ -74,24 +87,35 @@ public class JanelaDeLogin {
 		panel.add(btSair);
 		
 		frame = new JDialog();
-		frame.setTitle("Login de acesso - Hotel");
+		frame.setTitle("Login de Acesso - Hotel");
 		frame.setModal(true);
 		frame.getContentPane().add(panel);
 		panel.setPreferredSize(new java.awt.Dimension(234, 145));
 		
 		JLabel lblRecuperarSenha = new JLabel("Recuperar senha");
+		lblRecuperarSenha.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\password.png"));
 		lblRecuperarSenha.setForeground(Color.BLUE);
-		lblRecuperarSenha.setBounds(92, 101, 113, 14);
+		lblRecuperarSenha.setBounds(201, 182, 130, 20);
 		lblRecuperarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		lblRecuperarSenha.addMouseListener(new java.awt.event.MouseAdapter(){
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				lblRecuperarSenhaMouseClicked(evt);
 			}
 		});
 		panel.add(lblRecuperarSenha);
-		frame.setSize(219, 183);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(0, 0, 363, 64);
+		panel.add(panel_1);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\Netfontes_aardvark_cafe_Logo.gif"));
+		panel_1.add(lblNewLabel);
+		frame.setSize(369, 321);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setVisible(true);
 		

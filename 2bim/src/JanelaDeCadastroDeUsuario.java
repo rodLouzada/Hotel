@@ -4,14 +4,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
+import java.awt.Font;
 
 
 
@@ -45,13 +49,38 @@ public class JanelaDeCadastroDeUsuario {
 	private JTextField tfResposta;
 	
 	public boolean fechar = false;
+	private JPanel panel_1;
 	
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btOk.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+			    	fechar = true;
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 	public JanelaDeCadastroDeUsuario(JanelaMenuPrincipal janMenPrin){
 		labelNome = new JLabel("Nome *");
-		labelNome.setBounds(5, 5, 100, 20);
+		labelNome.setBounds(67, 80, 100, 20);
 		tfNome = new JTextField(20);
 		tfNome.addKeyListener(new KeyAdapter() {
 			@Override
@@ -59,9 +88,9 @@ public class JanelaDeCadastroDeUsuario {
 				tfNome.setBackground(Color.white);
 			}
 		});
-		tfNome.setBounds(5,30,250,20);
+		tfNome.setBounds(67,105,250,20);
 		lbSenha = new JLabel("Senha *");
-		lbSenha.setBounds(5, 117, 69, 20);
+		lbSenha.setBounds(67, 192, 69, 20);
 		tfSenha = new JPasswordField(20);
 		tfSenha.addKeyListener(new KeyAdapter() {
 			@Override
@@ -69,12 +98,18 @@ public class JanelaDeCadastroDeUsuario {
 				tfSenha.setBackground(Color.white);
 			}
 		});
-		tfSenha.setBounds(5,142,117,20);
-		btOk = new JButton("Ok");
-		btOk.setBounds(66, 276, 90, 20);
+		tfSenha.setBounds(67,217,117,20);
+		btOk = new JButton("Novo");
+		btOk.setForeground(new Color(0, 128, 0));
+		btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\new.png"));
+		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btOk.setBounds(258, 351, 107, 39);
 		btOk.addActionListener(new OkListener());
 		JButton btSair = new JButton("Cancelar");
-		btSair.setBounds(166, 276, 89, 20);
+		btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+		btSair.setForeground(new Color(255, 0, 0));
+		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btSair.setBounds(108, 353, 124, 34);
 		btSair.addActionListener(new SairListener());
 		
 		panel = new JPanel();
@@ -90,10 +125,10 @@ public class JanelaDeCadastroDeUsuario {
 		frame.setTitle("Cadastro de Usu\u00E1rio - Hotel");
 		frame.setModal(true);
 		frame.getContentPane().add(panel);
-		panel.setPreferredSize(new java.awt.Dimension(234, 145));
+		panel.setPreferredSize(new java.awt.Dimension(572, 400));
 		
 		JLabel lblLogin = new JLabel("Login *");
-		lblLogin.setBounds(5, 61, 46, 14);
+		lblLogin.setBounds(67, 136, 46, 14);
 		panel.add(lblLogin);
 		
 		tfLogin = new JTextField();
@@ -103,12 +138,12 @@ public class JanelaDeCadastroDeUsuario {
 				tfLogin.setBackground(Color.white);
 			}
 		});
-		tfLogin.setBounds(5, 86, 250, 20);
+		tfLogin.setBounds(67, 161, 250, 20);
 		panel.add(tfLogin);
 		tfLogin.setColumns(10);
 		
 		JLabel lblConfirmeASenha = new JLabel("Confirme a senha *");
-		lblConfirmeASenha.setBounds(132, 120, 117, 14);
+		lblConfirmeASenha.setBounds(194, 195, 117, 14);
 		panel.add(lblConfirmeASenha);
 		
 		tfConfirma = new JPasswordField(20);
@@ -118,12 +153,12 @@ public class JanelaDeCadastroDeUsuario {
 				tfConfirma.setBackground(Color.white);
 			}
 		});
-		tfConfirma.setBounds(132, 142, 123, 20);
+		tfConfirma.setBounds(194, 217, 123, 20);
 		panel.add(tfConfirma);
 		tfConfirma.setColumns(10);
 		
 		lblPerguntaDeSegurana = new JLabel("Pergunta de seguran\u00E7a *");
-		lblPerguntaDeSegurana.setBounds(5, 173, 152, 14);
+		lblPerguntaDeSegurana.setBounds(67, 248, 162, 20);
 		panel.add(lblPerguntaDeSegurana);
 		
 		tfPergunta = new JTextField();
@@ -133,12 +168,12 @@ public class JanelaDeCadastroDeUsuario {
 				tfPergunta.setBackground(Color.white);
 			}
 		});
-		tfPergunta.setBounds(5, 195, 250, 20);
+		tfPergunta.setBounds(67, 270, 250, 20);
 		panel.add(tfPergunta);
 		tfPergunta.setColumns(10);
 		
 		JLabel lblResposta = new JLabel("Resposta *");
-		lblResposta.setBounds(5, 226, 117, 14);
+		lblResposta.setBounds(67, 301, 117, 14);
 		panel.add(lblResposta);
 		
 		tfResposta = new JPasswordField(20);
@@ -148,20 +183,29 @@ public class JanelaDeCadastroDeUsuario {
 				tfResposta.setBackground(Color.white);
 			}
 		});
-		tfResposta.setBounds(5, 245, 250, 20);
+		tfResposta.setBounds(67, 320, 250, 20);
 		panel.add(tfResposta);
 		tfResposta.setColumns(10);
-		
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Cadastro de Usuários - Hotel");
 //		frame.setModal(true);
 		//frame.add(panel);
 		janMenPrin.frameConteudo.getContentPane().add(panel);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(0, 0, 407, 72);
+		panel.add(panel_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\Netfontes_aardvark_cafe_Logo.gif"));
+		panel_1.add(lblNewLabel);
 		//frame.add(panelBotoes);
 		//frame.getContentPane().add(BorderLayout.SOUTH, panelBotoes);
 		//frame.setSize(300, 300);
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
 		//janMenPrin.frameConteudo.setLocationRelativeTo(null); // coloca no meio
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		//JanelaMenuPrincipal.frameConteudo.setResizable(false);														// programa
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss
 
@@ -204,14 +248,7 @@ public class JanelaDeCadastroDeUsuario {
 				}else if(!tfSenha.getText().equals(tfConfirma.getText()))
 					JOptionPane.showMessageDialog(frame, "As senhas informadas não coincidem", "Erro", JOptionPane.ERROR_MESSAGE);
 			}else{
-				String msg="Preencha todos os campos obrigatórios\n";
-				if(tfNome.getText().isEmpty()){ msg = msg + "- Preencha Nome \n";}
-				if(tfSenha.getText().isEmpty()){ msg = msg + "- Preencha Senha \n";}
-				if(tfConfirma.getText().isEmpty()){ msg = msg + "- Preencha Confirmação da senha \n";}
-				if(tfLogin.getText().isEmpty()){ msg = msg + "- Preencha Login \n";}
-				if(tfPergunta.getText().isEmpty()){ msg = msg + "- Preencha Pergunta \n";}
-				if(tfResposta.getText().isEmpty()){ msg = msg + "- Preencha Resposta \n";}
-				JOptionPane.showMessageDialog(frame, msg, "Erro", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

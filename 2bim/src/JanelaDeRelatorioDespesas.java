@@ -2,16 +2,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
@@ -19,14 +17,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
@@ -71,6 +68,30 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 	private JComboBox cbCli;
 
 	public boolean fechar = false;
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	buttonOk.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				fechar = true;
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	public static void main(String[] args) {
 	}
 
@@ -140,7 +161,7 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(650, 329));
+		panelTable.setPreferredSize(new Dimension(644, 337));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -206,13 +227,14 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 			btImp.setText("Gerar PDF");
 			btImp.setBounds(314, 4, 118, 23);
 		}
-
+		
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Relatório de Consumo - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 		}
 
@@ -232,6 +254,7 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 	}
 	public class comboListener implements ActionListener {
 
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			double total = 0;
 			for(int i=0; i<modelo.getRowCount(); i++){

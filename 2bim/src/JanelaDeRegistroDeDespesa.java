@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 
 /**
@@ -35,6 +38,7 @@ public class JanelaDeRegistroDeDespesa extends javax.swing.JDialog {
 	*/
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				JFrame frame = new JFrame();
 				JanelaDeRegistroDeDespesa inst = new JanelaDeRegistroDeDespesa(frame);
@@ -104,18 +108,24 @@ public class JanelaDeRegistroDeDespesa extends javax.swing.JDialog {
 				}
 				{
 					butSalvar = new JButton();
+					butSalvar.setForeground(new Color(30, 144, 255));
+					butSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+					butSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 					getContentPane().add(butSalvar);
 					butSalvar.setText("Salvar");
-					butSalvar.setBounds(190, 145, 89, 23);
+					butSalvar.setBounds(265, 139, 107, 39);
 				}
 				{
 					butCancelar = new JButton();
+					butCancelar.setForeground(new Color(255, 0, 0));
+					butCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+					butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 					getContentPane().add(butCancelar);
 					butCancelar.setText("Cancelar");
-					butCancelar.setBounds(284, 145, 89, 23);
+					butCancelar.setBounds(101, 145, 124, 34);
 				}
 			}
-			this.setSize(400, 213);
+			this.setSize(444, 247);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

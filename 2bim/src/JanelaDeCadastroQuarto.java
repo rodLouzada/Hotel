@@ -1,5 +1,4 @@
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -12,21 +11,21 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -59,7 +58,30 @@ public class JanelaDeCadastroQuarto {
 	private JPanel panel;
 	private JDialog frame;
 	private int op;
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btSalvar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  butCancelar.doClick();
+		        }
+			  
+		    }
 
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 
 	public JTextField getTfValorDiaria() {
 		return tfValorDiaria;
@@ -98,7 +120,7 @@ public class JanelaDeCadastroQuarto {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new java.awt.Dimension(572, 407));
+		panel.setPreferredSize(new Dimension(613, 422));
 		
 		{
 			lbNum = new JLabel();
@@ -120,17 +142,23 @@ public class JanelaDeCadastroQuarto {
 		}
 		{
 			btSalvar = new JButton();
+			btSalvar.setForeground(new Color(30, 144, 255));
+			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
 			btSalvar.addActionListener(new MostrarListener());
-			btSalvar.setBounds(176, 372, 104, 23);
+			btSalvar.setBounds(289, 364, 107, 39);
 		}
 		{
 			butCancelar = new JButton();
+			butCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			butCancelar.setForeground(new Color(255, 0, 0));
+			butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
 			butCancelar.addActionListener(new SairListener());
-			butCancelar.setBounds(291, 372, 104, 23);
+			butCancelar.setBounds(142, 366, 124, 34);
 		}
 		{
 			String colunas[] = new String[] {"ID", "Nome"};
@@ -201,14 +229,17 @@ public class JanelaDeCadastroQuarto {
 			panel.add(TabCaract);
 			TabCaract.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			TabCaract.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabCaract.setBounds(346, 96, 214, 257);
+			TabCaract.setBounds(387, 96, 214, 257);
 		}
 		{
 			btAdd = new JButton();
+			btAdd.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\next.png"));
+			btAdd.setForeground(new Color(0, 128, 0));
+			btAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btAdd);
-			btAdd.setText("Adiciona >>");
+			btAdd.setText("Adicionar");
 			btAdd.addActionListener(new AdicionaListener());
-			btAdd.setBounds(232, 143, 109, 21);
+			btAdd.setBounds(232, 143, 143, 40);
 			btAdd.setEnabled(false);
 		}
 		{
@@ -222,15 +253,18 @@ public class JanelaDeCadastroQuarto {
 			lcCar = new JLabel();
 			panel.add(lcCar);
 			lcCar.setText("Características do Quarto");
-			lcCar.setBounds(346, 70, 171, 14);
+			lcCar.setBounds(387, 70, 171, 14);
 			lcCar.setFont(new java.awt.Font("Tahoma",1,12));
 		}
 		{
 			btRemove = new JButton();
+			btRemove.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\preview.png"));
+			btRemove.setForeground(new Color(255, 0, 0));
+			btRemove.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btRemove);
-			btRemove.setText("Remove <<");
+			btRemove.setText("Remover");
 			btRemove.addActionListener(new RemoveListener());
-			btRemove.setBounds(232, 196, 109, 21);
+			btRemove.setBounds(242, 196, 124, 34);
 			btRemove.setEnabled(false);
 		}
 		{
@@ -251,6 +285,7 @@ public class JanelaDeCadastroQuarto {
 			panel.add(tfValorDiaria);
 			tfValorDiaria.setBounds(83, 31, 90, 21);
 		}
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Cadastro de Quartos - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(panel);
 		//frame.add(panelBotoes);
@@ -258,35 +293,45 @@ public class JanelaDeCadastroQuarto {
 		//frame.setSize(300, 300);
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
 		//janMenPrin.frameConteudo.setLocationRelativeTo(null); // coloca no meio
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		//JanelaMenuPrincipal.frameConteudo.setResizable(false);														// programa
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss
 		
 	}
 	private class MouseListener implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			btAdd.setEnabled(true);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 		
 	}
 	private class MouseListener2 implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			btRemove.setEnabled(true);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 	}
@@ -309,18 +354,7 @@ public class JanelaDeCadastroQuarto {
 				op = 1;
 				//frame.dispose();
 			}else{
-				if(tfNum.getText().isEmpty() && tfValorDiaria.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Numero\n -Valor da Diaria", "Erro", JOptionPane.ERROR_MESSAGE);
-				}
-				else if(tfNum.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Numero", "Erro", JOptionPane.ERROR_MESSAGE);
-				}
-				else if(tfValorDiaria.getText().isEmpty() )
-				{
-					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Valor da Diaria", "Erro", JOptionPane.ERROR_MESSAGE);
-				}
+				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

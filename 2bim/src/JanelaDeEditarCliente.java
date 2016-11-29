@@ -7,10 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -18,16 +18,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -35,11 +31,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 
 
@@ -132,6 +131,31 @@ public class JanelaDeEditarCliente implements ActionListener {
 	private JTextField tfBusca;
 	private JButton btnBuscar;
 	
+	
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+				  btEditar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				 fechar = true;
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -181,7 +205,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(411, 325));
+		panelTable.setPreferredSize(new Dimension(497, 403));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -190,7 +214,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(10, 68, 397, 257);
+			scrollTable.setBounds(31, 86, 416, 257);
 			
 		}
 		{
@@ -219,9 +243,12 @@ public class JanelaDeEditarCliente implements ActionListener {
 		}
 		{
 			btEditar = new JButton();
+			btEditar.setForeground(new Color(30, 144, 255));
+			btEditar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\edit.png"));
+			btEditar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(222, 37, 86, 23);
+			btEditar.setBounds(340, 356, 107, 39);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -240,10 +267,14 @@ public class JanelaDeEditarCliente implements ActionListener {
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
 		{
 			btnExcluir = new JButton("Excluir");
+			btnExcluir.setForeground(new Color(255, 0, 0));
+			btnExcluir.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\delete.png"));
+			btnExcluir.setFont(new Font("Tahoma", Font.BOLD, 13));
 			btnExcluir.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 					String message = "Deseja realmente excluir o cliente?";
-					String title = "Confirmação";
+					String title = "Confirmaè¤¯";
 					int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
 					if (reply == JOptionPane.YES_OPTION) {
 
@@ -258,7 +289,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 								e1.printStackTrace();
 							}
 
-							JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!");
+							JOptionPane.showMessageDialog(null, "Cliente excluî¥¯ com sucesso!");
 							fechar = true;
 							// jMenuP.frameConteudo.dispose();
 							// JanelaDeExcluirCliente j10 = new
@@ -270,12 +301,12 @@ public class JanelaDeEditarCliente implements ActionListener {
 					}
 				}
 			});
-			btnExcluir.setBounds(318, 37, 89, 23);
+			btnExcluir.setBounds(197, 358, 124, 34);
 			panelTable.add(btnExcluir);
 		}
 		{
 			lblPesquisar = new JLabel("Pesquisar:");
-			lblPesquisar.setBounds(10, 15, 57, 14);
+			lblPesquisar.setBounds(10, 15, 73, 14);
 			panelTable.add(lblPesquisar);
 		}
 		{
@@ -285,19 +316,24 @@ public class JanelaDeEditarCliente implements ActionListener {
 			tfBusca.setColumns(10);
 		}
 		{
-			btnBuscar = new JButton("Buscar");
+			btnBuscar = new JButton("Localizar");
+			btnBuscar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\search.png"));
+			btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			btnBuscar.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			btnBuscar.setBounds(318, 11, 89, 23);
+			btnBuscar.setBounds(325, 11, 122, 33);
 			panelTable.add(btnBuscar);
 		}
 		panelTable.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tfBusca, btnBuscar, btEditar, btnExcluir, scrollTable, table, tfCodCli, lbCodCli, lblPesquisar}));
+		
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss
 		}
 
@@ -328,17 +364,22 @@ public class JanelaDeEditarCliente implements ActionListener {
 		}
 	}
 	private class MouseListener implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			int r = table.getSelectedRow();
 			String c = ""+table.getValueAt(r, 0);
 			tfCodCli.setText(c);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 		
@@ -685,7 +726,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 		cons.gridwidth = 4;
 
 		frame = new JDialog();
-		frame.setTitle("Edição de Cliente - Hotel");
+		frame.setTitle("Ediè¤¯ de Cliente - Hotel");
 		frame.setModal(true);
 		//frame.add(panel);
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
@@ -694,7 +735,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 		//frame.setSize(300, 300);
 		frame.pack(); // ajusta o tamanho da janela (frame)
 		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		frame.setResizable(false);														// programa
 		frame.setVisible(true); // torna a janela visÃ­vel
 
@@ -729,7 +770,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 			/*
 			else{
 				if (!ValidaCPF.isCPF(cpf)){
-					JOptionPane.showMessageDialog(frame, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "Informe um CPF vâ­©do.", "Erro", JOptionPane.ERROR_MESSAGE);
 					erro = true;
 				}
 			}
@@ -743,7 +784,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 			/*
 			if (tfEmail.getText() != null && !tfEmail.getText().isEmpty()){
 				if(!EmailValidator.isEmailValid(tfEmail.getText())){
-					JOptionPane.showMessageDialog(frame, "Informe um email válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "Informe um email vâ­©do.", "Erro", JOptionPane.ERROR_MESSAGE);
 					erro = true;
 				}
 			}
@@ -775,12 +816,12 @@ public class JanelaDeEditarCliente implements ActionListener {
 			
 			
 			if (!erro && !ValidaCPF.isCPF(cpf)){
-				JOptionPane.showMessageDialog(frame, "Informe um CPF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "Informe um CPF vâ­©do.", "Erro", JOptionPane.ERROR_MESSAGE);
 				erro = true;
 			}
 			else if (!erro && tfEmail.getText() != null && !tfEmail.getText().isEmpty() && !EmailValidator.isEmailValid(tfEmail.getText())){
 				//if(!EmailValidator.isEmailValid(tfEmail.getText())){
-					JOptionPane.showMessageDialog(frame, "Informe um email válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "Informe um email vâ­©do.", "Erro", JOptionPane.ERROR_MESSAGE);
 					erro = true;
 				}
 			else if(!erro){
@@ -818,7 +859,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 				frame.dispose();
 			}
 			else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigató²©¯s", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 			
 			
@@ -858,7 +899,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 				
 				frame.dispose();
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigató²©¯s", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 			*/
 		}

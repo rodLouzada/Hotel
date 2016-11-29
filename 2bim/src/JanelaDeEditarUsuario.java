@@ -1,18 +1,14 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,9 +16,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 
 
@@ -55,7 +54,6 @@ public class JanelaDeEditarUsuario implements ActionListener {
 	private JLabel lbCodUsu;
 
 
-
 	private JScrollPane scrollTable;
 
 	private JTable table;
@@ -63,11 +61,31 @@ public class JanelaDeEditarUsuario implements ActionListener {
 	private JButton buttonOk;
 	
 	public boolean fechar = false;
-	private JButton btnExcluir;
-	private JLabel lblPesquisar;
-	private JTextField textField;
-	private JButton btnBuscar;
 	
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+				  btEditar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  fechar= true;
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	public static void main(String[] args) {
 	}
 
@@ -119,7 +137,7 @@ public class JanelaDeEditarUsuario implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(411, 325));
+		panelTable.setPreferredSize(new Dimension(392, 312));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -128,26 +146,29 @@ public class JanelaDeEditarUsuario implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(4, 75, 407, 248);
+			scrollTable.setBounds(12, 51, 369, 248);
 			
 		}
 		{
 			lbCodUsu = new JLabel();
 			panelTable.add(lbCodUsu);
 			lbCodUsu.setText("ID do Usuário:");
-			lbCodUsu.setBounds(14, 47, 103, 16);
+			lbCodUsu.setBounds(44, 18, 103, 16);
 		}
 		{
 			tfCodUsu = new JTextField();
 			tfCodUsu.setEditable(false);
 			panelTable.add(tfCodUsu);
-			tfCodUsu.setBounds(93, 44, 57, 23);
+			tfCodUsu.setBounds(141, 15, 57, 23);
 		}
 		{
 			btEditar = new JButton();
+			btEditar.setForeground(new Color(30, 144, 255));
+			btEditar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\edit.png"));
+			btEditar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(219, 44, 86, 23);
+			btEditar.setBounds(274, 7, 107, 39);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -161,62 +182,13 @@ public class JanelaDeEditarUsuario implements ActionListener {
 		panelButton.add(buttonOk);
 		buttonOk.addActionListener(new OkListener());
 		
-
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Editar Usuários - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
-		{
-			btnExcluir = new JButton("Excluir");
-			btnExcluir.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					String message = "Deseja realmente excluir o usuario?";
-					String title = "Confirmação";
-					int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
-					if (reply == JOptionPane.YES_OPTION) {
-						if (!tfCodUsu.getText().isEmpty() && tfCodUsu != null) {
-							Connection conexao;
-							int codigo = Integer.parseInt(tfCodUsu.getText());
-							try {
-								conexao = ConnectionFactory.getConnection();
-								UsuarioDAO dao = new UsuarioDAO(conexao);
-								dao.excluir(codigo);
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-							}
-
-							JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso!");
-							fechar = true;
-							//JanelaDeExcluirUsuario j = new JanelaDeExcluirUsuario(jM);
-						} else {
-							JOptionPane.showMessageDialog(frame, "Selecione um usuário para excluir", "Erro",
-									JOptionPane.ERROR_MESSAGE);
-						}
-					}
-				}
-			});
-			btnExcluir.setBounds(314, 43, 89, 23);
-			panelTable.add(btnExcluir);
-		}
-		{
-			lblPesquisar = new JLabel("Pesquisar:");
-			lblPesquisar.setBounds(14, 11, 64, 14);
-			panelTable.add(lblPesquisar);
-		}
-		{
-			textField = new JTextField();
-			textField.setBounds(72, 8, 233, 20);
-			panelTable.add(textField);
-			textField.setColumns(10);
-		}
-		{
-			btnBuscar = new JButton("Buscar");
-			btnBuscar.setBounds(312, 7, 89, 23);
-			panelTable.add(btnBuscar);
-		}
-		panelTable.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField, btnBuscar, btEditar, btnExcluir, scrollTable, table, lbCodUsu, tfCodUsu, lblPesquisar}));
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 		}
 
@@ -247,17 +219,22 @@ public class JanelaDeEditarUsuario implements ActionListener {
 		}
 	}
 	private class MouseListener implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			int r = table.getSelectedRow();
 			String c = ""+table.getValueAt(r, 0);
 			tfCodUsu.setText(c);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 		

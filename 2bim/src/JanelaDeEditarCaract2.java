@@ -1,38 +1,25 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import javax.swing.text.MaskFormatter;
+import javax.swing.WindowConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 
 /**
@@ -123,7 +110,7 @@ public class JanelaDeEditarCaract2 {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new java.awt.Dimension(316, 152));
+		panel.setPreferredSize(new Dimension(316, 160));
 		{
 			tfNome = new JTextField();
 			tfNome.addKeyListener(new KeyAdapter() {
@@ -175,16 +162,22 @@ public class JanelaDeEditarCaract2 {
 		}
 		{
 			btSalvar = new JButton();
+			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setForeground(new Color(30, 144, 255));
+			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
-			btSalvar.setBounds(66, 119, 85, 21);
+			btSalvar.setBounds(197, 119, 107, 39);
 			btSalvar.addActionListener(new MostrarListener());
 		}
 		{
 			btCancelar = new JButton();
+			btCancelar.setForeground(new Color(255, 0, 0));
+			btCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btCancelar);
 			btCancelar.setText("Cancelar");
-			btCancelar.setBounds(162, 119, 85, 21);
+			btCancelar.setBounds(61, 121, 124, 34);
 			btCancelar.addActionListener(new SairListener());
 		}
 		{
@@ -205,7 +198,7 @@ public class JanelaDeEditarCaract2 {
 		//frame.setSize(300, 300);
 		frame.pack(); // ajusta o tamanho da janela (frame)
 		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		frame.setResizable(false);								// programa
 		frame.setVisible(true); // torna a janela visível
 	}

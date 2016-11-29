@@ -3,12 +3,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Dimension;
 
 
 /**
@@ -37,14 +40,21 @@ public class JanelaDeQuantidade3 {
 	}
 	public JanelaDeQuantidade3(){
 		lbQtd = new JLabel("");
+		lbQtd.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbQtd.setBounds(5, 5, 207, 20);
 		tfQtd = new JTextField(20);
 		tfQtd.setBounds(5,30,200,20);
-		btOk = new JButton("Ok");
-		btOk.setBounds(5, 56, 90, 20);
+		btOk = new JButton("Salvar");
+		btOk.setForeground(new Color(30, 144, 255));
+		btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btOk.setBounds(141, 63, 107, 39);
 		btOk.addActionListener(new OkListener());
 		JButton btSair = new JButton("Cancelar");
-		btSair.setBounds(116, 56, 89, 20);
+		btSair.setForeground(new Color(255, 0, 0));
+		btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btSair.setBounds(5, 68, 124, 34);
 		btSair.addActionListener(new SairListener());
 		
 		panel = new JPanel();
@@ -58,11 +68,11 @@ public class JanelaDeQuantidade3 {
 		frame = new JDialog();
 		frame.setTitle("Quantidade");
 		frame.setModal(true);
-		frame.add(panel);
-		panel.setPreferredSize(new java.awt.Dimension(229, 116));
-		frame.setSize(220, 115);
+		frame.getContentPane().add(panel, BorderLayout.WEST);
+		panel.setPreferredSize(new Dimension(270, 116));
+		frame.setSize(276, 149);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setPreferredSize(new java.awt.Dimension(230, 120));

@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 //import java.sql.Date;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,12 +16,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.text.MaskFormatter;
 
 import java.sql.Connection;
@@ -64,7 +65,37 @@ public class JanelaDeCheckOutQua {
 	public int getOp() {
 		return op;
 	}
+	
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btSalvar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				 fechar = true;
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
+
 	int contador=0;
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeCheckOutQua(JanelaMenuPrincipal janMenPrin){
 		ArrayList<Quarto> vetor = new ArrayList<Quarto>();
 		JM = janMenPrin;
@@ -239,7 +270,7 @@ public class JanelaDeCheckOutQua {
 				panel.add(tfDataEntrada);
 				tfDataEntrada.setBounds(61, 92, 108, 23);
 				tfDataEntrada.setEditable(false);
-				Date d = new java.sql.Date(hosp.getDataEntrada().getTimeInMillis());
+				Date d = new Date(hosp.getDataEntrada().getTimeInMillis());
 				SimpleDateFormat formatIso = new SimpleDateFormat("yyyy-MM-dd");  
 			    SimpleDateFormat formatBra = new SimpleDateFormat("dd/MM/yyyy"); 
 			    try{  
@@ -295,10 +326,11 @@ public class JanelaDeCheckOutQua {
 			panel.setLayout(null);
 			panel.setPreferredSize(new java.awt.Dimension(295, 169));
 			
+			janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 			janMenPrin.frameConteudo.setTitle("Check Out - Hotel");
 			janMenPrin.frameConteudo.getContentPane().add(BorderLayout.CENTER, panel);
 			janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-			janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+			janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 			janMenPrin.frameConteudo.setVisible(true); // torna a janela visível.ss	
 		}
 		}
@@ -343,6 +375,7 @@ public class JanelaDeCheckOutQua {
 	}
 	public class comboListener implements ActionListener {
 
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String numQua = cbCliente.getSelectedItem().toString();
 			

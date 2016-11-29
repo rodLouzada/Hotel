@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,9 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,8 +30,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -78,6 +83,32 @@ public class JanelaDeCheckIn {
 	public static void main(String[] args) {
 	}
 
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btSalvar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  butCancelar.doClick();
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -89,22 +120,28 @@ public class JanelaDeCheckIn {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new java.awt.Dimension(572, 407));
+		panel.setPreferredSize(new Dimension(613, 422));
 		
 		
 		{
 			btSalvar = new JButton();
+			btSalvar.setForeground(new Color(30, 144, 255));
+			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
-			btSalvar.setText("OK");
+			btSalvar.setText("Salvar");
 			btSalvar.addActionListener(new MostrarListener());
-			btSalvar.setBounds(176, 372, 104, 23);
+			btSalvar.setBounds(316, 375, 107, 39);
 		}
 		{
 			butCancelar = new JButton();
+			butCancelar.setForeground(new Color(255, 0, 0));
+			butCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
 			butCancelar.addActionListener(new SairListener());
-			butCancelar.setBounds(291, 372, 104, 23);
+			butCancelar.setBounds(181, 380, 124, 34);
 		}
 		int contador=0;
 		{
@@ -177,14 +214,17 @@ public class JanelaDeCheckIn {
 			panel.add(TabCaract);
 			TabCaract.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			TabCaract.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabCaract.setBounds(346, 96, 214, 257);
+			TabCaract.setBounds(381, 102, 214, 257);
 		}
 		{
 			btAdd = new JButton();
+			btAdd.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\next.png"));
+			btAdd.setForeground(new Color(0, 128, 0));
+			btAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btAdd);
-			btAdd.setText("Adiciona >>");
+			btAdd.setText("Adicionar");
 			btAdd.addActionListener(new AdicionaListener());
-			btAdd.setBounds(232, 143, 109, 21);
+			btAdd.setBounds(232, 143, 143, 40);
 			btAdd.setEnabled(false);
 		}
 		{
@@ -198,15 +238,18 @@ public class JanelaDeCheckIn {
 			lcCar = new JLabel();
 			panel.add(lcCar);
 			lcCar.setText("Quartos da Hospedagem");
-			lcCar.setBounds(346, 70, 171, 14);
+			lcCar.setBounds(381, 76, 171, 14);
 			lcCar.setFont(new java.awt.Font("Tahoma",1,12));
 		}
 		{
 			btRemove = new JButton();
+			btRemove.setForeground(new Color(255, 0, 0));
+			btRemove.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\preview.png"));
+			btRemove.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btRemove);
-			btRemove.setText("Remove <<");
+			btRemove.setText("Remover");
 			btRemove.addActionListener(new RemoveListener());
-			btRemove.setBounds(232, 196, 109, 21);
+			btRemove.setBounds(245, 196, 124, 34);
 			btRemove.setEnabled(false);
 		}
 		{
@@ -295,11 +338,12 @@ public class JanelaDeCheckIn {
 			tfDataPreSaida.setSize(115, 23);
 		}
 		
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Check In - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.CENTER, panel);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visível.ss	
 		
 		if(contador == 0){
@@ -311,36 +355,45 @@ public class JanelaDeCheckIn {
 		
 	}
 	private class MouseListener implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			btAdd.setEnabled(true);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 		
 	}
 	private class MouseListener2 implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			btRemove.setEnabled(true);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 	}
 	
 	private class MostrarListener implements ActionListener {
 		@Override
-		
 		public void actionPerformed(ActionEvent arg0) {
 			Connection conexao = null;
 			ArrayList<Cliente> vetCli = new ArrayList<Cliente>();
@@ -431,10 +484,8 @@ public class JanelaDeCheckIn {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			//if(tfDataPreSaida.getText().isEmpty() ){ JOptionPane.showMessageDialog(null, "wergthygjngfd!");}
-			//else{
 			JOptionPane.showMessageDialog(null, "Check In realizado com sucesso!");
-			fechar = true;//}
+			fechar = true;
 		}
 	}
 	private class AdicionaListener implements ActionListener {

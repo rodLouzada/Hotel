@@ -1,38 +1,25 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import javax.swing.text.MaskFormatter;
+import javax.swing.WindowConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 
 /**
@@ -63,6 +50,8 @@ public class JanelaDeCadastroDeCaract {
 	private JTextField tfNome;
 	private JDialog frame;
 	
+	public boolean fechar= false;
+	
 	private int op;
 	public JTextField getTfDescCaract() {
 		return tfDescCaract;
@@ -92,12 +81,36 @@ public class JanelaDeCadastroDeCaract {
 		return op;
 	}
 
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btSalvar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+			    	btCancelar.doClick();
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 	public JanelaDeCadastroDeCaract(JanelaMenuPrincipal janMenPrin) {
 		ArrayList<Caract> vetor = new ArrayList<Caract>();
-
 		Connection conexao = null;
 		CaractDAO daoCaract = null;
 
@@ -129,7 +142,7 @@ public class JanelaDeCadastroDeCaract {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new java.awt.Dimension(316, 152));
+		panel.setPreferredSize(new Dimension(323, 162));
 		{
 			tfNome = new JTextField();
 			tfNome.addKeyListener(new KeyAdapter() {
@@ -179,16 +192,23 @@ public class JanelaDeCadastroDeCaract {
 		}
 		{
 			btSalvar = new JButton();
+			btSalvar.setForeground(new Color(30, 144, 255));
+			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
-			btSalvar.setBounds(66, 119, 85, 21);
+			btSalvar.setBounds(203, 119, 107, 39);
+			janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());			
 			btSalvar.addActionListener(new MostrarListener());
 		}
 		{
 			btCancelar = new JButton();
+			btCancelar.setForeground(new Color(255, 0, 0));
+			btCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btCancelar);
 			btCancelar.setText("Cancelar");
-			btCancelar.setBounds(162, 119, 85, 21);
+			btCancelar.setBounds(56, 122, 124, 34);
 			btCancelar.addActionListener(new SairListener());
 		}
 		{
@@ -209,10 +229,11 @@ public class JanelaDeCadastroDeCaract {
 		//frame.setSize(300, 300);
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
 		//janMenPrin.frameConteudo.setLocationRelativeTo(null); // coloca no meio
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		//JanelaMenuPrincipal.frameConteudo.setResizable(false);														// programa
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss
 	}
+
 
 	private class MostrarListener implements ActionListener {
 		@Override
@@ -228,13 +249,7 @@ public class JanelaDeCadastroDeCaract {
 				//janMenPrin.dispose();
 			}
 			else{
-				if(tfNome.getText().isEmpty())
-				{
-					JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios:\n -Nome", "Erro", JOptionPane.ERROR_MESSAGE);
-				}
-				else{
-				JOptionPane.showMessageDialog(frame, "Erro para cadastrar", "Erro", JOptionPane.ERROR_MESSAGE);
-				}
+				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -243,7 +258,7 @@ public class JanelaDeCadastroDeCaract {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			op = 2;
-			frame.dispose();
+			fechar = true;
 		}
 	}
 

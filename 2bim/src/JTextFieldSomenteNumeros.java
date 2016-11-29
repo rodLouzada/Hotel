@@ -1,9 +1,4 @@
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.FocusEvent;
-
 import javax.swing.JTextField;
 
 public final class JTextFieldSomenteNumeros extends JTextField {

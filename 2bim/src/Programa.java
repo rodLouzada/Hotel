@@ -1,4 +1,8 @@
-import java.awt.Color;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -7,11 +11,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
-import org.apache.commons.logging.impl.ServletContextCleaner;
+import javax.swing.KeyStroke;
 
 
 
@@ -34,7 +39,6 @@ public class Programa {
 	public static JanelaDeEditarServico janEdiSer = null;
 	public static JanelaDeCheckIn janCheckIn = null;
 	public static JanelaDeCheckOutQua janCheckout = null;
-	public static JanelaDeCheckOutQua2 janCheckout2 = null;
 	public static JanelaDeConsumo janCons = null;
 	public static JanelaDeRelatorioDespesas janRelDesp = null;
 	public static JanelaDeRelatorioQuartos janRelQua = null;
@@ -42,26 +46,29 @@ public class Programa {
 	public static JanelaDeCadastroDeUsuario janCadUsu = null;
 	public static JanelaDeEditarUsuario janEditUsu = null;
 	public static JanelaDeExcluirUsuario janExcUsu = null;
-    
-	/**
-	 * @wbp.parser.entryPoint
-	 */
+	public static boolean acesso = false;
+	public static JanelaMenuPrincipal janMenPrin= null;
+	public static int op=0;
+    public static String senha;
+	public static String usu;
+	public static JanelaDeLogin j0 = new JanelaDeLogin();
+	public static Cliente cli = new Cliente();
+	public static Quarto quarto = new Quarto();
+	public static Caract caract = new Caract();
+	public static Usuario usuario = new Usuario();
+	public static Connection conexao = null;
+	public static UsuarioDAO daoUsuario = null;
+	
+	public static Robot r = null;
+	
 	public static void main(String[] args) {
-		String senha;
-		String usu;
-		JanelaDeLogin j0 = new JanelaDeLogin();
-		senha = j0.getTfSenha().getText();
-		usu = j0.getTfUsu().getText();
-		Cliente cli = new Cliente();
-		Quarto quarto = new Quarto();
-		Caract caract = new Caract();
-		Usuario usuario = new Usuario();
-		
 		ArrayList<Usuario> vetorUsu = new ArrayList<Usuario>();
-
-		Connection conexao = null;
-		UsuarioDAO daoUsuario = null;
-
+		try {
+			r = new Robot();
+		} catch (AWTException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		try {
 			conexao = ConnectionFactory.getConnection();
@@ -76,8 +83,9 @@ public class Programa {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		senha = j0.getTfSenha().getText();
+		usu = j0.getTfUsu().getText();
 		
-		boolean acesso = false;
 		
 		for (int i = 0; i < vetorUsu.size(); i++) {
 			if(usu.equals(vetorUsu.get(i).getLogin()) && senha.equals(vetorUsu.get(i).getSenha())){
@@ -85,24 +93,192 @@ public class Programa {
 			}
 		}
 		
+		JButton button = new JButton();		 
+		Action buttonAction = new AbstractAction("Refresh") {		 
+		    @Override
+		    public void actionPerformed(ActionEvent evt) {
+		        System.out.println("Refreshing...");
+		    }
+		};		 
 		
-		int opOld = 0;
-		int op = 0;
 		if (acesso){
-			JanelaMenuPrincipal janMenPrin = new JanelaMenuPrincipal();
-			
-			do{
-				op = janMenPrin.getOp();
-				if(opOld!=op){
-					opOld = op;
-					System.out.println("Op: " + op);
-				}
+			janMenPrin = new JanelaMenuPrincipal();
+			atalhosTeclado();
+			start();
+		}
+	
+}
+	
+	public static void atalhosTeclado(){
+		
+		//Atalhos usando Ctrl
+		  janMenPrin.frameConteudo.getActionMap().put("CtrlN", new AbstractAction() {
+	             @Override
+					public void actionPerformed(ActionEvent arg0) {				
+						System.out.println("\nCtrl+N");
+						janMenPrin.op = 1;
+					}
+	           });
+			  
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlO", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+O");
+							janMenPrin.op = 18;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlI", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+I");
+							janMenPrin.op = 17;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlR", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+R");
+							janMenPrin.op = 19;
+						}
+		           });
 				
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlC", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+C");
+							janMenPrin.op = 2;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlP", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+P");
+							janMenPrin.op = 11;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlS", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+S");
+							janMenPrin.op = 12;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlU", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+U");
+							janMenPrin.op = 23;
+						}
+		           });
+			  
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlD", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+D");
+							janMenPrin.op = 20;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlQ", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+Q");
+							janMenPrin.op = 21;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("CtrlH", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nCtrl+H");
+							janMenPrin.op = 22;
+						}
+		           });
+			  
+			  janMenPrin.frameConteudo.getActionMap().put("AltZ", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nAlt+Z");
+							janMenPrin.op =6;
+						}
+		           });
+			  
+			  //Atalhos usando Shift
+			  janMenPrin.frameConteudo.getActionMap().put("ShiftE", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nShift+E");
+							janMenPrin.op = 8;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("ShiftQ", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nShift+Q");
+							janMenPrin.op = 9;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("ShiftC", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nShift+C");
+							janMenPrin.op = 10;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("ShiftP", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nShift+P");
+							janMenPrin.op = 15;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("ShiftS", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nShift+S");
+							janMenPrin.op = 16;
+						}
+		           });
+			  janMenPrin.frameConteudo.getActionMap().put("ShiftU", new AbstractAction() {
+		             @Override
+						public void actionPerformed(ActionEvent arg0) {				
+							System.out.println("\nShift+U");
+							janMenPrin.op = 24;
+						}
+		           });
+			  
+			 //Atalhos do teclado 
+			InputMap inputMap = janMenPrin.frameConteudo.getInputMap();
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK), "CtrlN"); //cadastro de cliente
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK), "CtrlO"); //check out
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK), "CtrlI"); //check in
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK), "CtrlR"); //registro de consumo
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK), "CtrlC");	//cadastro de característica
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK), "CtrlP"); //cadastro de produto
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK), "CtrlS"); //cadastro de serviço	
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK), "CtrlU"); //cadastro de usuários
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK), "CtrlD"); //despesas pessoais, relatório de consumo
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_MASK), "CtrlQ"); //relatório de quartos
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_MASK), "CtrlH"); //relatório de hospedagens
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.SHIFT_MASK), "ShiftE"); //editar clientes
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.SHIFT_MASK), "ShiftQ"); //editar quartos
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.SHIFT_MASK), "ShiftC"); //editar característica
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.SHIFT_MASK), "ShiftP"); //editar produtos
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.SHIFT_MASK), "ShiftS"); //editar serviços
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.SHIFT_MASK), "ShiftU"); //editar usuários
+			inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.ALT_MASK), "AltZ"); //sair do sistema			
+			
+	}
+	public static void start(){		
+		Thread t = new Thread(new Runnable() {			
+		@Override
+		public void run() {			
+			do{
+				op = janMenPrin.getOp();		
+				//System.out.println("\n"+op);
 				if (op == 1){					
 					if(janCadCli == null){
 					 setAllToNull();
+					 janMenPrin = restauraJanelaPrincipal(janMenPrin);
 					 janMenPrin.frameConteudo.getContentPane().removeAll();
-					 //janCadCli = new JanelaDeCadastroCliente(janMenPrin);
 					 janCadCli = new JanelaDeCadastroCliente();
 					}
 					System.out.println("OP: " + janCadCli.getOp());
@@ -177,7 +353,7 @@ public class Programa {
 						janMenPrin = restauraJanelaPrincipal(janMenPrin);
 						JOptionPane.showMessageDialog(null, "Característica cadastrada com sucesso!");
 					}
-					else if (janCadCaract.getOp() == 2){
+					else if (janCadCaract.fechar){
 						janCadCaract = null;
 						janMenPrin = restauraJanelaPrincipal(janMenPrin);
 					}
@@ -411,7 +587,7 @@ public class Programa {
 						janCheckout = new JanelaDeCheckOutQua(janMenPrin);
 					}
 					if(janCheckout.fechar){
-						janCheckout2 = null;
+						janCheckout = null;
 						janMenPrin = restauraJanelaPrincipal(janMenPrin);
 					}
 				}
@@ -514,16 +690,22 @@ public class Programa {
 						janMenPrin = restauraJanelaPrincipal(janMenPrin);
 					}
 				}
+				try{
+				Thread.currentThread();
+				Thread.sleep(150);
+				}catch(Exception e){e.printStackTrace();}
 			}while(op != 6);
 			janMenPrin.frame.removeAll();
 			janMenPrin.frameConteudo.removeAll();
 			janMenPrin.frameConteudo.dispose();
 			janMenPrin.frame.dispose();
+			JOptionPane.showMessageDialog(null, "Fechando o sistema!");
 		}
+		});
 		
-		JOptionPane.showMessageDialog(null, "Fechando o sistema!");
-	}
-	
+		t.start();		
+}
+
 	private static void setAllToNull() {
 		janCadCli = null;
 		janCadCaract = null;
@@ -552,9 +734,6 @@ public class Programa {
 		
 	}
 
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	public static JanelaMenuPrincipal restauraJanelaPrincipal(JanelaMenuPrincipal janMenPrin){
 		int x1 = janMenPrin.frame.getX();
 		int y1 = janMenPrin.frame.getY();
@@ -563,16 +742,16 @@ public class Programa {
 		int y2 = janMenPrin.frameConteudo.getY();
 		
 		int x3 = janMenPrin.barraMenus.getX();
-		int y3 = janMenPrin.barraMenus.getY();
+		int y3 = janMenPrin.barraMenus.getY();		
 		
-		
-		 janMenPrin.frameConteudo.dispose();
-		 janMenPrin.frame.dispose();
-	     janMenPrin = new JanelaMenuPrincipal();
+		 janMenPrin.frameConteudo.getContentPane().removeAll();
+		 //janMenPrin.frame.dispose();
+	     //janMenPrin = new JanelaMenuPrincipal();
 	     janMenPrin.frame.setLocation(x1, y1);
 	     janMenPrin.frameConteudo.setLocation(x2, y2);
 	     janMenPrin.barraMenus.setLocation(x3, y3);
-	     
+	     janMenPrin.op = 0;
+	     janMenPrin.frameConteudo.setTitle("");
 	     return janMenPrin;
 	}
 }

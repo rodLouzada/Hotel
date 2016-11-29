@@ -1,18 +1,22 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 
 
@@ -44,11 +48,40 @@ public class JanelaDeCheckOutQua2 {
 	private JLabel lbIdHosp;
 	private JDialog frame;
 	private Connection conexao;
+	private static JButton btSair;
 	private static JanelaMenuPrincipal JM;
 	
+	public boolean fechar = false;
 	double cons;
 	double diaria;
 	int codH;
+	
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btOk.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  btSair.doClick();
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
+
 	public JanelaDeCheckOutQua2(int cod, JanelaMenuPrincipal janMenPrin){
 		codH = cod;
 		frame = new JDialog();
@@ -58,21 +91,27 @@ public class JanelaDeCheckOutQua2 {
 			panel = new JPanel();
 			frame.getContentPane().add(panel, BorderLayout.NORTH);
 			{
-				btOk = new JButton("Ok");
+				btOk = new JButton("Novo");
+				btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\new.png"));
+				btOk.setForeground(new Color(0, 128, 0));
+				btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
 				panel.add(btOk);
-				btOk.setBounds(90, 216, 90, 20);
+				btOk.setBounds(204, 200, 107, 39);
 				btOk.addActionListener(new OkListener());
 			}
 			{
-				JButton btSair = new JButton("Cancelar");
+			    btSair = new JButton("Cancelar");
+			    btSair.setForeground(new Color(255, 0, 0));
+			    btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			    btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
 				panel.add(btSair);
-				btSair.setBounds(200, 216, 89, 20);
+				btSair.setBounds(68, 205, 124, 34);
 				btSair.addActionListener(new SairListener());
 			}
 			{
 				lbIdHosp = new JLabel();
 				panel.add(lbIdHosp);
-				lbIdHosp.setText("ID Hosped");
+				lbIdHosp.setText("ID Hospede");
 				lbIdHosp.setBounds(12, 12, 85, 16);
 				lbIdHosp.setFont(new java.awt.Font("Tahoma",1,12));
 			}
@@ -88,7 +127,7 @@ public class JanelaDeCheckOutQua2 {
 				lbCliente = new JLabel();
 				panel.add(lbCliente);
 				lbCliente.setText("Cliente");
-				lbCliente.setBounds(93, 12, 60, 16);
+				lbCliente.setBounds(100, 12, 273, 16);
 				lbCliente.setFont(new java.awt.Font("Tahoma",1,12));
 			}
 			Hospedagem hosp = new Hospedagem();
@@ -150,7 +189,7 @@ public class JanelaDeCheckOutQua2 {
 			{
 				tfCliente = new JTextField();
 				panel.add(tfCliente);
-				tfCliente.setBounds(90, 34, 283, 23);
+				tfCliente.setBounds(97, 34, 276, 23);
 				tfCliente.setEditable(false);
 				tfCliente.setText(cli.getNome());
 				
@@ -204,7 +243,7 @@ public class JanelaDeCheckOutQua2 {
 			frame.setModal(true);
 			frame.setSize(389, 281);
 			frame.setLocationRelativeTo(null);
-			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			frame.setResizable(false);
 			frame.setVisible(true);
 			frame.setPreferredSize(new java.awt.Dimension(389, 281));
@@ -281,7 +320,7 @@ public class JanelaDeCheckOutQua2 {
 				
 				
 				JOptionPane.showMessageDialog(null, "Check Out realizado com sucesso!");
-				frame.dispose();
+				fechar = true;
 			}catch(SQLException e){
 				e.printStackTrace();
 			}
@@ -290,7 +329,7 @@ public class JanelaDeCheckOutQua2 {
 	private class SairListener  implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			frame.dispose();
+			fechar = true;
 			JanelaDeCheckOutQua j = new JanelaDeCheckOutQua(JM);
 		}
 	}

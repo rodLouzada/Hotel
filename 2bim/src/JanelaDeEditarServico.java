@@ -1,19 +1,14 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,9 +16,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
+import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
 
 
 
@@ -63,11 +61,30 @@ public class JanelaDeEditarServico implements ActionListener {
 	private JButton buttonOk;
 
 	public boolean fechar = false;
-	private JButton btnExcluir;
-	private JLabel lblPesquisar;
-	private JTextField textField;
-	private JButton btnBuscar;
-	
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+				  btEditar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				  fechar = true;
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 	
 	public static void main(String[] args) {
 	}
@@ -119,7 +136,7 @@ public class JanelaDeEditarServico implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(411, 325));
+		panelTable.setPreferredSize(new Dimension(372, 321));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -128,26 +145,29 @@ public class JanelaDeEditarServico implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(3, 70, 407, 250);
+			scrollTable.setBounds(12, 58, 349, 250);
 			
 		}
 		{
 			lbCodCaract = new JLabel();
 			panelTable.add(lbCodCaract);
 			lbCodCaract.setText("ID do Serviço:");
-			lbCodCaract.setBounds(11, 42, 93, 16);
+			lbCodCaract.setBounds(31, 25, 93, 16);
 		}
 		{
 			tfCodCaract = new JTextField();
 			tfCodCaract.setEditable(false);
 			panelTable.add(tfCodCaract);
-			tfCodCaract.setBounds(86, 38, 57, 23);
+			tfCodCaract.setBounds(150, 22, 57, 23);
 		}
 		{
 			btEditar = new JButton();
+			btEditar.setFont(new Font("Tahoma", Font.BOLD, 13));
+			btEditar.setForeground(new Color(30, 144, 255));
+			btEditar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\edit.png"));
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(215, 36, 86, 23);
+			btEditar.setBounds(254, 14, 107, 39);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -161,62 +181,13 @@ public class JanelaDeEditarServico implements ActionListener {
 		panelButton.add(buttonOk);
 		buttonOk.addActionListener(new OkListener());
 		
-
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Editar Serviçose - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
-		{
-			btnExcluir = new JButton("Excluir");
-			btnExcluir.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					String message = "Deseja realmente excluir o servico?";
-					String title = "Confirmação";
-					int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
-					if (reply == JOptionPane.YES_OPTION) {
-						if (!tfCodCaract.getText().isEmpty() && tfCodCaract != null) {
-							Connection conexao;
-							int codigo = Integer.parseInt(tfCodCaract.getText());
-							try {
-								conexao = ConnectionFactory.getConnection();
-								ServicoDAO dao = new ServicoDAO(conexao);
-								dao.excluir(codigo);
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-							}
-
-							JOptionPane.showMessageDialog(null, "Serviço excluído com sucesso!");
-							fechar = true;
-							//JanelaDeExcluirServico j10 = new JanelaDeExcluirServico(jM);
-						} else {
-							JOptionPane.showMessageDialog(frame, "Selecione um serviço para excluir", "Erro",
-									JOptionPane.ERROR_MESSAGE);
-						}
-					}
-				}
-			});
-			btnExcluir.setBounds(312, 36, 89, 23);
-			panelTable.add(btnExcluir);
-		}
-		{
-			lblPesquisar = new JLabel("Pesquisar:");
-			lblPesquisar.setBounds(10, 11, 73, 14);
-			panelTable.add(lblPesquisar);
-		}
-		{
-			textField = new JTextField();
-			textField.setBounds(73, 8, 228, 20);
-			panelTable.add(textField);
-			textField.setColumns(10);
-		}
-		{
-			btnBuscar = new JButton("Buscar");
-			btnBuscar.setBounds(312, 5, 89, 23);
-			panelTable.add(btnBuscar);
-		}
-		panelTable.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblPesquisar, textField, btnBuscar, btEditar, btnExcluir, scrollTable, table, lbCodCaract, tfCodCaract}));
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visÃ­vel.ss	
 		}
 
@@ -248,17 +219,22 @@ public class JanelaDeEditarServico implements ActionListener {
 	}
 	
 	private class MouseListener implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			int r = table.getSelectedRow();
 			String c = ""+table.getValueAt(r, 0);
 			tfCodCaract.setText(c);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 		

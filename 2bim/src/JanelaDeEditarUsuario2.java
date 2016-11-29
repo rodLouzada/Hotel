@@ -3,22 +3,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 
 
@@ -79,7 +77,7 @@ public class JanelaDeEditarUsuario2 {
 		
 		
 		labelNome = new JLabel("Nome *");
-		labelNome.setBounds(5, 5, 100, 20);
+		labelNome.setBounds(25, 0, 100, 20);
 		tfNome = new JTextField(20);
 		tfNome.addKeyListener(new KeyAdapter() {
 			@Override
@@ -87,10 +85,10 @@ public class JanelaDeEditarUsuario2 {
 				tfNome.setBackground(Color.white);
 			}
 		});
-		tfNome.setBounds(5,30,250,20);
+		tfNome.setBounds(25,25,250,20);
 		tfNome.setText(vetor.get(0).getNome());
 		lbSenha = new JLabel("Senha *");
-		lbSenha.setBounds(5, 117, 56, 20);
+		lbSenha.setBounds(25, 112, 56, 20);
 		tfSenha = new JPasswordField(20);
 		tfSenha.addKeyListener(new KeyAdapter() {
 			@Override
@@ -98,12 +96,18 @@ public class JanelaDeEditarUsuario2 {
 				tfSenha.setBackground(Color.white);
 			}
 		});
-		tfSenha.setBounds(5,142,117,20);
-		btOk = new JButton("Ok");
-		btOk.setBounds(66, 274, 90, 20);
+		tfSenha.setBounds(25,137,117,20);
+		btOk = new JButton("Salvar");
+		btOk.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+		btOk.setForeground(new Color(30, 144, 255));
+		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btOk.setBounds(168, 283, 107, 39);
 		btOk.addActionListener(new OkListener());
 		JButton btSair = new JButton("Cancelar");
-		btSair.setBounds(166, 274, 89, 20);
+		btSair.setForeground(new Color(255, 0, 0));
+		btSair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btSair.setBounds(25, 285, 124, 34);
 		btSair.addActionListener(new SairListener());
 		
 		panel = new JPanel();
@@ -122,7 +126,7 @@ public class JanelaDeEditarUsuario2 {
 		panel.setPreferredSize(new java.awt.Dimension(234, 145));
 		
 		JLabel lblLogin = new JLabel("Login *");
-		lblLogin.setBounds(5, 61, 46, 14);
+		lblLogin.setBounds(25, 56, 46, 14);
 		panel.add(lblLogin);
 		
 		tfLogin = new JTextField();
@@ -132,13 +136,13 @@ public class JanelaDeEditarUsuario2 {
 				tfLogin.setBackground(Color.white);
 			}
 		});
-		tfLogin.setBounds(5, 86, 250, 20);
+		tfLogin.setBounds(25, 81, 250, 20);
 		tfLogin.setText(vetor.get(0).getLogin());
 		panel.add(tfLogin);
 		tfLogin.setColumns(10);
 		
 		JLabel lblConfirmeASenha = new JLabel("Confirme a senha *");
-		lblConfirmeASenha.setBounds(132, 120, 117, 14);
+		lblConfirmeASenha.setBounds(152, 115, 117, 14);
 		panel.add(lblConfirmeASenha);
 		
 		tfConfirma = new JPasswordField(20);
@@ -148,12 +152,12 @@ public class JanelaDeEditarUsuario2 {
 				tfConfirma.setBackground(Color.white);
 			}
 		});
-		tfConfirma.setBounds(132, 142, 123, 20);
+		tfConfirma.setBounds(152, 137, 123, 20);
 		panel.add(tfConfirma);
 		tfConfirma.setColumns(10);
 		
 		lblPergunta = new JLabel("Pergunta *");
-		lblPergunta.setBounds(5, 173, 77, 14);
+		lblPergunta.setBounds(25, 168, 77, 14);
 		panel.add(lblPergunta);
 		
 		tfPergunta = new JTextField();
@@ -163,13 +167,13 @@ public class JanelaDeEditarUsuario2 {
 				tfPergunta.setBackground(Color.white);
 			}
 		});
-		tfPergunta.setBounds(5, 193, 250, 20);
+		tfPergunta.setBounds(25, 188, 250, 20);
 		tfPergunta.setText(vetor.get(0).getPergunta());
 		panel.add(tfPergunta);
 		tfPergunta.setColumns(10);
 		
 		lblResposta = new JLabel("Resposta *");
-		lblResposta.setBounds(5, 224, 77, 14);
+		lblResposta.setBounds(25, 219, 77, 14);
 		panel.add(lblResposta);
 		
 		tfResposta = new JPasswordField(20);
@@ -179,13 +183,13 @@ public class JanelaDeEditarUsuario2 {
 				tfResposta.setBackground(Color.white);
 			}
 		});
-		tfResposta.setBounds(5, 243, 250, 20);
+		tfResposta.setBounds(25, 238, 250, 20);
 		tfResposta.setText(vetor.get(0).getResposta());
 		panel.add(tfResposta);
 		tfResposta.setColumns(10);
-		frame.setSize(271, 331);
+		frame.setSize(296, 375);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setVisible(true);
 		

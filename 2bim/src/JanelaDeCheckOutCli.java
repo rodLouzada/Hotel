@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 //import java.sql.Date;
 import java.util.Date;
 import java.sql.SQLException;
@@ -12,12 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.text.MaskFormatter;
 
 import java.sql.Connection;
@@ -53,12 +54,41 @@ public class JanelaDeCheckOutCli {
 	private JDialog frame;
 	private int op;
 	private Connection conexao;
+	public boolean fechar = false;
 	
-	
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	btSalvar.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				 fechar = true;
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
+
 	public int getOp() {
 		return op;
 	}
 	int contador=0;
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaDeCheckOutCli(){
 		ArrayList<Quarto> vetorQ = new ArrayList<Quarto>();
 
@@ -246,7 +276,7 @@ public class JanelaDeCheckOutCli {
 			frame.setModal(true);
 			frame.setSize(295, 200);
 			frame.setLocationRelativeTo(null);
-			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			frame.setResizable(false);
 			frame.getContentPane().add(panel, BorderLayout.NORTH);
 			frame.setVisible(true);
@@ -255,6 +285,9 @@ public class JanelaDeCheckOutCli {
 		}
 		
 	}
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void main(String[] args) {
 		new JanelaDeCheckOutCli();
 		
@@ -279,6 +312,7 @@ public class JanelaDeCheckOutCli {
 	}
 	public class comboListener implements ActionListener {
 
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String nome = cbCliente.getSelectedItem().toString();
 			//Connection conexao = null;

@@ -1,18 +1,14 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,7 +16,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Color;
 
 //import net.sf.jasperreports.engine.JRException;
 //import net.sf.jasperreports.engine.JRResultSetDataSource;
@@ -58,6 +59,31 @@ public class JanelaDeExcluirCliente implements ActionListener {
 
 	public static void main(String[] args) {
 		// new JanelaDeExcluirCliente();
+	}
+	
+	private class OkKeyListener implements KeyListener{
+		 @Override
+		    public void keyPressed(KeyEvent e) {
+			  if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	buttonOk.doClick();
+		        } 
+			  else if (e.getKeyCode()== 27){
+				 fechar = true;
+		        }
+			  
+		    }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	/**
@@ -107,33 +133,36 @@ public class JanelaDeExcluirCliente implements ActionListener {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new java.awt.Dimension(373, 291));
+		panelTable.setPreferredSize(new Dimension(395, 320));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
 			panelTable.add(scrollTable);
 			scrollTable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(4, 43, 369, 248);
+			scrollTable.setBounds(12, 59, 369, 248);
 
 		}
 		{
 			lbCodCli = new JLabel();
 			panelTable.add(lbCodCli);
 			lbCodCli.setText("ID do Cliente:");
-			lbCodCli.setBounds(58, 15, 103, 16);
+			lbCodCli.setBounds(12, 26, 103, 16);
 		}
 		{
 			tfCodCli = new JTextField();
 			tfCodCli.setEditable(false);
 			panelTable.add(tfCodCli);
-			tfCodCli.setBounds(155, 12, 57, 23);
+			tfCodCli.setBounds(109, 23, 57, 23);
 		}
 		{
 			btExcluir = new JButton();
+			btExcluir.setForeground(new Color(255, 0, 0));
+			btExcluir.setFont(new Font("Tahoma", Font.BOLD, 13));
+			btExcluir.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\delete.png"));
 			panelTable.add(btExcluir);
 			btExcluir.setText("Excluir");
-			btExcluir.setBounds(246, 12, 86, 23);
+			btExcluir.setBounds(276, 15, 107, 39);
 			btExcluir.addActionListener(new ExcluirListener());
 		}
 
@@ -144,13 +173,14 @@ public class JanelaDeExcluirCliente implements ActionListener {
 		panelButton.add(buttonOk);
 		buttonOk.addActionListener(new OkListener());
 
+		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Excluir Clientes - Hotel");
 
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)
-		janMenPrin.frameConteudo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair
+		janMenPrin.frameConteudo.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair
 																					// do
 		janMenPrin.frameConteudo.setVisible(true); // torna a janela visível.ss
 
@@ -204,21 +234,26 @@ public class JanelaDeExcluirCliente implements ActionListener {
 	}
 
 	private class MouseListener implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			int r = table.getSelectedRow();
 			String c = "" + table.getValueAt(r, 0);
 			tfCodCli.setText(c);
 		}
 
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
 
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 

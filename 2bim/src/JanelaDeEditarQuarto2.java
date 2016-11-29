@@ -12,21 +12,20 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -145,7 +144,7 @@ public class JanelaDeEditarQuarto2 {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new java.awt.Dimension(572, 407));
+		panel.setPreferredSize(new Dimension(613, 422));
 		
 		{
 			lbNum = new JLabel();
@@ -168,17 +167,23 @@ public class JanelaDeEditarQuarto2 {
 		}
 		{
 			btSalvar = new JButton();
+			btSalvar.setForeground(new Color(30, 144, 255));
+			btSalvar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\save.png"));
+			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
 			btSalvar.addActionListener(new MostrarListener());
-			btSalvar.setBounds(176, 372, 104, 23);
+			btSalvar.setBounds(321, 372, 107, 39);
 		}
 		{
 			butCancelar = new JButton();
+			butCancelar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\cancel.png"));
+			butCancelar.setForeground(new Color(255, 0, 0));
+			butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
 			butCancelar.addActionListener(new SairListener());
-			butCancelar.setBounds(291, 372, 104, 23);
+			butCancelar.setBounds(161, 374, 124, 34);
 		}
 		ArrayList<Caract> vetor = new ArrayList<Caract>();
 		{
@@ -248,7 +253,7 @@ public class JanelaDeEditarQuarto2 {
 			panel.add(TabCaract);
 			TabCaract.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			TabCaract.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabCaract.setBounds(346, 96, 214, 257);
+			TabCaract.setBounds(387, 96, 214, 257);
 		}
 		int tamVetor3 = vetor3.size();
 		int j = 0, cont = 0;
@@ -268,10 +273,13 @@ public class JanelaDeEditarQuarto2 {
 		}
 		{
 			btAdd = new JButton();
+			btAdd.setForeground(new Color(0, 128, 0));
+			btAdd.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\next.png"));
+			btAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btAdd);
-			btAdd.setText("Adiciona >>");
+			btAdd.setText("Adicionar");
 			btAdd.addActionListener(new AdicionaListener());
-			btAdd.setBounds(232, 143, 109, 21);
+			btAdd.setBounds(232, 143, 143, 40);
 			btAdd.setEnabled(false);
 		}
 		{
@@ -285,15 +293,18 @@ public class JanelaDeEditarQuarto2 {
 			lcCar = new JLabel();
 			panel.add(lcCar);
 			lcCar.setText("Características do Quarto");
-			lcCar.setBounds(346, 70, 171, 14);
+			lcCar.setBounds(387, 70, 171, 14);
 			lcCar.setFont(new java.awt.Font("Tahoma",1,12));
 		}
 		{
 			btRemove = new JButton();
+			btRemove.setForeground(new Color(255, 0, 0));
+			btRemove.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\preview.png"));
+			btRemove.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btRemove);
-			btRemove.setText("Remove <<");
+			btRemove.setText("Remover");
 			btRemove.addActionListener(new RemoveListener());
-			btRemove.setBounds(232, 196, 109, 21);
+			btRemove.setBounds(238, 196, 124, 34);
 			btRemove.setEnabled(false);
 		}
 		{
@@ -321,34 +332,44 @@ public class JanelaDeEditarQuarto2 {
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.pack(); // ajusta o tamanho da janela (frame)
 		frame.setLocationRelativeTo(null); // coloca no meio
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Sair do
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // Sair do
 		frame.setResizable(false);								// programa
 		frame.setVisible(true);
 	}
 	private class MouseListener implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			btAdd.setEnabled(true);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 		
 	}
 	private class MouseListener2 implements java.awt.event.MouseListener {
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			btRemove.setEnabled(true);
 		}
+		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
+		@Override
 		public void mouseExited(MouseEvent e) {
 		}
+		@Override
 		public void mousePressed(MouseEvent e) {
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
 	}

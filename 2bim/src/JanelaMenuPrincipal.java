@@ -1,25 +1,23 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.WindowConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
-import java.awt.BorderLayout;
-import java.awt.Panel;
-import java.awt.Label;
-import javax.swing.JScrollPane;
+import java.awt.Toolkit;
+import java.awt.Color;
+import java.awt.Font;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -57,7 +55,9 @@ public class JanelaMenuPrincipal {
 	private JMenuItem cadCli;
 	private JMenuItem cadQuarto;
 	private JMenuItem cadUsu;
-	
+
+	public int op;
+	public JInternalFrame frameConteudo;
 	private JMenu menuControle;
 	private JMenuItem checkIn;
 	
@@ -67,17 +67,31 @@ public class JanelaMenuPrincipal {
 	private String titulo;
 
 	public static void main(String[] args) {
-		new JanelaMenuPrincipal();
+		Thread t = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+
+				new JanelaMenuPrincipal();
+				
+			}
+		});
+	t.start();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JanelaMenuPrincipal() {
 
 		titulo = "Titulo teste";
 		cadCli = new JMenuItem("Cliente");
-		cadCli.setMnemonic('C');
+		cadCli.setMnemonic(KeyEvent.VK_C);
 		cadCli.addActionListener(new Lis1());
 
 		menuCadastro = new JMenu("Cadastro");
+		menuCadastro.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		menuCadastro.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\insert.png"));
 		menuCadastro.add(cadCli);
 		{
 			cadQuarto = new JMenuItem();
@@ -112,6 +126,8 @@ public class JanelaMenuPrincipal {
 		// -------------------
 
 		menuControle = new JMenu("Controle");
+		menuControle.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		menuControle.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\control.png"));
 		{
 			checkIn = new JMenuItem();
 			menuControle.add(checkIn);
@@ -133,38 +149,22 @@ public class JanelaMenuPrincipal {
 		// ---------------------------
 
 		menuRelatorio = new JMenu("Relatorio");
+		menuRelatorio.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		menuRelatorio.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\rel.png"));
 		// ----------------------------
 		sair = new JMenuItem("Sair");
+		sair.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		sair.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\checkout.png"));
 		sair.setMnemonic('S');
 		sair.addActionListener(new Lis6());
 
 		barraMenus = new JMenuBar();
 		barraMenus.add(menuCadastro);
 		menuCadastro.setText("Cadastro  ");
-		barraMenus.add(menuControle);
-		menuControle.setText("Controle  ");
-		barraMenus.add(menuRelatorio);
-		menuRelatorio.setText("Relat�rio  ");
-		{
-			mnDespesas = new JMenuItem();
-			menuRelatorio.add(mnDespesas);
-			mnDespesas.setText("Despesas Pessoais");
-			mnDespesas.addActionListener(new Lis20());
-		}
-		{
-			menuQua = new JMenuItem();
-			menuRelatorio.add(menuQua);
-			menuQua.setText("Quartos");
-			menuQua.addActionListener(new Lis21());
-		}
-		{
-			menuHosp = new JMenuItem();
-			menuRelatorio.add(menuHosp);
-			menuHosp.setText("Hospedagens");
-			menuHosp.addActionListener(new Lis22());
-		}
 		{
 			menuEditar = new JMenu();
+			menuEditar.setFont(new Font("Segoe UI", Font.BOLD, 15));
+			menuEditar.setIcon(new ImageIcon("C:\\Users\\Rhay\\Documents\\2016Cefet\\IHC\\VersaoSistema28\\Hotel_Atualizado\\2bim\\icons\\editMenu.png"));
 			barraMenus.add(menuEditar);
 			menuEditar.setText("Editar  ");
 			{
@@ -204,16 +204,39 @@ public class JanelaMenuPrincipal {
 				editarUsuario.addActionListener(new Lis24());
 			}
 		}
+		barraMenus.add(menuControle);
+		menuControle.setText("Controle  ");
+		barraMenus.add(menuRelatorio);
+		menuRelatorio.setText("Relat�rio  ");
+		{
+			mnDespesas = new JMenuItem();
+			menuRelatorio.add(mnDespesas);
+			mnDespesas.setText("Despesas Pessoais");
+			mnDespesas.addActionListener(new Lis20());
+		}
+		{
+			menuQua = new JMenuItem();
+			menuRelatorio.add(menuQua);
+			menuQua.setText("Quartos");
+			menuQua.addActionListener(new Lis21());
+		}
+		{
+			menuHosp = new JMenuItem();
+			menuRelatorio.add(menuHosp);
+			menuHosp.setText("Hospedagens");
+			menuHosp.addActionListener(new Lis22());
+		}
 		barraMenus.add(sair);
 
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Marcus\\git\\Hotel_Atualizado\\2bim\\icons\\Hotel.png"));
 		frame.setTitle("Hotel Casta - Sistema de Hotel");
 		// frame.setModal(true);
 		frame.setJMenuBar(barraMenus);
 		// frame.pack();
 		frame.setSize(680, 489);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setPreferredSize(new java.awt.Dimension(500, 293));
 		frame.setResizable(false);
@@ -242,7 +265,9 @@ public class JanelaMenuPrincipal {
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(
 				"C:\\Users\\Guilherme\\Documents\\GitHub\\SistemaHotel\\Trabalho2---Hotel\\2bim\\icons\\logo.gif"));
-		frameConteudo = new JInternalFrame("New JInternalFrame");
+		frameConteudo = new JInternalFrame("");
+		frameConteudo.setForeground(Color.DARK_GRAY);
+		frameConteudo.setFrameIcon(null);
 		frameConteudo.setBorder(null);
 		frameConteudo.setVisible(true);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -293,21 +318,16 @@ public class JanelaMenuPrincipal {
 					.addContainerGap())
 		);
 		frame.getContentPane().setLayout(groupLayout);
-		frameConteudo.setVisible(false);
+		//frameConteudo.setVisible(false);
 	}
-	public int op;
-	public JInternalFrame frameConteudo;
 	public int getOp(){
-
-		if(op!=5478)
-		System.out.println("ret: " + op);
 		return op;
 	}
 	
 	private class Lis1 implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println("Click :" + arg0);
+			System.out.println("Click Opção 1:" + arg0);
 			op = 1;
 			//frame.dispose();
 		}
