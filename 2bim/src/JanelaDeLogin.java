@@ -49,23 +49,23 @@ public class JanelaDeLogin {
 	public JanelaDeLogin(){
 		labelNome = new JLabel("Nome de usuário:");
 		labelNome.setFont(new Font("Tahoma", Font.BOLD, 14));
-		labelNome.setBounds(78, 77, 146, 20);
+		labelNome.setBounds(58, 71, 146, 20);
 		tfNome = new JTextField(20);
 		tfNome.setFont(new Font("Tahoma", Font.BOLD, 14));
-		tfNome.setBounds(78,102,200,20);
+		tfNome.setBounds(58,96,258,26);
 		tfNome.addKeyListener(new OkKeyListener());
 		lbSenha = new JLabel("Senha:");
 		lbSenha.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbSenha.setBounds(78, 122, 200, 20);
+		lbSenha.setBounds(58, 124, 200, 20);
 		tfSenha = new JPasswordField(20);
 		tfSenha.setFont(new Font("Tahoma", Font.BOLD, 14));
-		tfSenha.setBounds(78,142,200,20);
+		tfSenha.setBounds(58,146,258,29);
 		tfSenha.addKeyListener(new OkKeyListener());
 		btOk = new JButton("Logar");
 		btOk.setForeground(new Color(0, 128, 0));
 		btOk.setIcon(new ImageIcon("..\\2bim\\icons\\check.png"));
 		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btOk.setBounds(224, 215, 107, 39);
+		btOk.setBounds(192, 220, 124, 34);
 		btOk.addActionListener(new OkListener());
 		btOk.addKeyListener(new OkKeyListener());
 		JButton btSair = new JButton("Cancelar");
@@ -95,7 +95,7 @@ public class JanelaDeLogin {
 		JLabel lblRecuperarSenha = new JLabel("Recuperar senha");
 		lblRecuperarSenha.setIcon(new ImageIcon("..\\2bim\\icons\\password.png"));
 		lblRecuperarSenha.setForeground(Color.BLUE);
-		lblRecuperarSenha.setBounds(201, 182, 130, 20);
+		lblRecuperarSenha.setBounds(187, 182, 128, 20);
 		lblRecuperarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		lblRecuperarSenha.addMouseListener(new java.awt.event.MouseAdapter(){
 			@Override

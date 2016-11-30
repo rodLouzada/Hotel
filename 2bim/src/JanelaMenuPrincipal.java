@@ -18,6 +18,8 @@ import javax.swing.JInternalFrame;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -65,6 +67,7 @@ public class JanelaMenuPrincipal {
 
 	private JMenuItem sair;
 	private String titulo;
+	private JMenu mnInicio;
 
 	public static void main(String[] args) {
 		Thread t = new Thread(new Runnable() {
@@ -102,7 +105,7 @@ public class JanelaMenuPrincipal {
 		{
 			cadCaract = new JMenuItem();
 			menuCadastro.add(cadCaract);
-			cadCaract.setText("Caracter�stica");
+			cadCaract.setText("Característica");
 			cadCaract.addActionListener(new Lis2());
 		}
 		{
@@ -114,13 +117,13 @@ public class JanelaMenuPrincipal {
 		{
 			cadServico = new JMenuItem();
 			menuCadastro.add(cadServico);
-			cadServico.setText("Servi�o");
+			cadServico.setText("Serviço");
 			cadServico.addActionListener(new Lis12());
 		}
 		{
 			cadUsu = new JMenuItem();
 			menuCadastro.add(cadUsu);
-			cadUsu.setText("Usu�rio");
+			cadUsu.setText("Usuário");
 			cadUsu.addActionListener(new Lis23());
 		}
 		// -------------------
@@ -159,6 +162,12 @@ public class JanelaMenuPrincipal {
 		sair.addActionListener(new Lis6());
 
 		barraMenus = new JMenuBar();
+		{
+			mnInicio = new JMenu("Inicio");
+			mnInicio.setIcon(new ImageIcon("..\\2bim\\icons\\Home.png"));
+			mnInicio.setFont(new Font("Segoe UI", Font.BOLD, 15));
+			barraMenus.add(mnInicio);
+		}
 		barraMenus.add(menuCadastro);
 		menuCadastro.setText("Cadastro  ");
 		{
@@ -182,7 +191,7 @@ public class JanelaMenuPrincipal {
 			{
 				editarCaracteristica = new JMenuItem();
 				menuEditar.add(editarCaracteristica);
-				editarCaracteristica.setText("Caracter�stica");
+				editarCaracteristica.setText("Característica");
 				editarCaracteristica.addActionListener(new Lis10());
 			}
 			{
@@ -194,20 +203,20 @@ public class JanelaMenuPrincipal {
 			{
 				editarServico = new JMenuItem();
 				menuEditar.add(editarServico);
-				editarServico.setText("Servi�o");
+				editarServico.setText("Serviço");
 				editarServico.addActionListener(new Lis16());
 			}
 			{
 				editarUsuario = new JMenuItem();
 				menuEditar.add(editarUsuario);
-				editarUsuario.setText("Usu�rio");
+				editarUsuario.setText("Usuário");
 				editarUsuario.addActionListener(new Lis24());
 			}
 		}
 		barraMenus.add(menuControle);
 		menuControle.setText("Controle  ");
 		barraMenus.add(menuRelatorio);
-		menuRelatorio.setText("Relat�rio  ");
+		menuRelatorio.setText("Relatório  ");
 		{
 			mnDespesas = new JMenuItem();
 			menuRelatorio.add(mnDespesas);
@@ -229,6 +238,7 @@ public class JanelaMenuPrincipal {
 		barraMenus.add(sair);
 
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("..\\2bim\\icons\\Hotel.png"));
 		frame.setTitle("Hotel Casta - Sistema de Hotel");
 		// frame.setModal(true);
@@ -238,8 +248,7 @@ public class JanelaMenuPrincipal {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
-		frame.setPreferredSize(new java.awt.Dimension(500, 293));
-		frame.setResizable(false);
+		frame.setSize(new java.awt.Dimension(800,600));
 		JButton btnNovoCliente = new JButton("");
 		btnNovoCliente.setIcon(new ImageIcon(
 				"..\\2bim\\icons\\novocliente.png"));
@@ -274,8 +283,8 @@ public class JanelaMenuPrincipal {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(frameConteudo, GroupLayout.PREFERRED_SIZE, 676, GroupLayout.PREFERRED_SIZE)
-					.addGap(529)
+					.addComponent(frameConteudo, GroupLayout.PREFERRED_SIZE, 795, GroupLayout.PREFERRED_SIZE)
+					.addGap(410)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnNovoCliente)
@@ -294,28 +303,26 @@ public class JanelaMenuPrincipal {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(frameConteudo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGap(67)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblNewLabel)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(67)
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblNewLabel)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(label)
-											.addGap(117))))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(27)
-									.addComponent(label_1)))
-							.addGap(159)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(button_1, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-								.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(button, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)))))
+									.addComponent(label)
+									.addGap(117))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(27)
+							.addComponent(label_1)))
+					.addGap(159)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(button_1, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+						.addComponent(button_2, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(button, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)))
 					.addContainerGap())
+				.addComponent(frameConteudo, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
 		);
 		frame.getContentPane().setLayout(groupLayout);
 		//frameConteudo.setVisible(false);

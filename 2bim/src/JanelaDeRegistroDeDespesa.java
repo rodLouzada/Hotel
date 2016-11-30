@@ -113,7 +113,7 @@ public class JanelaDeRegistroDeDespesa extends javax.swing.JDialog {
 					butSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 					getContentPane().add(butSalvar);
 					butSalvar.setText("Salvar");
-					butSalvar.setBounds(265, 139, 107, 39);
+					butSalvar.setBounds(248, 145, 124, 34);
 				}
 				{
 					butCancelar = new JButton();
@@ -122,7 +122,7 @@ public class JanelaDeRegistroDeDespesa extends javax.swing.JDialog {
 					butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 					getContentPane().add(butCancelar);
 					butCancelar.setText("Cancelar");
-					butCancelar.setBounds(101, 145, 124, 34);
+					butCancelar.setBounds(119, 145, 124, 34);
 				}
 			}
 			this.setSize(444, 247);

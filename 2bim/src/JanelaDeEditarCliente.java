@@ -202,26 +202,23 @@ public class JanelaDeEditarCliente implements ActionListener {
 
 		// trocar as colunas de posi��o
 		// Redimensionamento autom�tico
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(497, 403));
+		panelTable.setPreferredSize(new Dimension(800, 600));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
 			panelTable.add(scrollTable);
-			scrollTable
-			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollTable
-			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(31, 86, 416, 257);
+			scrollTable.setBounds(31, 111, 713, 298);
 			
 		}
 		{
 			lbCodCli = new JLabel();
+			lbCodCli.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			panelTable.add(lbCodCli);
 			lbCodCli.setText("ID do Cliente:");
-			lbCodCli.setBounds(10, 40, 103, 16);
+			lbCodCli.setBounds(31, 77, 103, 16);
 		}
 		{
 			DecimalFormat dFormat = new DecimalFormat ( "#######" ) ;
@@ -239,7 +236,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 			
 			//tfCodCli = new JTextField();
 			panelTable.add(tfCodCli);
-			tfCodCli.setBounds(90, 37, 57, 23);
+			tfCodCli.setBounds(144, 77, 57, 23);
 		}
 		{
 			btEditar = new JButton();
@@ -248,7 +245,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 			btEditar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(340, 356, 107, 39);
+			btEditar.setBounds(391, 420, 124, 34);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -301,17 +298,19 @@ public class JanelaDeEditarCliente implements ActionListener {
 					}
 				}
 			});
-			btnExcluir.setBounds(197, 358, 124, 34);
+			btnExcluir.setBounds(246, 420, 124, 34);
 			panelTable.add(btnExcluir);
 		}
 		{
 			lblPesquisar = new JLabel("Pesquisar:");
-			lblPesquisar.setBounds(10, 15, 73, 14);
+			lblPesquisar.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lblPesquisar.setBounds(31, 9, 108, 26);
 			panelTable.add(lblPesquisar);
 		}
 		{
 			tfBusca = new JTextField();
-			tfBusca.setBounds(72, 12, 236, 20);
+			tfBusca.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			tfBusca.setBounds(31, 40, 329, 24);
 			panelTable.add(tfBusca);
 			tfBusca.setColumns(10);
 		}
@@ -324,7 +323,7 @@ public class JanelaDeEditarCliente implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			btnBuscar.setBounds(325, 11, 122, 33);
+			btnBuscar.setBounds(622, 31, 122, 33);
 			panelTable.add(btnBuscar);
 		}
 		panelTable.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tfBusca, btnBuscar, btEditar, btnExcluir, scrollTable, table, tfCodCli, lbCodCli, lblPesquisar}));

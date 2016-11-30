@@ -118,7 +118,7 @@ public class JanelaDeConsumo {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(718, 422));
+		panel.setPreferredSize(new Dimension(800, 600));
 		
 		
 		{
@@ -129,16 +129,17 @@ public class JanelaDeConsumo {
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
 			btSalvar.addActionListener(new MostrarListener());
-			btSalvar.setBounds(359, 372, 107, 39);
+			btSalvar.setBounds(393, 380, 124, 34);
 		}
 		{
 			butCancelar = new JButton();
+			butCancelar.setForeground(Color.RED);
 			butCancelar.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 			butCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
 			butCancelar.addActionListener(new SairListener());
-			butCancelar.setBounds(226, 377, 124, 34);
+			butCancelar.setBounds(259, 380, 124, 34);
 		}
 		{
 			String colunas[] = new String[] {"ID","Nome", "Valor", "Caract"};
@@ -191,11 +192,7 @@ public class JanelaDeConsumo {
 			TabTodasCaract = new JScrollPane(table1);
 			
 			panel.add(TabTodasCaract);
-			TabTodasCaract
-			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabTodasCaract
-			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-			TabTodasCaract.setBounds(12, 96, 262, 257);
+			TabTodasCaract.setBounds(12, 96, 293, 257);
 			
 			
 			
@@ -221,9 +218,7 @@ public class JanelaDeConsumo {
 			
 			TabCaract = new JScrollPane(table2);
 			panel.add(TabCaract);
-			TabCaract.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-			TabCaract.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabCaract.setBounds(440, 96, 253, 257);
+			TabCaract.setBounds(480, 96, 293, 257);
 		}
 		{
 			btAdd = new JButton();
@@ -233,22 +228,22 @@ public class JanelaDeConsumo {
 			panel.add(btAdd);
 			btAdd.setText("Adicionar");
 			btAdd.addActionListener(new AdicionaListener());
-			btAdd.setBounds(280, 143, 143, 40);
+			btAdd.setBounds(322, 144, 143, 40);
 			btAdd.setEnabled(false);
 		}
 		{
 			tfTdCar = new JLabel();
 			panel.add(tfTdCar);
 			tfTdCar.setText("Produtos e Serviços");
-			tfTdCar.setBounds(12, 70, 160, 14);
-			tfTdCar.setFont(new java.awt.Font("Tahoma",1,12));
+			tfTdCar.setBounds(12, 71, 160, 14);
+			tfTdCar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			lcCar = new JLabel();
 			panel.add(lcCar);
 			lcCar.setText("Serviços e Produtos Consumidos");
-			lcCar.setBounds(435, 70, 214, 14);
-			lcCar.setFont(new java.awt.Font("Tahoma",1,12));
+			lcCar.setBounds(480, 71, 256, 14);
+			lcCar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			btRemove = new JButton();
@@ -258,7 +253,7 @@ public class JanelaDeConsumo {
 			panel.add(btRemove);
 			btRemove.setText("Remover");
 			btRemove.addActionListener(new RemoveListener());
-			btRemove.setBounds(290, 192, 124, 34);
+			btRemove.setBounds(322, 194, 143, 40);
 			btRemove.setEnabled(false);
 		}
 		{
@@ -266,7 +261,7 @@ public class JanelaDeConsumo {
 			panel.add(lbCliente);
 			lbCliente.setText("Cliente");
 			lbCliente.setBounds(12, 12, 65, 16);
-			lbCliente.setFont(new java.awt.Font("Tahoma",1,12));
+			lbCliente.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		ArrayList<Cliente> vetor2 = new ArrayList<Cliente>();
 
@@ -304,16 +299,17 @@ public class JanelaDeConsumo {
 			ComboBoxModel cbClienteModel = 
 				new DefaultComboBoxModel(list);
 			cbCliente = new JComboBox();
+			cbCliente.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			panel.add(cbCliente);
 			cbCliente.setModel(cbClienteModel);
-			cbCliente.setBounds(12, 34, 135, 23);
+			cbCliente.setBounds(12, 34, 293, 23);
 		}
 		{
 			lbDataEntrada = new JLabel();
 			panel.add(lbDataEntrada);
 			lbDataEntrada.setText("Data de Consumo");
-			lbDataEntrada.setBounds(161, 12, 130, 16);
-			lbDataEntrada.setFont(new java.awt.Font("Tahoma",1,12));
+			lbDataEntrada.setBounds(636, 12, 137, 16);
+			lbDataEntrada.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 	    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	    Date date = new Date();
@@ -322,11 +318,12 @@ public class JanelaDeConsumo {
 			try {
 				MaskFormatter mascara = new MaskFormatter("##/##/####");
 				tfDataEntrada = new JFormattedTextField(mascara);
+				tfDataEntrada.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			panel.add(tfDataEntrada);
-			tfDataEntrada.setBounds(159, 34, 115, 23);
+			tfDataEntrada.setBounds(658, 37, 115, 23);
 			tfDataEntrada.setText(d);
 		}
 		

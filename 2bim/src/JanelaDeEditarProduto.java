@@ -62,6 +62,10 @@ public class JanelaDeEditarProduto implements ActionListener {
 
 	
 	public boolean fechar = false;
+	private JTextField textField;
+	private JLabel label;
+	private JButton button;
+	private JButton button_1;
 	private class OkKeyListener implements KeyListener{
 		 @Override
 		    public void keyPressed(KeyEvent e) {
@@ -134,32 +138,29 @@ public class JanelaDeEditarProduto implements ActionListener {
 
 		// trocar as colunas de posi��o
 		// Redimensionamento autom�tico
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(376, 317));
+		panelTable.setPreferredSize(new Dimension(800, 600));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
 			panelTable.add(scrollTable);
-			scrollTable
-			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollTable
-			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(12, 54, 349, 250);
+			scrollTable.setBounds(31, 111, 713, 298);
 			
 		}
 		{
 			lbCodCaract = new JLabel();
+			lbCodCaract.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			panelTable.add(lbCodCaract);
 			lbCodCaract.setText("ID do Produto:");
-			lbCodCaract.setBounds(30, 21, 101, 16);
+			lbCodCaract.setBounds(31, 77, 116, 16);
 		}
 		{
 			tfCodCaract = new JTextField();
 			tfCodCaract.setEditable(false);
 			panelTable.add(tfCodCaract);
-			tfCodCaract.setBounds(143, 18, 57, 23);
+			tfCodCaract.setBounds(157, 77, 57, 23);
 		}
 		{
 			btEditar = new JButton();
@@ -168,7 +169,7 @@ public class JanelaDeEditarProduto implements ActionListener {
 			btEditar.setIcon(new ImageIcon("..\\2bim\\icons\\edit.png"));
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(254, 10, 107, 39);
+			btEditar.setBounds(391, 420, 124, 34);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -185,6 +186,33 @@ public class JanelaDeEditarProduto implements ActionListener {
 		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Editar Produtos - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		{
+			textField = new JTextField();
+			textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			textField.setColumns(10);
+			textField.setBounds(31, 40, 329, 24);
+			panelTable.add(textField);
+		}
+		{
+			label = new JLabel("Pesquisar:");
+			label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			label.setBounds(31, 9, 108, 26);
+			panelTable.add(label);
+		}
+		{
+			button = new JButton("Localizar");
+			button.setIcon(new ImageIcon("..\\2bim\\icons\\search.png"));
+			button.setFont(new Font("Tahoma", Font.BOLD, 13));
+			button.setBounds(622, 31, 122, 33);
+			panelTable.add(button);
+		}
+		{
+			button_1 = new JButton("Excluir");
+			button_1.setForeground(Color.RED);
+			button_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+			button_1.setBounds(246, 420, 124, 34);
+			panelTable.add(button_1);
+		}
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)

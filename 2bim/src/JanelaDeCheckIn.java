@@ -120,7 +120,7 @@ public class JanelaDeCheckIn {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(613, 422));
+		panel.setPreferredSize(new Dimension(800, 600));
 		
 		
 		{
@@ -131,7 +131,7 @@ public class JanelaDeCheckIn {
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
 			btSalvar.addActionListener(new MostrarListener());
-			btSalvar.setBounds(316, 375, 107, 39);
+			btSalvar.setBounds(393, 424, 124, 34);
 		}
 		{
 			butCancelar = new JButton();
@@ -141,7 +141,7 @@ public class JanelaDeCheckIn {
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
 			butCancelar.addActionListener(new SairListener());
-			butCancelar.setBounds(181, 380, 124, 34);
+			butCancelar.setBounds(259, 424, 124, 34);
 		}
 		int contador=0;
 		{
@@ -179,18 +179,14 @@ public class JanelaDeCheckIn {
 			table1.getColumnModel().getColumn(0).setResizable(true);
 			table1.getColumnModel().getColumn(1).setPreferredWidth(150);
 			table1.getColumnModel().getColumn(1).setResizable(false);
-			table1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			table1.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 			//table1.setPreferredSize(new java.awt.Dimension(196, 18));
 			//table1.getTableHeader().setMinimumSize(new java.awt.Dimension(90, 18));
 			table1.addMouseListener(new MouseListener());
 			TabTodasCaract = new JScrollPane(table1);
 			
 			panel.add(TabTodasCaract);
-			TabTodasCaract
-			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabTodasCaract
-			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-			TabTodasCaract.setBounds(12, 96, 214, 257);
+			TabTodasCaract.setBounds(12, 96, 293, 317);
 			
 			
 			
@@ -206,15 +202,13 @@ public class JanelaDeCheckIn {
 			table2.getColumnModel().getColumn(1).setResizable(false);
 			table2.getColumnModel().getColumn(2).setPreferredWidth(70);
 			table2.getColumnModel().getColumn(2).setResizable(true);
-			table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			table2.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 			//table2.setPreferredSize(new java.awt.Dimension(196, 18));
 			table2.addMouseListener(new MouseListener2());
 			
 			TabCaract = new JScrollPane(table2);
 			panel.add(TabCaract);
-			TabCaract.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-			TabCaract.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabCaract.setBounds(381, 102, 214, 257);
+			TabCaract.setBounds(480, 96, 293, 317);
 		}
 		{
 			btAdd = new JButton();
@@ -224,22 +218,22 @@ public class JanelaDeCheckIn {
 			panel.add(btAdd);
 			btAdd.setText("Adicionar");
 			btAdd.addActionListener(new AdicionaListener());
-			btAdd.setBounds(232, 143, 143, 40);
+			btAdd.setBounds(322, 144, 143, 40);
 			btAdd.setEnabled(false);
 		}
 		{
 			tfTdCar = new JLabel();
 			panel.add(tfTdCar);
 			tfTdCar.setText("Quartos Disponíveis");
-			tfTdCar.setBounds(12, 70, 160, 14);
-			tfTdCar.setFont(new java.awt.Font("Tahoma",1,12));
+			tfTdCar.setBounds(12, 65, 160, 24);
+			tfTdCar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			lcCar = new JLabel();
 			panel.add(lcCar);
 			lcCar.setText("Quartos da Hospedagem");
-			lcCar.setBounds(381, 76, 171, 14);
-			lcCar.setFont(new java.awt.Font("Tahoma",1,12));
+			lcCar.setBounds(480, 60, 218, 34);
+			lcCar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			btRemove = new JButton();
@@ -249,7 +243,7 @@ public class JanelaDeCheckIn {
 			panel.add(btRemove);
 			btRemove.setText("Remover");
 			btRemove.addActionListener(new RemoveListener());
-			btRemove.setBounds(245, 196, 124, 34);
+			btRemove.setBounds(322, 194, 143, 40);
 			btRemove.setEnabled(false);
 		}
 		{
@@ -257,7 +251,7 @@ public class JanelaDeCheckIn {
 			panel.add(lbCliente);
 			lbCliente.setText("Cliente");
 			lbCliente.setBounds(12, 12, 65, 16);
-			lbCliente.setFont(new java.awt.Font("Tahoma",1,12));
+			lbCliente.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		ArrayList<Cliente> vetor2 = new ArrayList<Cliente>();
 
@@ -294,16 +288,17 @@ public class JanelaDeCheckIn {
 			ComboBoxModel cbClienteModel = 
 				new DefaultComboBoxModel(list);
 			cbCliente = new JComboBox();
+			cbCliente.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			panel.add(cbCliente);
 			cbCliente.setModel(cbClienteModel);
-			cbCliente.setBounds(12, 34, 135, 23);
+			cbCliente.setBounds(12, 34, 293, 23);
 		}
 		{
 			lbDataEntrada = new JLabel();
 			panel.add(lbDataEntrada);
 			lbDataEntrada.setText("Data de Entrada");
-			lbDataEntrada.setBounds(161, 12, 130, 16);
-			lbDataEntrada.setFont(new java.awt.Font("Tahoma",1,12));
+			lbDataEntrada.setBounds(495, 12, 130, 16);
+			lbDataEntrada.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 	    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	    Date date = new Date();
@@ -312,29 +307,31 @@ public class JanelaDeCheckIn {
 			try {
 				MaskFormatter mascara = new MaskFormatter("##/##/####");
 				tfDataEntrada = new JFormattedTextField(mascara);
+				tfDataEntrada.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			panel.add(tfDataEntrada);
-			tfDataEntrada.setBounds(159, 34, 115, 23);
+			tfDataEntrada.setBounds(495, 34, 115, 23);
 			tfDataEntrada.setText(d);
 		}
 		{
 			lbDataPreSaida = new JLabel();
 			panel.add(lbDataPreSaida);
-			lbDataPreSaida.setText("Data Prevista de Saída");
-			lbDataPreSaida.setBounds(286, 12, 137, 16);
-			lbDataPreSaida.setFont(new java.awt.Font("Segoe UI",1,12));
+			lbDataPreSaida.setText("Data Sa\u00EDda Prevista");
+			lbDataPreSaida.setBounds(630, 12, 191, 16);
+			lbDataPreSaida.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			try {
 				MaskFormatter mascara = new MaskFormatter("##/##/####");
 				tfDataPreSaida = new JFormattedTextField(mascara);
+				tfDataPreSaida.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			panel.add(tfDataPreSaida);
-			tfDataPreSaida.setBounds(286, 34, 103, 23);
+			tfDataPreSaida.setBounds(630, 34, 153, 23);
 			tfDataPreSaida.setSize(115, 23);
 		}
 		

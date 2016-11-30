@@ -17,6 +17,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 
 
@@ -77,37 +78,41 @@ public class JanelaDeEditarUsuario2 {
 		
 		
 		labelNome = new JLabel("Nome *");
-		labelNome.setBounds(25, 0, 100, 20);
+		labelNome.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		labelNome.setBounds(221, 0, 136, 20);
 		tfNome = new JTextField(20);
+		tfNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tfNome.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				tfNome.setBackground(Color.white);
 			}
 		});
-		tfNome.setBounds(25,25,250,20);
+		tfNome.setBounds(221,25,329,20);
 		tfNome.setText(vetor.get(0).getNome());
 		lbSenha = new JLabel("Senha *");
-		lbSenha.setBounds(25, 112, 56, 20);
+		lbSenha.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lbSenha.setBounds(221, 112, 136, 20);
 		tfSenha = new JPasswordField(20);
+		tfSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tfSenha.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				tfSenha.setBackground(Color.white);
 			}
 		});
-		tfSenha.setBounds(25,137,117,20);
+		tfSenha.setBounds(221,137,155,20);
 		btOk = new JButton("Salvar");
 		btOk.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 		btOk.setForeground(new Color(30, 144, 255));
 		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btOk.setBounds(168, 283, 107, 39);
+		btOk.setBounds(386, 284, 124, 34);
 		btOk.addActionListener(new OkListener());
 		JButton btSair = new JButton("Cancelar");
 		btSair.setForeground(new Color(255, 0, 0));
 		btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btSair.setBounds(25, 285, 124, 34);
+		btSair.setBounds(252, 284, 124, 34);
 		btSair.addActionListener(new SairListener());
 		
 		panel = new JPanel();
@@ -123,71 +128,79 @@ public class JanelaDeEditarUsuario2 {
 		frame.setTitle("Edi\u00E7\u00E3o de Usu\u00E1rio - Hotel");
 		frame.setModal(true);
 		frame.getContentPane().add(panel);
-		panel.setPreferredSize(new java.awt.Dimension(234, 145));
+		panel.setSize(new Dimension(800, 600));
 		
 		JLabel lblLogin = new JLabel("Login *");
-		lblLogin.setBounds(25, 56, 46, 14);
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblLogin.setBounds(221, 54, 136, 26);
 		panel.add(lblLogin);
 		
 		tfLogin = new JTextField();
+		tfLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tfLogin.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				tfLogin.setBackground(Color.white);
 			}
 		});
-		tfLogin.setBounds(25, 81, 250, 20);
+		tfLogin.setBounds(221, 81, 329, 20);
 		tfLogin.setText(vetor.get(0).getLogin());
 		panel.add(tfLogin);
 		tfLogin.setColumns(10);
 		
 		JLabel lblConfirmeASenha = new JLabel("Confirme a senha *");
-		lblConfirmeASenha.setBounds(152, 115, 117, 14);
+		lblConfirmeASenha.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblConfirmeASenha.setBounds(386, 115, 143, 14);
 		panel.add(lblConfirmeASenha);
 		
 		tfConfirma = new JPasswordField(20);
+		tfConfirma.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tfConfirma.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				tfConfirma.setBackground(Color.white);
 			}
 		});
-		tfConfirma.setBounds(152, 137, 123, 20);
+		tfConfirma.setBounds(386, 137, 164, 20);
 		panel.add(tfConfirma);
 		tfConfirma.setColumns(10);
 		
 		lblPergunta = new JLabel("Pergunta *");
-		lblPergunta.setBounds(25, 168, 77, 14);
+		lblPergunta.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblPergunta.setBounds(221, 163, 136, 20);
 		panel.add(lblPergunta);
 		
 		tfPergunta = new JTextField();
+		tfPergunta.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tfPergunta.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				tfPergunta.setBackground(Color.white);
 			}
 		});
-		tfPergunta.setBounds(25, 188, 250, 20);
+		tfPergunta.setBounds(221, 188, 329, 20);
 		tfPergunta.setText(vetor.get(0).getPergunta());
 		panel.add(tfPergunta);
 		tfPergunta.setColumns(10);
 		
 		lblResposta = new JLabel("Resposta *");
-		lblResposta.setBounds(25, 219, 77, 14);
+		lblResposta.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblResposta.setBounds(221, 211, 136, 26);
 		panel.add(lblResposta);
 		
 		tfResposta = new JPasswordField(20);
+		tfResposta.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tfResposta.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				tfResposta.setBackground(Color.white);
 			}
 		});
-		tfResposta.setBounds(25, 238, 250, 20);
+		tfResposta.setBounds(221, 238, 329, 20);
 		tfResposta.setText(vetor.get(0).getResposta());
 		panel.add(tfResposta);
 		tfResposta.setColumns(10);
-		frame.setSize(296, 375);
+		frame.setSize(800, 600);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
@@ -249,7 +262,15 @@ public class JanelaDeEditarUsuario2 {
 				}else if(!tfSenha.getText().equals(tfConfirma.getText()))
 					JOptionPane.showMessageDialog(frame, "As senhas informadas não coincidem", "Erro", JOptionPane.ERROR_MESSAGE);
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				String wr = "Preencha todos os campos obrigatórios \n";
+				if (tfNome.getText().isEmpty()){ wr = wr+"- Nome \n";}
+				if (tfLogin.getText().isEmpty()){ wr = wr+"- Login \n";}
+				if (tfSenha.getText().isEmpty()){ wr = wr+"- Senha \n";}
+				if (tfConfirma.getText().isEmpty()){ wr = wr+"- Confirme Senha \n";}
+				if (tfPergunta.getText().isEmpty()){ wr = wr+"- Pergunta \n";}
+				if (tfResposta.getText().isEmpty()){ wr = wr+"- Resposta \n";}
+				if(!tfSenha.getText().equals(tfConfirma.getText())){ wr = wr+"- As senhas informadas não coincidem \n";}
+				JOptionPane.showMessageDialog(frame, wr, "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

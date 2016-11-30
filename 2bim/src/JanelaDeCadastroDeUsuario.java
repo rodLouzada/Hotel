@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Dimension;
 
 
 
@@ -49,7 +50,6 @@ public class JanelaDeCadastroDeUsuario {
 	private JTextField tfResposta;
 	
 	public boolean fechar = false;
-	private JPanel panel_1;
 	
 	private class OkKeyListener implements KeyListener{
 		 @Override
@@ -80,7 +80,8 @@ public class JanelaDeCadastroDeUsuario {
 	 */
 	public JanelaDeCadastroDeUsuario(JanelaMenuPrincipal janMenPrin){
 		labelNome = new JLabel("Nome *");
-		labelNome.setBounds(67, 80, 100, 20);
+		labelNome.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		labelNome.setBounds(221, 24, 329, 20);
 		tfNome = new JTextField(20);
 		tfNome.addKeyListener(new KeyAdapter() {
 			@Override
@@ -88,9 +89,10 @@ public class JanelaDeCadastroDeUsuario {
 				tfNome.setBackground(Color.white);
 			}
 		});
-		tfNome.setBounds(67,105,250,20);
+		tfNome.setBounds(221,49,329,20);
 		lbSenha = new JLabel("Senha *");
-		lbSenha.setBounds(67, 192, 69, 20);
+		lbSenha.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lbSenha.setBounds(221, 136, 164, 20);
 		tfSenha = new JPasswordField(20);
 		tfSenha.addKeyListener(new KeyAdapter() {
 			@Override
@@ -98,18 +100,18 @@ public class JanelaDeCadastroDeUsuario {
 				tfSenha.setBackground(Color.white);
 			}
 		});
-		tfSenha.setBounds(67,217,117,20);
+		tfSenha.setBounds(221,161,152,20);
 		btOk = new JButton("Novo");
 		btOk.setForeground(new Color(0, 128, 0));
 		btOk.setIcon(new ImageIcon("..\\2bim\\icons\\new.png"));
 		btOk.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btOk.setBounds(258, 351, 107, 39);
+		btOk.setBounds(399, 325, 124, 34);
 		btOk.addActionListener(new OkListener());
 		JButton btSair = new JButton("Cancelar");
 		btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 		btSair.setForeground(new Color(255, 0, 0));
 		btSair.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btSair.setBounds(108, 353, 124, 34);
+		btSair.setBounds(252, 325, 124, 34);
 		btSair.addActionListener(new SairListener());
 		
 		panel = new JPanel();
@@ -122,13 +124,16 @@ public class JanelaDeCadastroDeUsuario {
 		panel.add(btSair);
 		
 		frame = new JDialog();
+		frame.setUndecorated(true);
+		frame.setResizable(false);
 		frame.setTitle("Cadastro de Usu\u00E1rio - Hotel");
 		frame.setModal(true);
 		frame.getContentPane().add(panel);
-		panel.setPreferredSize(new java.awt.Dimension(572, 400));
+		panel.setSize(new Dimension(800, 600));
 		
 		JLabel lblLogin = new JLabel("Login *");
-		lblLogin.setBounds(67, 136, 46, 14);
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblLogin.setBounds(221, 78, 329, 21);
 		panel.add(lblLogin);
 		
 		tfLogin = new JTextField();
@@ -138,12 +143,13 @@ public class JanelaDeCadastroDeUsuario {
 				tfLogin.setBackground(Color.white);
 			}
 		});
-		tfLogin.setBounds(67, 161, 250, 20);
+		tfLogin.setBounds(221, 105, 329, 20);
 		panel.add(tfLogin);
 		tfLogin.setColumns(10);
 		
 		JLabel lblConfirmeASenha = new JLabel("Confirme a senha *");
-		lblConfirmeASenha.setBounds(194, 195, 117, 14);
+		lblConfirmeASenha.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblConfirmeASenha.setBounds(386, 139, 164, 14);
 		panel.add(lblConfirmeASenha);
 		
 		tfConfirma = new JPasswordField(20);
@@ -153,12 +159,13 @@ public class JanelaDeCadastroDeUsuario {
 				tfConfirma.setBackground(Color.white);
 			}
 		});
-		tfConfirma.setBounds(194, 217, 123, 20);
+		tfConfirma.setBounds(386, 161, 164, 20);
 		panel.add(tfConfirma);
 		tfConfirma.setColumns(10);
 		
 		lblPerguntaDeSegurana = new JLabel("Pergunta de seguran\u00E7a *");
-		lblPerguntaDeSegurana.setBounds(67, 248, 162, 20);
+		lblPerguntaDeSegurana.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblPerguntaDeSegurana.setBounds(221, 192, 329, 20);
 		panel.add(lblPerguntaDeSegurana);
 		
 		tfPergunta = new JTextField();
@@ -168,12 +175,13 @@ public class JanelaDeCadastroDeUsuario {
 				tfPergunta.setBackground(Color.white);
 			}
 		});
-		tfPergunta.setBounds(67, 270, 250, 20);
+		tfPergunta.setBounds(221, 214, 329, 20);
 		panel.add(tfPergunta);
 		tfPergunta.setColumns(10);
 		
 		JLabel lblResposta = new JLabel("Resposta *");
-		lblResposta.setBounds(67, 301, 117, 14);
+		lblResposta.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblResposta.setBounds(221, 245, 329, 14);
 		panel.add(lblResposta);
 		
 		tfResposta = new JPasswordField(20);
@@ -183,7 +191,7 @@ public class JanelaDeCadastroDeUsuario {
 				tfResposta.setBackground(Color.white);
 			}
 		});
-		tfResposta.setBounds(67, 320, 250, 20);
+		tfResposta.setBounds(221, 264, 329, 20);
 		panel.add(tfResposta);
 		tfResposta.setColumns(10);
 		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
@@ -191,15 +199,6 @@ public class JanelaDeCadastroDeUsuario {
 //		frame.setModal(true);
 		//frame.add(panel);
 		janMenPrin.frameConteudo.getContentPane().add(panel);
-		
-		panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(0, 0, 407, 72);
-		panel.add(panel_1);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("..\\2bim\\icons\\Netfontes_aardvark_cafe_Logo.gif"));
-		panel_1.add(lblNewLabel);
 		//frame.add(panelBotoes);
 		//frame.getContentPane().add(BorderLayout.SOUTH, panelBotoes);
 		//frame.setSize(300, 300);
@@ -245,10 +244,19 @@ public class JanelaDeCadastroDeUsuario {
 				if (tfSenha.getText().equals(tfConfirma.getText())){
 					op = 1111;
 					fechar = true;
-				}else if(!tfSenha.getText().equals(tfConfirma.getText()))
-					JOptionPane.showMessageDialog(frame, "As senhas informadas não coincidem", "Erro", JOptionPane.ERROR_MESSAGE);
+				}//else if(!tfSenha.getText().equals(tfConfirma.getText()))
+				//	JOptionPane.showMessageDialog(frame, "As senhas informadas não coincidem", "Erro", JOptionPane.ERROR_MESSAGE);
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+					String wr = "Preencha todos os campos obrigatórios \n";
+					if (tfNome.getText().isEmpty()){ wr = wr+"- Nome \n";}
+					if (tfLogin.getText().isEmpty()){ wr = wr+"- Login \n";}
+					if (tfSenha.getText().isEmpty()){ wr = wr+"- Senha \n";}
+					if (tfConfirma.getText().isEmpty()){ wr = wr+"- Confirme Senha \n";}
+					if (tfPergunta.getText().isEmpty()){ wr = wr+"- Pergunta \n";}
+					if (tfResposta.getText().isEmpty()){ wr = wr+"- Resposta \n";}
+					if(!tfSenha.getText().equals(tfConfirma.getText())){ wr = wr+"- As senhas informadas não coincidem \n";}
+					JOptionPane.showMessageDialog(frame, wr, "Erro", JOptionPane.ERROR_MESSAGE);
+				
 			}
 		}
 	}

@@ -120,17 +120,18 @@ public class JanelaDeCadastroQuarto {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(613, 422));
+		panel.setPreferredSize(new Dimension(800, 600));
 		
 		{
 			lbNum = new JLabel();
 			panel.add(lbNum);
 			lbNum.setText("N\u00FAmero *");
-			lbNum.setBounds(12, 12, 59, 14);
-			lbNum.setFont(new java.awt.Font("Tahoma",1,12));
+			lbNum.setBounds(12, 12, 84, 14);
+			lbNum.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			tfNum = new JTextFieldSomenteNumeros();
+			tfNum.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			tfNum.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent e) {
@@ -138,7 +139,7 @@ public class JanelaDeCadastroQuarto {
 				}
 			});
 			panel.add(tfNum);
-			tfNum.setBounds(12, 32, 51, 21);
+			tfNum.setBounds(12, 37, 51, 21);
 		}
 		{
 			btSalvar = new JButton();
@@ -148,7 +149,7 @@ public class JanelaDeCadastroQuarto {
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
 			btSalvar.addActionListener(new MostrarListener());
-			btSalvar.setBounds(289, 364, 107, 39);
+			btSalvar.setBounds(393, 424, 124, 34);
 		}
 		{
 			butCancelar = new JButton();
@@ -158,7 +159,7 @@ public class JanelaDeCadastroQuarto {
 			panel.add(butCancelar);
 			butCancelar.setText("Cancelar");
 			butCancelar.addActionListener(new SairListener());
-			butCancelar.setBounds(142, 366, 124, 34);
+			butCancelar.setBounds(259, 424, 124, 34);
 		}
 		{
 			String colunas[] = new String[] {"ID", "Nome"};
@@ -194,18 +195,14 @@ public class JanelaDeCadastroQuarto {
 			table1.getColumnModel().getColumn(0).setResizable(true);
 			table1.getColumnModel().getColumn(1).setPreferredWidth(150);
 			table1.getColumnModel().getColumn(1).setResizable(false);
-			table1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			table1.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 			//table1.setPreferredSize(new java.awt.Dimension(196, 18));
 			//table1.getTableHeader().setMinimumSize(new java.awt.Dimension(90, 18));
 			table1.addMouseListener(new MouseListener());
 			TabTodasCaract = new JScrollPane(table1);
 			
 			panel.add(TabTodasCaract);
-			TabTodasCaract
-			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabTodasCaract
-			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-			TabTodasCaract.setBounds(12, 96, 214, 257);
+			TabTodasCaract.setBounds(12, 96, 293, 317);
 			
 			
 			
@@ -221,15 +218,13 @@ public class JanelaDeCadastroQuarto {
 			table2.getColumnModel().getColumn(1).setResizable(false);
 			table2.getColumnModel().getColumn(2).setPreferredWidth(40);
 			table2.getColumnModel().getColumn(2).setResizable(false);
-			table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			table2.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 			//table2.setPreferredSize(new java.awt.Dimension(196, 18));
 			table2.addMouseListener(new MouseListener2());
 			
 			TabCaract = new JScrollPane(table2);
 			panel.add(TabCaract);
-			TabCaract.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-			TabCaract.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			TabCaract.setBounds(387, 96, 214, 257);
+			TabCaract.setBounds(480, 96, 293, 317);
 		}
 		{
 			btAdd = new JButton();
@@ -239,22 +234,22 @@ public class JanelaDeCadastroQuarto {
 			panel.add(btAdd);
 			btAdd.setText("Adicionar");
 			btAdd.addActionListener(new AdicionaListener());
-			btAdd.setBounds(232, 143, 143, 40);
+			btAdd.setBounds(327, 186, 143, 40);
 			btAdd.setEnabled(false);
 		}
 		{
 			tfTdCar = new JLabel();
 			panel.add(tfTdCar);
 			tfTdCar.setText("Características Gerais");
-			tfTdCar.setBounds(12, 70, 160, 14);
-			tfTdCar.setFont(new java.awt.Font("Tahoma",1,12));
+			tfTdCar.setBounds(12, 71, 214, 14);
+			tfTdCar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			lcCar = new JLabel();
 			panel.add(lcCar);
 			lcCar.setText("Características do Quarto");
-			lcCar.setBounds(387, 70, 171, 14);
-			lcCar.setFont(new java.awt.Font("Tahoma",1,12));
+			lcCar.setBounds(480, 64, 232, 21);
+			lcCar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			btRemove = new JButton();
@@ -264,18 +259,19 @@ public class JanelaDeCadastroQuarto {
 			panel.add(btRemove);
 			btRemove.setText("Remover");
 			btRemove.addActionListener(new RemoveListener());
-			btRemove.setBounds(242, 196, 124, 34);
+			btRemove.setBounds(327, 237, 143, 40);
 			btRemove.setEnabled(false);
 		}
 		{
 			lbValorDiaria = new JLabel();
 			panel.add(lbValorDiaria);
 			lbValorDiaria.setText("Valor da Di\u00E1ria *");
-			lbValorDiaria.setBounds(83, 12, 101, 14);
-			lbValorDiaria.setFont(new java.awt.Font("Tahoma",1,12));
+			lbValorDiaria.setBounds(116, 12, 145, 14);
+			lbValorDiaria.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			tfValorDiaria = new JTextField();
+			tfValorDiaria.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			tfValorDiaria.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent e) {
@@ -283,7 +279,7 @@ public class JanelaDeCadastroQuarto {
 				}
 			});
 			panel.add(tfValorDiaria);
-			tfValorDiaria.setBounds(83, 31, 90, 21);
+			tfValorDiaria.setBounds(116, 37, 110, 21);
 		}
 		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Cadastro de Quartos - Hotel");
@@ -354,7 +350,10 @@ public class JanelaDeCadastroQuarto {
 				op = 1;
 				//frame.dispose();
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				String wr = "Preencha todos os campos obrigatórios \n";
+				if (tfNum.getText().isEmpty()){ wr = wr+"- Numero \n";}
+				if (tfValorDiaria.getText().isEmpty()){ wr = wr+"- Valor de Diaria \n";}
+				JOptionPane.showMessageDialog(frame, wr, "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

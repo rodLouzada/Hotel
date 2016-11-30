@@ -24,6 +24,7 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 import java.awt.Dimension;
+import java.awt.Font;
 
 
 
@@ -133,10 +134,10 @@ public class JanelaDeRelatorioQuartos implements ActionListener {
 
 		// trocar as colunas de posiï¿½ï¿½o
 		// Redimensionamento automï¿½tico
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(593, 384));
+		panelTable.setPreferredSize(new Dimension(800, 600));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -145,7 +146,7 @@ public class JanelaDeRelatorioQuartos implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(12, 106, 259, 248);
+			scrollTable.setBounds(12, 106, 366, 340);
 			
 		}
 		{
@@ -155,15 +156,15 @@ public class JanelaDeRelatorioQuartos implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable2
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable2.setBounds(317, 106, 255, 248);
+			scrollTable2.setBounds(430, 106, 357, 340);
 			
 		}
 		{
 			lbCodCli = new JLabel();
 			panelTable.add(lbCodCli);
 			lbCodCli.setText("Relatório de:");
-			lbCodCli.setBounds(12, 12, 103, 16);
-			lbCodCli.setFont(new java.awt.Font("Tahoma",1,12));
+			lbCodCli.setBounds(12, 12, 112, 16);
+			lbCodCli.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			try {
@@ -178,22 +179,22 @@ public class JanelaDeRelatorioQuartos implements ActionListener {
 				cbOpcoes = new JComboBox();
 				panelTable.add(cbOpcoes);
 				cbOpcoes.setModel(cbOpcoesModel);
-				cbOpcoes.setBounds(12, 34, 173, 23);
+				cbOpcoes.setBounds(12, 34, 232, 23);
 				cbOpcoes.addActionListener(new comboListener());
 			}
 			{
 				lbQua = new JLabel();
 				panelTable.add(lbQua);
 				lbQua.setText("Quartos");
-				lbQua.setBounds(12, 79, 65, 16);
-				lbQua.setFont(new java.awt.Font("Tahoma",1,12));
+				lbQua.setBounds(12, 75, 78, 23);
+				lbQua.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			}
 			{
 				jLabel1 = new JLabel();
 				panelTable.add(jLabel1);
 				jLabel1.setText("Caracter\u00EDsticas dos Quartos");
-				jLabel1.setFont(new java.awt.Font("Tahoma",1,12));
-				jLabel1.setBounds(317, 79, 232, 16);
+				jLabel1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+				jLabel1.setBounds(431, 79, 232, 16);
 			}
 		}
 

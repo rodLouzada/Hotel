@@ -109,9 +109,10 @@ public class JanelaDeEditarProduto2 {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(316, 165));
+		panel.setPreferredSize(new Dimension(800, 600));
 		{
 			tfNome = new JTextField();
+			tfNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			tfNome.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent e) {
@@ -121,40 +122,41 @@ public class JanelaDeEditarProduto2 {
 			panel.add(tfNome);
 			tfNome.setPreferredSize(new java.awt.Dimension(227, 21));
 			tfNome.setSize(227, 21);
-			tfNome.setBounds(77, 32, 227, 19);
+			tfNome.setBounds(269, 32, 286, 19);
 			tfNome.setText(""+vetor.get(0).getNome());
 		}
 		{
 			lbNome = new JLabel();
 			panel.add(lbNome);
 			lbNome.setText("Nome *");
-			lbNome.setFont(new java.awt.Font("Tahoma",1,12));
-			lbNome.setBounds(77, 13, 51, 14);
+			lbNome.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbNome.setBounds(269, 13, 94, 14);
 		}
 		{
 			lbCod = new JLabel();
 			panel.add(lbCod);
 			lbCod.setText("Código");
-			lbCod.setFont(new java.awt.Font("Tahoma",1,12));
-			lbCod.setBounds(12, 12, 65, 14);
+			lbCod.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbCod.setBounds(204, 7, 65, 26);
 			
 		}
 		{
 			tfCod = new JTextField();
 			panel.add(tfCod);
 			tfCod.setEditable(false);
-			tfCod.setBounds(12, 32, 45, 21);
+			tfCod.setBounds(204, 32, 45, 21);
 			tfCod.setText(""+(co));
 		}
 		{
 			lbValor = new JLabel();
 			panel.add(lbValor);
 			lbValor.setText("Valor *");
-			lbValor.setFont(new java.awt.Font("Tahoma",1,12));
-			lbValor.setBounds(12, 65, 65, 14);
+			lbValor.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbValor.setBounds(204, 65, 65, 14);
 		}
 		{
 			tfValor = new JTextField();
+			tfValor.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			tfValor.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent e) {
@@ -162,7 +164,7 @@ public class JanelaDeEditarProduto2 {
 				}
 			});
 			panel.add(tfValor);
-			tfValor.setBounds(12, 85, 292, 21);
+			tfValor.setBounds(204, 85, 351, 21);
 			tfValor.setText(""+vetor.get(0).getValor());
 		}
 		{
@@ -172,7 +174,7 @@ public class JanelaDeEditarProduto2 {
 			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
-			btSalvar.setBounds(197, 119, 107, 39);
+			btSalvar.setBounds(389, 119, 124, 34);
 			btSalvar.addActionListener(new MostrarListener());
 		}
 		{
@@ -182,7 +184,7 @@ public class JanelaDeEditarProduto2 {
 			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btCancelar);
 			btCancelar.setText("Cancelar");
-			btCancelar.setBounds(48, 121, 124, 34);
+			btCancelar.setBounds(239, 119, 124, 34);
 			btCancelar.addActionListener(new SairListener());
 		}
 		op = co;
@@ -231,7 +233,9 @@ public class JanelaDeEditarProduto2 {
 				}
 				frame.dispose();
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				String wr = "Preencha todos os campos obrigatórios \n";
+				if (tfNome.getText().isEmpty()){ wr = wr+"- Nome \n";}
+				JOptionPane.showMessageDialog(frame, wr, "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

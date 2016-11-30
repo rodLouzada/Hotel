@@ -27,6 +27,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
+import java.awt.Font;
 
 
 
@@ -159,10 +160,10 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 
 		// trocar as colunas de posi��o
 		// Redimensionamento autom�tico
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(644, 337));
+		panelTable.setPreferredSize(new Dimension(800, 499));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -171,7 +172,7 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(12, 69, 592, 248);
+			scrollTable.setBounds(16, 69, 774, 359);
 			
 		}
 		{
@@ -179,7 +180,7 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 			panelTable.add(lbCodCli);
 			lbCodCli.setText("Cliente:");
 			lbCodCli.setBounds(12, 12, 103, 16);
-			lbCodCli.setFont(new java.awt.Font("Tahoma",1,12));
+			lbCodCli.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			ComboBoxModel cbCliModel = 
@@ -187,26 +188,27 @@ public class JanelaDeRelatorioDespesas implements ActionListener {
 			cbCli = new JComboBox();
 			panelTable.add(cbCli);
 			cbCli.setModel(cbCliModel);
-			cbCli.setBounds(12, 34, 223, 23);
+			cbCli.setBounds(12, 34, 312, 23);
 			cbCli.addActionListener(new comboListener());
 		}
 		{
 			lbTT = new JLabel();
 			panelTable.add(lbTT);
 			lbTT.setText("Total:    R$");
-			lbTT.setBounds(350, 36, 77, 16);
-			lbTT.setFont(new java.awt.Font("Tahoma",1,12));
+			lbTT.setBounds(619, 36, 97, 16);
+			lbTT.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			try {
 				MaskFormatter maskCPF = new MaskFormatter("******");
 				tfTotal = new JFormattedTextField(maskCPF);
+				tfTotal.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			tfTotal.setEditable(false);
 			panelTable.add(tfTotal);
-			tfTotal.setBounds(428, 34, 73, 23);
+			tfTotal.setBounds(717, 34, 73, 23);
 		}
 
 		//buttonOk.addActionListener(this);

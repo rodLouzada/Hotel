@@ -142,7 +142,7 @@ public class JanelaDeCadastroServico {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(323, 162));
+		panel.setPreferredSize(new Dimension(800, 600));
 		{
 			tfNome = new JTextField();
 			tfNome.addKeyListener(new KeyAdapter() {
@@ -154,36 +154,36 @@ public class JanelaDeCadastroServico {
 			panel.add(tfNome);
 			tfNome.setPreferredSize(new java.awt.Dimension(227, 21));
 			tfNome.setSize(227, 21);
-			tfNome.setBounds(77, 32, 227, 19);
+			tfNome.setBounds(261, 36, 292, 19);
 		}
 		{
 			lbNome = new JLabel();
 			panel.add(lbNome);
 			lbNome.setText("Nome *");
-			lbNome.setFont(new java.awt.Font("Tahoma",1,12));
-			lbNome.setBounds(77, 13, 51, 14);
+			lbNome.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbNome.setBounds(261, 17, 74, 14);
 		}
 		{
 			lbCod = new JLabel();
 			panel.add(lbCod);
 			lbCod.setText("Código");
-			lbCod.setFont(new java.awt.Font("Tahoma",1,12));
-			lbCod.setBounds(12, 12, 65, 14);
+			lbCod.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbCod.setBounds(196, 11, 65, 27);
 			
 		}
 		{
 			tfCod = new JTextField();
 			panel.add(tfCod);
 			tfCod.setEditable(false);
-			tfCod.setBounds(12, 32, 45, 21);
+			tfCod.setBounds(196, 36, 45, 21);
 			tfCod.setText(""+(cont+1));
 		}
 		{
 			lbValor = new JLabel();
 			panel.add(lbValor);
 			lbValor.setText("Valor *");
-			lbValor.setFont(new java.awt.Font("Tahoma",1,12));
-			lbValor.setBounds(12, 65, 65, 14);
+			lbValor.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbValor.setBounds(196, 69, 65, 14);
 		}
 		{
 		/*	
@@ -201,7 +201,7 @@ public class JanelaDeCadastroServico {
 				}
 			});
 			panel.add(tfValor);
-			tfValor.setBounds(12, 85, 292, 21);
+			tfValor.setBounds(196, 89, 357, 21);
 		}
 		{
 			btSalvar = new JButton();
@@ -210,7 +210,7 @@ public class JanelaDeCadastroServico {
 			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
-			btSalvar.setBounds(197, 119, 107, 39);
+			btSalvar.setBounds(381, 123, 124, 34);
 			btSalvar.addActionListener(new MostrarListener());
 		}
 		{
@@ -220,7 +220,7 @@ public class JanelaDeCadastroServico {
 			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btCancelar);
 			btCancelar.setText("Cancelar");
-			btCancelar.setBounds(59, 121, 124, 34);
+			btCancelar.setBounds(243, 125, 124, 34);
 			btCancelar.addActionListener(new SairListener());
 		}
 
@@ -270,7 +270,9 @@ public class JanelaDeCadastroServico {
 				JOptionPane.showMessageDialog(null, "Serviço cadastrado com sucesso!");
 				fechar = true;
 			}else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				String wr = "Preencha todos os campos obrigatórios \n";
+				if (tfNome.getText().isEmpty()){ wr = wr+"- Nome \n";}
+				JOptionPane.showMessageDialog(frame, wr, "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

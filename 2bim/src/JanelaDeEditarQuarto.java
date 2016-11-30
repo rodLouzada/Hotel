@@ -63,6 +63,10 @@ public class JanelaDeEditarQuarto implements ActionListener {
 
 	public boolean fechar = false;
 	private JanelaMenuPrincipal jM;
+	private JLabel label;
+	private JTextField textField;
+	private JButton button;
+	private JButton button_1;
 
 	private class OkKeyListener implements KeyListener{
 		 @Override
@@ -139,32 +143,29 @@ public class JanelaDeEditarQuarto implements ActionListener {
 
 		// trocar as colunas de posiï¿½ï¿½o
 		// Redimensionamento automï¿½tico
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(304, 276));
+		panelTable.setPreferredSize(new Dimension(800, 600));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
 			panelTable.add(scrollTable);
-			scrollTable
-			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollTable
-			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(24, 63, 268, 200);
+			scrollTable.setBounds(31, 111, 713, 298);
 			
 		}
 		{
 			lbCodQua = new JLabel();
+			lbCodQua.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			panelTable.add(lbCodQua);
 			lbCodQua.setText("ID do Quarto:");
-			lbCodQua.setBounds(12, 30, 81, 16);
+			lbCodQua.setBounds(31, 77, 108, 16);
 		}
 		{
 			tfCodQua = new JTextField();
 			tfCodQua.setEditable(false);
 			panelTable.add(tfCodQua);
-			tfCodQua.setBounds(93, 27, 57, 23);
+			tfCodQua.setBounds(149, 77, 57, 23);
 		}
 		{
 			btExcluir = new JButton();
@@ -173,7 +174,7 @@ public class JanelaDeEditarQuarto implements ActionListener {
 			btExcluir.setIcon(new ImageIcon("..\\2bim\\icons\\edit.png"));
 			panelTable.add(btExcluir);
 			btExcluir.setText("Editar");
-			btExcluir.setBounds(185, 19, 107, 39);
+			btExcluir.setBounds(391, 420, 124, 34);
 			btExcluir.addActionListener(new ExcluirListener());
 		}
 
@@ -190,6 +191,63 @@ public class JanelaDeEditarQuarto implements ActionListener {
 		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Editar Quartos - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		{
+			label = new JLabel("Pesquisar:");
+			label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			label.setBounds(31, 9, 108, 26);
+			panelTable.add(label);
+		}
+		{
+			textField = new JTextField();
+			textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			textField.setColumns(10);
+			textField.setBounds(31, 40, 329, 24);
+			panelTable.add(textField);
+		}
+		{
+			button = new JButton("Localizar");
+			button.setIcon(new ImageIcon("..\\2bim\\icons\\search.png"));
+			button.setFont(new Font("Tahoma", Font.BOLD, 13));
+			button.setBounds(622, 31, 122, 33);
+			panelTable.add(button);
+		}
+		{
+			button_1 = new JButton("Excluir");
+			button_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String message = "Deseja realmente excluir o quarto?";
+					String title = "Confirmação";
+					int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+					if (reply == JOptionPane.YES_OPTION) {
+						if (!tfCodQua.getText().isEmpty() && tfCodQua != null) {
+							Connection conexao;
+							int codigo = Integer.parseInt(tfCodQua.getText());
+							try {
+								conexao = ConnectionFactory.getConnection();
+								QuartoDAO dao = new QuartoDAO(conexao);
+								Quarto_CaractDAO dao2 = new Quarto_CaractDAO(conexao);
+								dao.excluir(codigo);
+								dao2.excluir(codigo);
+
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+
+							JOptionPane.showMessageDialog(null, "Quarto excluído com sucesso!");
+							fechar = true;
+							JanelaDeExcluirQuarto j10 = new JanelaDeExcluirQuarto(jM);
+						} else {
+							JOptionPane.showMessageDialog(frame, "Selecione um quarto para excluir", "Erro",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			});
+			button_1.setForeground(Color.RED);
+			button_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+			button_1.setBounds(246, 420, 124, 34);
+			panelTable.add(button_1);
+		}
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)

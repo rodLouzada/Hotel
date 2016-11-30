@@ -29,6 +29,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.Scrollbar;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -320,7 +323,7 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 			btMostrar.setFont(new Font("Tahoma", Font.BOLD, 15));
 			btMostrar.setIcon(new ImageIcon("..\\2bim\\icons\\save.png"));
 			panel.add(btMostrar);
-			btMostrar.setBounds(759, 1044, 125, 37);
+			btMostrar.setBounds(759, 1052, 124, 34);
 			btMostrar.addActionListener(new MostrarListener());
 		}
 		{
@@ -329,7 +332,7 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 			btSair.setFont(new Font("Tahoma", Font.BOLD, 15));
 			btSair.setIcon(new ImageIcon("..\\2bim\\icons\\cancel.png"));
 			panel.add(btSair);
-			btSair.setBounds(616, 1048, 131, 29);
+			btSair.setBounds(625, 1052, 124, 34);
 			btSair.addActionListener(new SairListener());
 		}
 		{
@@ -368,7 +371,7 @@ public class JanelaDeCadastroCliente extends javax.swing.JFrame{
 		frame = new JDialog();
 		frame.setTitle("Cadastro de Cliente - Hotel");
 		frame.setModal(true);
-		//frame.add(panel);
+		//frame.add(spanel);
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.setDefaultCloseOperation(0);
 

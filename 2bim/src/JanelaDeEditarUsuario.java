@@ -61,6 +61,12 @@ public class JanelaDeEditarUsuario implements ActionListener {
 	private JButton buttonOk;
 	
 	public boolean fechar = false;
+	private JButton button;
+	private JLabel label;
+	private JTextField textField;
+	private JButton button_1;
+	
+	private JanelaMenuPrincipal jM = null;
 	
 	private class OkKeyListener implements KeyListener{
 		 @Override
@@ -134,32 +140,29 @@ public class JanelaDeEditarUsuario implements ActionListener {
 
 		// trocar as colunas de posiï¿½ï¿½o
 		// Redimensionamento automï¿½tico
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(392, 312));
+		panelTable.setPreferredSize(new Dimension(800, 600));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
 			panelTable.add(scrollTable);
-			scrollTable
-			.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-			scrollTable
-			.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(12, 51, 369, 248);
+			scrollTable.setBounds(31, 111, 713, 298);
 			
 		}
 		{
 			lbCodUsu = new JLabel();
+			lbCodUsu.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			panelTable.add(lbCodUsu);
 			lbCodUsu.setText("ID do Usuário:");
-			lbCodUsu.setBounds(44, 18, 103, 16);
+			lbCodUsu.setBounds(31, 77, 113, 20);
 		}
 		{
 			tfCodUsu = new JTextField();
 			tfCodUsu.setEditable(false);
 			panelTable.add(tfCodUsu);
-			tfCodUsu.setBounds(141, 15, 57, 23);
+			tfCodUsu.setBounds(149, 77, 57, 23);
 		}
 		{
 			btEditar = new JButton();
@@ -168,7 +171,7 @@ public class JanelaDeEditarUsuario implements ActionListener {
 			btEditar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panelTable.add(btEditar);
 			btEditar.setText("Editar");
-			btEditar.setBounds(274, 7, 107, 39);
+			btEditar.setBounds(391, 420, 124, 34);
 			btEditar.addActionListener(new ExcluirListener());
 		}
 
@@ -185,6 +188,60 @@ public class JanelaDeEditarUsuario implements ActionListener {
 		janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());
 		janMenPrin.frameConteudo.setTitle("Editar Usuários - Hotel");
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.NORTH, panelTable);
+		{
+			button = new JButton("Excluir");
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String message = "Deseja realmente excluir o usuario?";
+					String title = "Confirmação";
+					int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+					if (reply == JOptionPane.YES_OPTION) {
+						if (!tfCodUsu.getText().isEmpty() && tfCodUsu != null) {
+							Connection conexao;
+							int codigo = Integer.parseInt(tfCodUsu.getText());
+							try {
+								conexao = ConnectionFactory.getConnection();
+								UsuarioDAO dao = new UsuarioDAO(conexao);
+								dao.excluir(codigo);
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+
+							JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso!");
+							fechar = true;
+							JanelaDeExcluirUsuario j = new JanelaDeExcluirUsuario(jM);
+						} else {
+							JOptionPane.showMessageDialog(frame, "Selecione um usuário para excluir", "Erro",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			});
+			button.setForeground(Color.RED);
+			button.setFont(new Font("Tahoma", Font.BOLD, 13));
+			button.setBounds(246, 420, 124, 34);
+			panelTable.add(button);
+		}
+		{
+			label = new JLabel("Pesquisar:");
+			label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			label.setBounds(31, 9, 108, 26);
+			panelTable.add(label);
+		}
+		{
+			textField = new JTextField();
+			textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			textField.setColumns(10);
+			textField.setBounds(31, 40, 329, 24);
+			panelTable.add(textField);
+		}
+		{
+			button_1 = new JButton("Localizar");
+			button_1.setIcon(new ImageIcon("..\\2bim\\icons\\search.png"));
+			button_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+			button_1.setBounds(622, 31, 122, 33);
+			panelTable.add(button_1);
+		}
 		janMenPrin.frameConteudo.getContentPane().add(BorderLayout.SOUTH, panelButton);
 		
 		janMenPrin.frameConteudo.pack(); // ajusta o tamanho da janela (frame)

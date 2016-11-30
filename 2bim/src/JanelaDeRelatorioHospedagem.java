@@ -24,6 +24,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Dimension;
+import java.awt.Font;
 
 //import net.sf.jasperreports.engine.JRException;
 //import net.sf.jasperreports.engine.JRResultSetDataSource;
@@ -95,6 +96,7 @@ public class JanelaDeRelatorioHospedagem implements ActionListener {
 		modelo = new DefaultTableModel(colunas, 0);
 
 		table = new JTable(modelo);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
 		table.getColumnModel().getColumn(0).setPreferredWidth(150);
 		table.getColumnModel().getColumn(0).setResizable(true);
@@ -105,12 +107,8 @@ public class JanelaDeRelatorioHospedagem implements ActionListener {
 		table.getColumnModel().getColumn(3).setPreferredWidth(100);
 		table.getColumnModel().getColumn(3).setResizable(false);
 
-		// trocar as colunas de posiï¿½ï¿½o
-		// Redimensionamento automï¿½tico
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
 		panelTable = new JPanel();
-		panelTable.setPreferredSize(new Dimension(507, 346));
+		panelTable.setPreferredSize(new Dimension(800, 600));
 		panelTable.setLayout(null);
 		{
 			scrollTable = new JScrollPane(table);
@@ -119,7 +117,7 @@ public class JanelaDeRelatorioHospedagem implements ActionListener {
 					.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollTable
 					.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollTable.setBounds(12, 69, 466, 248);
+			scrollTable.setBounds(12, 69, 778, 358);
 
 		}
 		{
@@ -127,7 +125,7 @@ public class JanelaDeRelatorioHospedagem implements ActionListener {
 			panelTable.add(lbCodCli);
 			lbCodCli.setText("Relatório de:");
 			lbCodCli.setBounds(12, 12, 103, 16);
-			lbCodCli.setFont(new java.awt.Font("Tahoma", 1, 12));
+			lbCodCli.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		}
 		{
 			ComboBoxModel cbCliModel = new DefaultComboBoxModel(new String[] {
@@ -136,7 +134,7 @@ public class JanelaDeRelatorioHospedagem implements ActionListener {
 			cbCli = new JComboBox();
 			panelTable.add(cbCli);
 			cbCli.setModel(cbCliModel);
-			cbCli.setBounds(12, 34, 223, 23);
+			cbCli.setBounds(12, 34, 298, 23);
 			cbCli.addActionListener(new comboListener());
 		}
 

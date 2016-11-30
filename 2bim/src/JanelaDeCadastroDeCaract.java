@@ -142,9 +142,10 @@ public class JanelaDeCadastroDeCaract {
 
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setPreferredSize(new Dimension(323, 162));
+		panel.setPreferredSize(new Dimension(800, 600));
 		{
 			tfNome = new JTextField();
+			tfNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			tfNome.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent e) {
@@ -154,41 +155,42 @@ public class JanelaDeCadastroDeCaract {
 			panel.add(tfNome);
 			tfNome.setPreferredSize(new java.awt.Dimension(227, 21));
 			tfNome.setSize(227, 21);
-			tfNome.setBounds(77, 32, 227, 19);
+			tfNome.setBounds(266, 36, 323, 19);
 		}
 		{
 			lbNomeCaract = new JLabel();
 			panel.add(lbNomeCaract);
 			lbNomeCaract.setText("Nome *");
-			lbNomeCaract.setFont(new java.awt.Font("Tahoma",1,12));
-			lbNomeCaract.setBounds(77, 13, 51, 14);
+			lbNomeCaract.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbNomeCaract.setBounds(266, 17, 65, 14);
 		}
 		{
 			lbCodCaract = new JLabel();
 			panel.add(lbCodCaract);
 			lbCodCaract.setText("Código");
-			lbCodCaract.setFont(new java.awt.Font("Tahoma",1,12));
-			lbCodCaract.setBounds(12, 12, 65, 14);
+			lbCodCaract.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbCodCaract.setBounds(201, 11, 65, 26);
 			
 		}
 		{
 			tfCodCaract = new JTextField();
 			panel.add(tfCodCaract);
 			tfCodCaract.setEditable(false);
-			tfCodCaract.setBounds(12, 32, 45, 21);
+			tfCodCaract.setBounds(201, 36, 45, 21);
 			tfCodCaract.setText(""+(cont+1));
 		}
 		{
 			lbDescCaract = new JLabel();
 			panel.add(lbDescCaract);
 			lbDescCaract.setText("Descrição");
-			lbDescCaract.setFont(new java.awt.Font("Tahoma",1,12));
-			lbDescCaract.setBounds(12, 65, 65, 14);
+			lbDescCaract.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lbDescCaract.setBounds(201, 69, 83, 14);
 		}
 		{
 			tfDescCaract = new JTextField();
+			tfDescCaract.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			panel.add(tfDescCaract);
-			tfDescCaract.setBounds(12, 85, 292, 21);
+			tfDescCaract.setBounds(201, 89, 388, 73);
 		}
 		{
 			btSalvar = new JButton();
@@ -197,7 +199,7 @@ public class JanelaDeCadastroDeCaract {
 			btSalvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btSalvar);
 			btSalvar.setText("Salvar");
-			btSalvar.setBounds(203, 119, 107, 39);
+			btSalvar.setBounds(392, 173, 124, 34);
 			janMenPrin.frameConteudo.addKeyListener(new OkKeyListener());			
 			btSalvar.addActionListener(new MostrarListener());
 		}
@@ -208,7 +210,7 @@ public class JanelaDeCadastroDeCaract {
 			btCancelar.setFont(new Font("Tahoma", Font.BOLD, 13));
 			panel.add(btCancelar);
 			btCancelar.setText("Cancelar");
-			btCancelar.setBounds(56, 122, 124, 34);
+			btCancelar.setBounds(258, 173, 124, 34);
 			btCancelar.addActionListener(new SairListener());
 		}
 		{
@@ -216,7 +218,7 @@ public class JanelaDeCadastroDeCaract {
 			panel.add(lbOpcional);
 			lbOpcional.setText("(opcional)");
 			lbOpcional.setFont(new java.awt.Font("Segoe UI",0,9));
-			lbOpcional.setBounds(71, 63, 55, 18);
+			lbOpcional.setBounds(276, 70, 55, 18);
 		}
 
 		//frame = new JDialog();
@@ -249,7 +251,9 @@ public class JanelaDeCadastroDeCaract {
 				//janMenPrin.dispose();
 			}
 			else{
-				JOptionPane.showMessageDialog(frame, "Preencha todos os campos obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+				String wr = "Preencha todos os campos obrigatórios \n";
+				if (tfNome.getText().isEmpty()){ wr = wr+"- Nome \n";}
+				JOptionPane.showMessageDialog(frame, wr, "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
